@@ -1,0 +1,212 @@
+Crear la base de datos: dbvacations
+
+Crear un proyecto
+npm init -y
+
+Dependencias a instalar:
+npm i express
+npm i dotenv
+npm i sequelize mysql2
+
+Dependencias a instalar de Desarrollo:
+npm i sequelize-cli --D
+
+Crear en la raíz del proyecto los siguientes archivos:
+.gitignore ( para ignorar los archivos de Git). 
+.env (Para declarar las variables de entorno)
+.sequelizerc 
+
+Abrir el archivo.gitignore y en su interior agregar:
+/node_modules/
+
+Abrir el archivo.env y en su interior agregar:
+
+DB_USERNAME= root
+DB_PASSWORD=
+DB_HOST= localhost
+DB_DATABASE=dbvacations
+DB_PORT=3306
+DB_DIALECT=mysql
+
+
+
+
+Abrir el archivo.app.js (raiz del proyecto) y en su interior
+const express = require('express');
+const app = express();
+const path = require('path');
+
+const PORT = process.env.PORT || 3000
+
+app.use(express.static(path.resolve(__dirname, '../public')));
+
+app.use(express.json())
+//URL encode  - Para que nos pueda llegar la información desde el formulario al req.body
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/', (req, res) => res.json({ clave: "con el server" }));
+
+app.listen(PORT, () => {
+    console.log('Servidor corriendo en el puerto' + PORT)
+}
+
+);
+
+
+
+
+Abrir el archivo -sequelizerc y en su interior agregar:
+const path = require('path')
+module.exports = {
+config: path.resolve('./src/database/config', 'config.js'),
+'models-path': path.resolve('./src/database/models'),
+'seeders-path': path.resolve('./src/database/seeders'),
+'migrations-path': path.resolve('./src/database/migrations'),
+}
+
+
+
+Crear la carpeta en la raiz:
+public
+src
+
+Dentro de la carpeta src:
+crear el archivo app.js
+crear las carpetas routes y controller
+
+Ejecutar sequelize-cli init para crear las carpetas que menciona .sequelize
+
+
+Ingresar a src - config y en el interior del archivo config.js reemplazar todo por
+// Para tomar lo parametros del env
+require('dotenv').config()
+
+module.exports =
+
+{
+
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "port": process.env.DB_PORT,
+    "dialect": process.env.DB_DIALECT,
+
+    seederStorage: "sequelize",
+    seederStorageTableName: "seeds",
+
+    migrationStorage: "sequelize",
+    migrationStorageTableName: "migrations"
+
+}
+
+
+Crear todos los modelos intervinientes:
+
+IMPORTANTE VERIFICAR EL ORDEN DE EJECUCION
+1- genero los modelos de las tablas qu no tienen foreing key
+
+sequelize model:generate --name Destination --attributes destination:string
+
+sequelize model:generate --name User --attributes first_name:string,last_name:string,mail:string,telephone:integer,avatar:string,password:string,addres:string,owner:tinyInt
+
+sequelize model:generate --name Category --attributes category:string
+ 
+2- Despues se crean las que tienen la foreing Key (nivel 2)
+sequelize model:generate --name Property --attributes user_id:integer,destination_id:integer,wifi:tinyint,pool:tinyint,parking:tinyint,barbecue:tinyint,price:decimal,category_id:integer,n_of_people:integer
+
+sequelize model:generate --name Interest --attributes user_id:integer,interest:string
+
+
+2- Despues se crean las que tienen la foreing Key (Nivel 3)
+
+sequelize model:generate --name Image --attributes property_id:integer,image_name:string
+
+sequelize model:generate --name Order --attributes property_id:integer,user_id:integer,check_in:date,check_out:date,n_of_people:integer,credit_card:string,cvc:string,expiry_date:date,comment:string,rating:integer
+
+Crear todas las relaciones correpondientes
+Modelo Property
+
+ static associate(models) {
+      // belongsTo
+      Property.belongsTo(models.Destination);
+      Property.belongsTo(models.User);
+      Property.belongsTo(models.Category);
+     
+     //hasMany
+     Property.hasMany(models.Image, {
+      as: "image",
+      foreignKey: 'property_id'
+      });
+     Property.hasMany(models.Order, {
+      as: "order",
+      foreignKey: 'property_id'
+      });
+    }
+
+
+Modelo User
+
+static associate(models) {
+      //hasMany
+      User.hasMany(models.Property,{
+        as:"properties",
+        foreignKey:'user_id'
+      });
+
+      User.hasMany(models.Order,{
+        as:"orders",
+        foreignKey:'user_id'
+      });
+     
+     User.hasMany(models.Interest,{
+        as:"interests",
+        foreignKey:'user_id'
+      });
+
+    }
+
+
+Modelo Order
+
+static associate(models) {
+
+      Order.belongsTo(models.Property);
+      Order.belongsTo(models.User);
+
+    }
+
+Modelo FOTO
+static associate(models) {
+      Image.belongsTo(models)(models.Property);
+   }
+
+Modelo INTERES
+static associate(models) {
+
+      Interest.belongsTo(models.User);
+   }
+
+Modelo Destination
+    static associate(models) {
+      Destination.hasMany(models.Property, {
+        as: "properties",
+        foreignKey: 'destination_id'
+        });
+    }
+
+Modelo CATEGORIA
+	
+    static associate(models) {
+      Category.hasMany(models.Property, {
+        as: "properties",
+        foreignKey: 'category_id'
+        });
+    }
+
+AHORA HAY QUE AGREGAR LAS CLAVES FORANEAS A LAS  MIGRACIONES
+
+
+
+CREAR LA MIGRACION Y CREACION DE LAS TABLAS
+sequelize db:migrate
