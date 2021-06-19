@@ -1,0 +1,51 @@
+<header class="main-header">
+    <div class="top-bar">
+        <input type="checkbox" id="main-hamburger">
+        <label for="main-hamburger" class="hamburger"><i class="fas fa-bars"></i>
+        </label>
+        <nav class="menu-hamburger">
+            <ul>
+
+                <li><a href="/">Inicio</a></li>
+                <% if (locals.isLogged){ %>
+                    <li><a href="/users/profile">Perfil</a></li>
+                    <li><a href="/users/Logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Logueate</a></li>
+                        <li><a href="/register">Registrate</a></li>
+                        <% } %>
+                <% if (locals.admLogged){ %>
+                    <li><a href="/products">Administrar</a></li>
+                <% } %>
+            </ul>
+        </nav>
+
+        <div class="logo-completo">
+
+            <img src="/images/logo-casas-alquiler.jpg" alt="" class="logo">
+
+            <h1 class="nombre-logo">Serena</h1>
+        </div>
+        <div class="crt-prof">
+            <a href="/products/Cart" class="icono-carrito">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <% if (locals.isLogged){ %>
+                <img src="/images/users/<%= locals.userLogged.avatar %>" width="40" style="border-radius: 100%">
+                <nav class="accesos">
+                    <a href="/users/profile">Perfil</a>
+                    <a href="/users/Logout">Logout</a>
+                </nav>
+
+
+                <% } else { %>
+                    <nav class="accesos">
+                        <a href="/login" class="login">Logueate</a>
+                        <a href="/register" class="register">Registrate</a>
+                        <% } %>
+
+                    </nav>
+        </div>
+    </div>
+</header>

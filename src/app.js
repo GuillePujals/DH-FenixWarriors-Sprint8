@@ -4,6 +4,8 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000
 
+const productRouter = require ('./routes/productRouter');
+
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.use(express.json())
@@ -11,6 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', (req, res) => res.json({ clave: "con el server" }));
+app.use('/products', productRouter);
 
 app.listen(PORT, () => {
     console.log('Servidor corriendo en el puerto' + PORT)

@@ -2,7 +2,10 @@
 const {
   Model
 } = require('sequelize');
+console.log(Model.Image);
+
 module.exports = (sequelize, DataTypes) => {
+  
   class Image extends Model {
     /**
      * Helper method for defining associations.
@@ -10,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Image.belongsTo(models)(models.Property);
+      Image.belongsTo(models.Property);
     }
   };
   Image.init({

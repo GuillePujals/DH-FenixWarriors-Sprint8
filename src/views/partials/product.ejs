@@ -1,0 +1,18 @@
+
+            <main class="main">
+
+
+                
+                <section class="listadoDeProductos">
+                    <h3>
+                        <%= casa.nombre %>
+                    </h3>
+                    <img src="/images/products/<%= casa.image %>" alt="" class="listProductsImage">
+                    <p>
+                        <%= casa.descrip %>
+                    </p>
+                    <h5>$<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
+                    </h5>
+                </section>
+            </main>
+            
