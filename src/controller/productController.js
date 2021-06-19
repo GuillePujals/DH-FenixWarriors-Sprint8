@@ -6,8 +6,9 @@ const {Category, Destination, Image, Property, Users} = require('../database/mod
 
 let productController = {
 create: (req, res) => {
-    res.send('Estoy en create')
-}
+      
+    res.render('createProducts') 
+},
 
 }
 
