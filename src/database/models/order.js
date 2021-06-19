@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     check_out: DataTypes.DATE,
     n_of_people: DataTypes.INTEGER,
     credit_card: DataTypes.STRING,
-    cvc: DataTypes.STRING,
     expiry_date: DataTypes.DATE,
     comment: DataTypes.STRING,
     rating: DataTypes.INTEGER

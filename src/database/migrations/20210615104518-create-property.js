@@ -22,6 +22,9 @@ module.exports = {
           key: 'id'
         }
       },
+      address: {
+        type: Sequelize.STRING
+      },
       wifi: {
         type: Sequelize.TINYINT
       },

@@ -34,9 +34,6 @@ module.exports = {
       credit_card: {
         type: Sequelize.STRING
       },
-      cvc: {
-        type: Sequelize.STRING
-      },
       expiry_date: {
         type: Sequelize.DATE
       },

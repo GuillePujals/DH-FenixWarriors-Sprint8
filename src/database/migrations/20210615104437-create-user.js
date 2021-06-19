@@ -26,10 +26,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      addres: {
-        type: Sequelize.STRING
-      },
-      owner: {
+      admin: {
         type: Sequelize.TINYINT
       },
       createdAt: {
