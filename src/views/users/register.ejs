@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    
+    <section class="form">
+        <form method="POST" action="/register" enctype="multipart/form-data" class="register">
+            <div class="control-formulario">
+                
+                <input 
+                    type="text" 
+                    placeholder="Nombre" 
+                    name="first_name" 
+                    class="control <%= locals.errors && errors.first_name ? 'is-invalid' : null %>"
+                    value = "<%= locals.oldData ? oldData.first_name : null %>">
+                    <% if(locals.errors && errors.first_name) { %>
+                        <div class="text-danger">
+                            <%= errors.first_name.msg %>
+                        </div>
+                        <% } %>  
+            </div>
+            <div class="control-formulario">
+                <input 
+                    type="text" 
+                    placeholder="Apellido" 
+                    name="last_name" 
+                    class="control <%= locals.errors && errors.last_name ? 'is-invalid' : null %>"
+                    value = "<%= locals.oldData ? oldData.last_name : null %>">
+                    <% if(locals.errors && errors.last_name) { %>
+                        <div class="text-danger">
+                            <%= errors.last_name.msg %>
+                        </div>
+                        <% } %>  
+            </div>          
+            <div class="control-formulario">
+                <input 
+                    type="text" 
+                    placeholder="E-mail" 
+                    name="mail" 
+                    class="control <%= locals.errors && errors.mail ? 'is-invalid' : null %>"
+                    value = "<%= locals.oldData ? oldData.mail : null %>">
+                    <% if(locals.errors && errors.mail) { %>
+                        <div class="text-danger">
+                            <%= errors.mail.msg %>
+                        </div>
+                        <% } %>  
+            </div>         
+             
+            <div class="control-formulario">
+                <input 
+                    type="text" 
+                    placeholder="Teléfono" 
+                    name="telephone" 
+                    class="control <%= locals.errors && errors.telephone ? 'is-invalid' : null %>"
+                    value = "<%= locals.oldData ? oldData.telephone : null %>">
+                <% if(locals.errors && errors.telephone) { %>
+                    <div class="text-danger">
+                        <%= errors.telephone.msg %>
+                    </div>
+                    <% } %>   
+            </div>     
+                  
+            <div class="control-formulario">
+                <label class="label">Imagen de perfil:</label>
+                <input 
+                    type="file" 
+                    name="avatar"
+                    class="control-formulario <%= locals.errors && errors.avatar ? 'is-invalid' : null %>"
+                    >
+                    <% if (locals.errors && errors.avatar) { %>
+                        <div class="text-danger">
+                            <%= errors.avatar.msg %>
+                        </div>
+                        <% } %>
+            </div>
+            
+            <div class="intereses">
+                <label  class="label">Intereses</label>
+                <label class="check"><input type="checkbox"  name="interes" value="casa" <%= locals.oldData && oldData.interes && oldData.interes.includes("casa") ? 'checked' : null %>>Casas</label>
+                <label class="check"><input type="checkbox"  name="interes" value="departamento" <%= locals.oldData && oldData.interes && oldData.interes.includes('departamento') ? 'checked' : null %>>Departamentos</label>
+                <label class="check"><input type="checkbox"  name="interes" value="hotel" <%= locals.oldData && oldData.interes && oldData.interes.includes('hotel') ? 'checked' : null %>>Hoteles</label>
+                <label class="check"><input type="checkbox"  name="interes" value="hosteria" <%= locals.oldData && oldData.interes && oldData.interes.includes('hosteria') ? 'checked' : null %>>Hosterías</label>
+                <label class="check"><input type="checkbox"  name="interes" value="Aparts" <%= locals.oldData && oldData.interes && oldData.interes.includes('Aparts') ? 'checked' : null %>>Aparts</label>
+            </div>
+            <div class="control-formulario">
+                <input 
+                    type="password" 
+                    placeholder="Ingrese la password" 
+                    name="password" 
+                    class="control <%= locals.errors && errors.password ? 'is-invalid' : null %>">
+                <div class="text-danger">
+                    <% if(locals.errors && errors.password) { %>
+                        <div class="text-danger">
+                            <%= errors.password.msg %>
+                        </div>
+                        <% } %>   
+            </div>            
+            <!-- <div class="control-formulario">
+                <input type="password" placeholder="Repita la password" name="password2" class="control" required minlength="3">
+            </div>             -->
+            <div class="buttons">
+                <button type="submit" class="boton-formulario">Registrarme</button>
+                <button type="reset" class="boton-formulario">Resetear</button>
+            </div>
+        
+        </form>        
+    </section>
+ 
+</body>
+
+</html>
