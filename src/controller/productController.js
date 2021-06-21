@@ -24,7 +24,15 @@ let productController = {
         
         res.render('createProducts') 
     },
+create: async (req, res) => {
+      let categories = await Category.findAll()
+      //console.log(categories);
+     return res.render('products/createProducts', {categories}) 
+},
 
+store: (req, res) => {
+    res.send ("Estoy en Store");
+}
 }
 
 
