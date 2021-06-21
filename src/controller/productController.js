@@ -6,7 +6,9 @@ const {Category, Destination, Image, Property, Users} = require('../database/mod
 
 let productController = {
     list: (req, res) => {
-        db.Property.findAll()
+        db.Property.findAll({
+            include:['category', 'user']
+        })
         .then(propertys => {
             console.log(propertys);
             let respuesta = {

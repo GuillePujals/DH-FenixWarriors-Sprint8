@@ -15,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
           as:"destination",
           foreignKey:"destination_id"
         });
+        Property.belongsTo(models.User, {
+          as:"user",
+          foreignKey:"user_id"
+        });
+        Property.belongsTo(models.Category, {
+          as:"category",
+          foreignKey:"category_id"
+        });
+        // Property.belongsTo(models.Destination);
         // Property.belongsTo(models.User);
         // Property.belongsTo(models.Category);
        
