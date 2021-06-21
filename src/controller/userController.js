@@ -5,7 +5,7 @@ const {Category, Destination, Image, Property, User} = require('../database/mode
 let usersController = {
 
 register: (req, res) => {
-    return res.render ('users/newUser')
+    return res.render ('users/register')
 },
 
 

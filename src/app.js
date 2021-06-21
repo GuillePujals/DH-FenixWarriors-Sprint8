@@ -23,10 +23,6 @@ app.use (methodOverride ('_method'));
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-app.post('/register', function (req, res) {
-    console.log(req.body);
-    res.send();
-  });
 
 app.use('/products', productRouter);
 app.use('/', userRouter);
