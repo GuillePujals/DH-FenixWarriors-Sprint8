@@ -101,25 +101,28 @@
                     value="<%= locals.casa ? casa.ubicacion : null %>"
                     class=<%=locals.errors && errors.ubicacion ? 'is-invalid' :
                     null %>>
-                <% if (locals.errors && errors.ubicacion) { %>
-                    <div class="text-danger">
-                        <%= errors.ubicacion.msg %>
-                    </div>
+
+                    <% if (locals.errors && errors.ubicacion) { %>
+                        <div class="text-danger">
+                            <%= errors.ubicacion.msg %>
+                        </div>
                     <% } %>
             </div>
             <div class="campo">
-                <label for="ciudad">Ciudad</label>
-                <input 
-                    type="text" 
-                    name="ciudad" 
-                    value="<%= locals.casa ? casa.ciudad : null %>"
-                    class=<%=locals.errors && errors.ciudad ? 'is-invalid' : null
-                    %>>
-                <% if (locals.errors && errors.ciudad) { %>
+                <label for="destination">Ciudad</label>
+                <select name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>>
+                    <% destination.forEach(dest => {%>
+                        <option>
+                        <%= dest.destination %>
+                        </option>
+                    <% }) %>
+                </select>
+
+                <% if (locals.errors && errors.destination) { %>
                     <div class="text-danger">
-                        <%= errors.ciudad.msg %>
+                        <%= errors.destination.msg %>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
             <div class="campo">
                 <label for="condiciones">Condiciones</label>
