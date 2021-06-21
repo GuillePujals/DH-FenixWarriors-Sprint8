@@ -11,9 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         // belongsTo
-        Property.belongsTo(models.Destination);
-        Property.belongsTo(models.User);
-        Property.belongsTo(models.Category);
+        Property.belongsTo(models.Destination, {
+          as:"destination",
+          foreignKey:"destination_id"
+        });
+        // Property.belongsTo(models.User);
+        // Property.belongsTo(models.Category);
        
        //hasMany
        Property.hasMany(models.Image, {

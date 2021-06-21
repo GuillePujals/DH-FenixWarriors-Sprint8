@@ -5,10 +5,25 @@ const {Category, Destination, Image, Property, Users} = require('../database/mod
 
 
 let productController = {
-create: (req, res) => {
-      
-    res.render('createProducts') 
-},
+    list: (req, res) => {
+        db.Property.findAll()
+        .then(propertys => {
+            console.log(propertys);
+            let respuesta = {
+                meta: {
+                    status:200,
+                    total: propertys.length
+                },
+                data: propertys
+            }
+
+            res.json(respuesta);
+        });
+    },
+    create: (req, res) => {
+        
+        res.render('createProducts') 
+    },
 
 }
 
