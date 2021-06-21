@@ -23,7 +23,7 @@ processRegister: async (req, res) => {
     });
     }
    
-    let newUser = await User.create({
+    let newUser = User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         mail: req.body.mail,
@@ -32,6 +32,7 @@ processRegister: async (req, res) => {
         password:req.body.password,
         admin: 0
     })
+
     return res.send(newUser)
 }
 }
