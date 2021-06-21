@@ -33,13 +33,13 @@ let productController = {
     },
     store: async (req, res) => {
         console.log(req.body);
-        let newProperty = await Property.create({
-            user_id: 1,
-            destination_id: req.body.destination,
-            categorie_id: req.body.categ,
-            price: req.body.price,
-            address: req.body.ubicacion
-            });
+        // let newProperty = await Property.create({
+        //     user_id: 1,
+        //     destination_id: req.body.destination,
+        //     category_id: req.body.categ,
+        //     price: req.body.price,
+        //     address: req.body.ubicacion
+        //     });
         }
 }
 

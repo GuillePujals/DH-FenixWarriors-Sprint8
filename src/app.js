@@ -19,7 +19,8 @@ app.set('view engine', 'ejs');
 
 //Para usar métodos put y delete
 const methodOverride = require ('method-override');
-app.use (methodOverride ('_method'));
+//Aquí estoy disponiendo la posibilidad para utilizar el seteo en los formularios para el usod e los metodos put ó delete
+app.use(methodOverride('_method'));
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 

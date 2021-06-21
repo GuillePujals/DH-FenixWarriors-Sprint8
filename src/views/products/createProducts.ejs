@@ -9,7 +9,7 @@
 <body>
     <main class="main">
         <h3>Creación de productos</h3>
-        <form action="/products" method="POST" class="form" enctype="multipart/form-data">
+        <form action="/products" method="POST" class="form" enctype="multipart/form-data"> -->
             <div class="campo">
                 <label for="nombre">Nombre</label>
                 <input
@@ -53,9 +53,7 @@
                 <label for="categ">Categoría</label>
                 <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>>
                     <% categories.forEach(cat => {%>
-                        <option>
-                        <%= cat.category %>
-                        </option>
+                        <option value="<%= cat.id %>"><%= cat.category %></option>
                     <% }) %>
                 </select>
 
@@ -112,9 +110,7 @@
                 <label for="destination">Ciudad</label>
                 <select name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>>
                     <% destination.forEach(dest => {%>
-                        <option>
-                        <%= dest.destination %>
-                        </option>
+                        <option value="<%= dest.id %>"><%= dest.destination %></option>
                     <% }) %>
                 </select>
 
@@ -191,7 +187,8 @@
             
 
         </form>
-       
+
+
 
     </main>
 
