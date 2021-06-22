@@ -29,6 +29,21 @@ module.exports = {
       admin: {
         type: Sequelize.TINYINT
       },
+      casa: {
+        type: Sequelize.TINYINT
+      },
+      departamento: {
+        type: Sequelize.TINYINT
+      },
+      hotel: {
+        type: Sequelize.TINYINT
+      },
+      hosteria: {
+        type: Sequelize.TINYINT
+      },
+      aparts: {
+        type: Sequelize.TINYINT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
