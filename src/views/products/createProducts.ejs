@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include ('../partials/head') %>
 <body>
     <main class="main">
-        <h3>Creación de productos</h3>
-        <form action="/products" method="POST" class="form" enctype="multipart/form-data"> -->
+        <h3>Nueva propiedad</h3>
+        <form action="/products" method="POST" > 
+            <!-- enctype="multipart/form-data" -->
             <div class="campo">
                 <label for="nombre">Nombre</label>
                 <input
@@ -48,7 +42,7 @@
                     </div>
                     <% } %>
             </div>
-            </div>
+
             <div class="campo">
                 <label for="categ">Categoría</label>
                 <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>>
@@ -63,6 +57,7 @@
                     </div>
                     <% } %>
             </div>
+
             <div class="campo">
                 <label for="habit">Cantidad de Habitaciones</label>
                 <input 
@@ -181,11 +176,8 @@
 
             <button type="reset" class="button">Cancelar</button>
             <button type="submit" class="button">Confirmar</button>
-            <button  class="button">
-                <a href="/products">Volver</a>
-            </button>
+            <button  class="button"><a href="/products">Volver</a></button>
             
-
         </form>
 
 
@@ -193,4 +185,3 @@
     </main>
 
 </body>
-</html>
