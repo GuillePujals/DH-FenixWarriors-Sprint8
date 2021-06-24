@@ -34,7 +34,17 @@ processRegister: async (req, res) => {
     })
 
     return res.send(newUser)
+}, 
+
+login: (req, res) => {
+    res.render('users/login')
+}, 
+
+loginProcess: (req, res) => {
+    res.render('users/loginProcess')
 }
+
+
 }
 
 

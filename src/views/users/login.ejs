@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+<h2>  Bienvenido  </h2>
+
+<p> Formulario de login </p>
+
+<section class="form">
+        <form method="POST" action="/users/login" class="register">
+                <div class="control-formulario">
+                    <input type="email" placeholder="E-mail" name="email" class="control" required>
+                </div> 
+                <% if (locals.errors && errors.email) { %>
+                    <div class="123">
+                        <%= errors.email.msg %>
+                    </div>
+              <% }  %>       
+                <div class="control-formulario">
+                    <input type="password" placeholder="password" name="contraseña" class="control" required minlength="3">
+                </div>            
+                <div class="control-formulario">
+                        <label for="recordatorio de cuenta"></label>
+                        <input type="checkbox" name="recordatorio" id="recordatorio de cuenta">Recuérdame
+                </div>
+                        
+                <div class="buttons">
+                    <button type="submit" class="boton-formulario">Acceder</button>
+                </div>
+        
+            </form>        
+        </section>
+
+
+
+
+</body>
+
+</html>

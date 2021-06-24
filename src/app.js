@@ -30,7 +30,7 @@ app.use(session({
 }));
 
 app.use('/products', productRouter);
-app.use('/', userRouter);
+app.use('/users', userRouter);
 app.use('/', (req, res) => res.json({ clave: "con el server" }));
 
 const PORT = process.env.PORT || 3000
