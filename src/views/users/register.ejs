@@ -8,7 +8,7 @@
         <%- include ('../partials/header') %>
 
             <section class="form">
-                <form method="POST" action="/register" enctype="multipart/form-data" class="register">
+                <form method="POST" action="/users/register" enctype="multipart/form-data" class="register">
                     <div class="control-formulario">
 
                         <input type="text" placeholder="Nombre" name="first_name"
@@ -80,6 +80,7 @@
                                 oldData.interes && oldData.interes.includes('Aparts') ? 'checked' : null
                                 %>>Aparts</label>
                     </div>
+                    
                     <div class="control-formulario">
                         <input type="password" placeholder="Ingrese la password" name="password"
                             class="control <%= locals.errors && errors.password ? 'is-invalid' : null %>">

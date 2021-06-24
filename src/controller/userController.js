@@ -42,8 +42,41 @@ login: (req, res) => {
 }, 
 
 loginProcess: (req, res) => {
-    res.render('users/loginProcess')
-}
+        
+        let userToLogin = User.findByField("mail", req.body.email)
+        if (userToLogin) {
+
+            let isPasswordOk = bcryptjs.compareSync(req.body.contraseña, userToLogin.password)
+            if (isPasswordOk) {
+                
+                req.session.userLogged = userToLogin
+                if(req.body.recordatorio){
+                    res.cookie('userEmail', req.body.email, { maxAge: 1000 * 60})
+                    console.log('hay cookie');
+                    console.log(req.cookies.userEmail);
+                }
+
+                //console.log(req.session);
+                return res.render('profile')
+            }
+            return res.render( "users/login", {
+                errors: {
+                    email: {
+                        msg: "Las credenciales son inválidas"
+                    }
+                }
+            })
+        }
+
+
+         return res.render( "users/login", {
+            errors: {
+                email: {
+                    msg: "No esta registrado este email"
+                }
+            }
+        })
+    }     
 
 
 }
