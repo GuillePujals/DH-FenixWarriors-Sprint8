@@ -1,3 +1,4 @@
+const bcryptjs = require('bcryptjs');
 const { Op } = require("sequelize");
 const {Category, Destination, Image, Property, User} = require('../database/models');
 const {
@@ -23,13 +24,13 @@ processRegister: async (req, res) => {
     });
     }
    
-    let newUser = User.create({
+    let newUser = await User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         mail: req.body.mail,
         telephone: req.body.telephone,
         avatar: req.file ? req.file.filename :'Avatar.jpg',
-        password:req.body.password,
+        password: bcryptjs.hashSync(req.body.password, 10),
         admin: 0
     })
 

@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:'user_id'
       });
      
-     User.hasMany(models.Interest,{
-        as:"interests",
-        foreignKey:'user_id'
-      });
     }
   };
   User.init({
@@ -34,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
     telephone: DataTypes.INTEGER,
     avatar: DataTypes.STRING,
     password: DataTypes.STRING,
-    admin: DataTypes.TINYINT
+    admin: DataTypes.TINYINT,
+    casa: DataTypes.TINYINT,
+    departamento: DataTypes.TINYINT,
+    hotel: DataTypes.TINYINT,
+    hosteria: DataTypes.TINYINT,
+    aparts: DataTypes.TINYINT
   }, {
     sequelize,
     modelName: 'User',
