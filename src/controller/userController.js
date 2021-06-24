@@ -41,9 +41,14 @@ login: (req, res) => {
     res.render('users/login')
 }, 
 
-loginProcess: (req, res) => {
+loginProcess: async (req, res) => {
         
-        let userToLogin = User.findByField("mail", req.body.email)
+        let userToLogin = await User.findOne({
+            where: {
+                mail : req.body.email
+            }
+        })
+        console.log(userToLogin);
         if (userToLogin) {
 
             let isPasswordOk = bcryptjs.compareSync(req.body.contraseña, userToLogin.password)
