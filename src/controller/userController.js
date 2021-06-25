@@ -77,7 +77,7 @@ loginProcess: async (req, res) => {
          return res.render( "users/login", {
             errors: {
                 email: {
-                    msg: "No esta registrado este email"
+                    msg: "No esta registrado este mail"
                 }
             }
         })
