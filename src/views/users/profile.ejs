@@ -8,7 +8,7 @@
         <%- include ('../partials/header') %>
             <section>
                 <div class="containerProf">
-                    <img src="/img/users/<%= user.avatar%>">
+                    <img src=/img/users/<%= user.avatar%>">
                     <div class="info">
                         <p>
                            E-mai: <%= user.mail %>
@@ -16,6 +16,14 @@
                         <p>
                             Teléfono: <%= user.telephone %>
                         </p>
+                        <div class="intereses">
+                            <label class="label">Intereses</label>
+                            <label class="check"><input type="checkbox" name="casa" value= 1>Casas</label>
+                            <label class="check"><input type="checkbox" name="departamento" value= 1>Departamentos</label>
+                            <label class="check"><input type="checkbox" name="hotel" value= 1 >Hoteles</label>
+                            <label class="check"><input type="checkbox" name="hosteria" value= 1 >Hosterías</label>
+                            <label class="check"><input type="checkbox" name="aparts" value= 1 >Aparts</label>
+                        </div>
                         
                        
                     </div>

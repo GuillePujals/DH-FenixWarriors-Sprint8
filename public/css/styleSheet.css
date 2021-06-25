@@ -100,6 +100,9 @@ section{
                 margin-right: 10px;
             }
 
+.form .div .text-danger{
+    color:red;
+}
 
 /*================== Register =======================*/
 .form{
@@ -175,6 +178,9 @@ section{
     .is-invalid{
         border: red solid 1px;
     }
+
+
+
 
 /*================== Footer =======================*/
 .redes {

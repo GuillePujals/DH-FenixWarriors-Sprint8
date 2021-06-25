@@ -65,21 +65,13 @@
 
                     <div class="intereses">
                         <label class="label">Intereses</label>
-                        <label class="check"><input type="checkbox" name="interes" value="casa" <%=locals.oldData &&
-                                oldData.interes && oldData.interes.includes("casa") ? 'checked' : null %>>Casas</label>
-                        <label class="check"><input type="checkbox" name="interes" value="departamento"
-                                <%=locals.oldData && oldData.interes && oldData.interes.includes('departamento')
-                                ? 'checked' : null %>>Departamentos</label>
-                        <label class="check"><input type="checkbox" name="interes" value="hotel" <%=locals.oldData &&
-                                oldData.interes && oldData.interes.includes('hotel') ? 'checked' : null
-                                %>>Hoteles</label>
-                        <label class="check"><input type="checkbox" name="interes" value="hosteria" <%=locals.oldData &&
-                                oldData.interes && oldData.interes.includes('hosteria') ? 'checked' : null
-                                %>>Hosterías</label>
-                        <label class="check"><input type="checkbox" name="interes" value="Aparts" <%=locals.oldData &&
-                                oldData.interes && oldData.interes.includes('Aparts') ? 'checked' : null
-                                %>>Aparts</label>
+                        <label class="check"><input type="checkbox" name="casa" value= 1>Casas</label>
+                        <label class="check"><input type="checkbox" name="departamento" value= 1>Departamentos</label>
+                        <label class="check"><input type="checkbox" name="hotel" value= 1 >Hoteles</label>
+                        <label class="check"><input type="checkbox" name="hosteria" value= 1 >Hosterías</label>
+                        <label class="check"><input type="checkbox" name="aparts" value= 1 >Aparts</label>
                     </div>
+                    
                     <div class="control-formulario">
                         <input type="password" placeholder="Ingrese la password" name="password"
                             class="control <%= locals.errors && errors.password ? 'is-invalid' : null %>">
