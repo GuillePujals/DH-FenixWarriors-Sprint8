@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include ('../partials/head') %>
+
+
+    <body>
+        <%- include ('../partials/header') %>
+            <section>
+                <div class="containerProf">
+                    <img src="/img/users/<%= user.avatar%>">
+                    <div class="info">
+                        <p>
+                           E-mai: <%= user.mail %>
+                        </p>
+                        <p>
+                            Teléfono: <%= user.telephone %>
+                        </p>
+                        
+                       
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <%- include ('../partials/footer') %>
+
+    </body>
+
+</html>

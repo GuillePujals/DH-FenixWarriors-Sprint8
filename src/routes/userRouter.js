@@ -21,7 +21,7 @@ router.post('/register', uploadFile.single('avatar'), userValidation, controlado
 //router.post('/login/', controladorUser.loginProcess);
 
 // Perfil del usuario
-//router.get('/users/profile/', authMiddleware, controladorUser.profile);
+router.get('/users/profile/', authMiddleware, controladorUser.profile);
 
 // Logout
 //router.get('/users/logout/', controladorUser.logout);
