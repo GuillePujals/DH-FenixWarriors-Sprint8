@@ -16,6 +16,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/create', controladorproduct.create);
+//3. /products/:id (GET) Detalle de un producto particular
+router.get('/:id', controladorproduct.detalleCrud);
 router.get('/', controladorproduct.list);
 router.post('/', upload.single('foto'), productValidate, controladorproduct.store);
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<%- include ('../partials/head') %>
+    
+    <body>
+
+        <%- include ('../partials/header') %>
+
+            <main class="main">
+
+
+                <h1>Detalle del producto</h1>
+                <%- include ('../partials/product') %>
+                    <div class="botones">
+                        <form action="/products/<%= casa.id %>/edit" class="editar">
+                            <button>Editar</button>
+                        </form>
+                        <form action="/products" class="editar" >
+                            <button>Volver</button>
+                        </form>
+                        <form action="/products/<%= casa.id %>?_method=DELETE" method="POST">
+                            <button class="borrar">Borrar</button>
+                        </form>
+                    </div>
+            </main>
+            <%- include ('../partials/footer') %>
+
+
+    </body>
+
+</html>

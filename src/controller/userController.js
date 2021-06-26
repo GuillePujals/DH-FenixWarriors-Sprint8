@@ -36,7 +36,7 @@ let usersController = {
             last_name: req.body.last_name,
             mail: req.body.mail,
             telephone: req.body.telephone,
-            avatar: req.file ? req.file.filename :'logo-casa-alquiler.jpg',
+            avatar: req.file ? req.file.filename :'avatar.jpg',
             password: bcryptjs.hashSync(req.body.password, 10),
             admin: 0,
             casa: req.body.casa,
@@ -96,8 +96,8 @@ loginProcess: async (req, res) => {
             }
         })
     },
-    edit:(req, res)=> {
-        let user = req.session.userLogged;
+    edit: async (req, res)=> {
+        let user = await User.findByPk(req.session.userLogged.id);
         res.render('users/editUser', {user})
     },
     update: async (req, res)=> {

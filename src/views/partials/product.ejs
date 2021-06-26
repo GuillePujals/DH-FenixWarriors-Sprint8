@@ -5,14 +5,32 @@
                 
                 <section class="listadoDeProductos">
                     <h3>
-                        <%= casa.nombre %>
+                        Dirección: <%= casa.address %>
                     </h3>
                     <img src="/images/products/<%= casa.image %>" alt="" class="listProductsImage">
                     <p>
-                        <%= casa.descrip %>
+                        Cantidad máxima de personas: <%= casa.n_of_people %>
                     </p>
-                    <h5>$<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
+                    <div class="campo">
+                        <label>Servicios</label> <br>
+                        <input class="check" type="checkbox" name="wifi" <%= locals.casa && casa.wifi == 1 ? 'checked' : null %>>
+                        <label>Wi-fi</label>
+                        <br>
+                        <input class="check" type="checkbox" name="pool" <%= locals.casa && casa.pool == 1 ? 'checked' : null %>>
+                        <label>Pileta</label>
+                        <br>
+                        <input class="check" type="checkbox" name="parking"
+                            <%= locals.casa && casa.parking == 1 ? 'checked' : null %>>
+                        <label>Estacionamiento</label>
+                        <br>
+                        <input class="check" type="checkbox" name="barbecue"
+                            <%= locals.casa && casa.barbecue ? 'checked' : null %>>
+                        <label>Parrilla</label>
+                    </div>
+                    <h5>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
                     </h5>
+
+                    <script src="detalleCrud.ejs"></script>
                 </section>
             </main>
             
