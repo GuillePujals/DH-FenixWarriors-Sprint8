@@ -29,6 +29,10 @@ let productController = {
         return res.render('products/createProducts', {categories, destination}) 
     },
     store: async (req, res) => {
+        let estatacionamiento = 0;
+        let wifi = 0;
+        let pileta = 0;
+        let parrilla = 0;
         const validations = validationResult(req);
         console.log(validations.mapped())
         if (validations.errors.length > 0) {
@@ -43,12 +47,28 @@ let productController = {
         }
 
         console.log(req.body);
+        console.log('------------------------------');
+        console.log(req.session.userLogged);
+        console.log('------------------------------');
+        req.body.servicios.forEach(servicio => {
+            if (servicio == 'estacionamiento') estatacionamiento = 1;
+            if (servicio == 'parrilla') parrilla = 1;
+            if (servicio == 'pileta') pileta = 1;
+            if (servicio == 'wifi') wifi = 1;
+
+        });
+
         let newProperty = await Property.create({
-            user_id: 1,
+            user_id: req.session.userLogged.id,
             destination_id: req.body.destination,
             category_id: req.body.categ,
             price: req.body.price,
-            address: req.body.ubicacion
+            address: req.body.address,
+            n_of_people: req.body.n_people,
+            wifi: wifi,
+            pool: pileta,
+            parking: estatacionamiento,
+            barbecue: parrilla
             });
         }
 }
