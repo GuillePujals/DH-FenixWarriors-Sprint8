@@ -70,7 +70,18 @@ let productController = {
             parking: estatacionamiento,
             barbecue: parrilla
             });
+        },
+    detalleCrud: async (req, res) => {
+        let casa = await Property.findByPk(req.params.id);
+        console.log("casa: " + casa);
+        if (casa) {
+            res.render('products/detalleCrud', {casa});
+        } else {
+            res.render('error404');
         }
+
+       
+    }
 }
 
 
