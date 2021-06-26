@@ -72,6 +72,8 @@ let productController = {
             barbecue: parrilla
         });
 
+        console.log(req.file);
+
         let image = await Image.create({
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
