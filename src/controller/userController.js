@@ -7,12 +7,11 @@ const {
 
 let usersController = {
 
-    profile: (req, res) => {
-               console.log(req.session.userLogged);
-        res.render ('users/profile', {
-            user: req.session.userLogged
-            
-        })
+    profile: async (req, res) => {
+        console.log(req.session.userLogged);
+        let user = await User.findByPk(req.session.userLogged.id)
+        console.log(user);
+        res.render ('users/profile', {user})
       },
 
     register: (req, res) => {
@@ -100,8 +99,26 @@ loginProcess: async (req, res) => {
         let user = req.session.userLogged;
         res.render('users/editUser', {user})
     },
-    store:(req, res)=> {
-        res.send("Estoy en edit");
+    update: async (req, res)=> {
+        console.log("body.casa: " + req.body.casa);
+        //let casa = req.body.casa == 1 ? 1 : null
+        let user = await User.update({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            mail: req.body.mail,
+            telephone: req.body.telephone,
+            casa: req.body.casa == 1 ? 1 : null,
+            departamento: req.body.departamento == 1 ? 1 : null,
+            hotel: req.body.hotel == 1 ? 1 : null,
+            hosteria: req.body.hosteria == 1 ? 1 : null,
+            aparts: req.body.aparts == 1 ? 1 : null,
+            avatar: req.file ? req.file.filename :req.session.userLogged.avatar
+
+        },
+        {
+            where: {id: req.session.userLogged.id}
+        })
+        res.redirect('/profile')
     },
     logout: (req, res) => {
         console.log("eNTRE EN LOGAOUT");

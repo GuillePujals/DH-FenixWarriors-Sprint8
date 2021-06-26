@@ -8,8 +8,10 @@
         <%- include ('../partials/header') %>
             <section>
                 <div class="containerProf">
-                    <img src=/img/users/<%=user.avatar%>">
+                    <img src="/img/users/<%=user.avatar%>">
+
                     <div class="info">
+                        <p><%= user.first_name + " " + user.last_name %></p>
                         <p>
                             E-mai: <%= user.mail %>
                         </p>
@@ -30,7 +32,9 @@
                             <label class="check"><input type="checkbox" <%=user.aparts=='1' ? 'checked' : null %>>
                                 Aparts</label>
                         </div>
-
+                        <button class="profile_button">
+                            <a href="/editUser"> Editar</a>
+                        </button>
 
                     </div>
 
@@ -38,9 +42,7 @@
 
             </section>
 
-            <button>
-                <a href="/editUser"> Editar</a>
-            </button>
+
 
             <%- include ('../partials/footer') %>
 

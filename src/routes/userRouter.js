@@ -28,7 +28,7 @@ router.get('/logout', controladorUser.logout);
 
 //edición Profile
 router.get ('/editUser',authMiddleware, controladorUser.edit);
-router.put ('/editUser',controladorUser.store)
+router.put ('/editUser', uploadFile.single('avatar'), controladorUser.update)
 
 
 module.exports = router;

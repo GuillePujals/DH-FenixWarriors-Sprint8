@@ -65,11 +65,11 @@
 
                     <div class="intereses">
                         <label class="label">Intereses</label>
-                        <label class="check"><input type="checkbox" name="casa" value = 1>Casas</label>
-                        <label class="check"><input type="checkbox" name="departamento" value = 1>Departamentos</label>
-                        <label class="check"><input type="checkbox" name="hotel" value = 1>Hoteles</label>
-                        <label class="check"><input type="checkbox" name="hosteria" >Hosterías</label>
-                        <label class="check"><input type="checkbox" name="aparts" >Aparts</label>
+                        <label class="check"><input type="checkbox" name="casa" value = 1 <%= locals.oldData && oldData.casa == 1 ? 'checked' : null %>>Casas</label>
+                        <label class="check"><input type="checkbox" name="departamento" value = 1 <%= locals.oldData && oldData.departamento == 1 ? 'checked' : null %>>Departamentos</label>
+                        <label class="check"><input type="checkbox" name="hotel" value = 1 <%= locals.oldData && oldData.hotel == 1 ? 'checked' : null %>>Hoteles</label>
+                        <label class="check"><input type="checkbox" name="hosteria" value = 1 <%= locals.oldData && oldData.hosteria == 1 ? 'checked' : null %>>Hosterías</label>
+                        <label class="check"><input type="checkbox" name="aparts" value = 1 <%= locals.oldData && oldData.aparts == 1 ? 'checked' : null %>>Aparts</label>
                     </div>
                     
                     <div class="control-formulario">
