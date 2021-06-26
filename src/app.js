@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const session = require("express-session");
 
+const userLoggedMiddleware = require ('./middlewares/userLoggedMiddleware');
 
 //Traemos la inforamción de las rutas
 const productRouter = require ('./routes/productRouter');
@@ -22,7 +23,8 @@ const methodOverride = require ('method-override');
 //Aquí estoy disponiendo la posibilidad para utilizar el seteo en los formularios para el usod e los metodos put ó delete
 app.use(methodOverride('_method'));
 
-app.use(express.static(path.resolve(__dirname, '../public')));
+//app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static('public'));
 
 app.use(session({
 	secret: "Secreto",
@@ -30,8 +32,11 @@ app.use(session({
 	saveUninitialized: false,
 }));
 
+//Este middleware debe ir después de ssesion
+app.use (userLoggedMiddleware);
+
 app.use('/products', productRouter);
-app.use('/users', userRouter);
+app.use('/', userRouter);
 app.use('/', (req, res) => res.json({ clave: "con el server" }));
 
 const PORT = process.env.PORT || 3000

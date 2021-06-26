@@ -7,35 +7,49 @@ const {
 
 let usersController = {
 
-register: (req, res) => {
-    return res.render ('users/register')
-},
+    profile: async (req, res) => {
+        console.log(req.session.userLogged);
+        let user = await User.findByPk(req.session.userLogged.id)
+        console.log(user);
+        res.render ('users/profile', {user})
+      },
+
+    register: (req, res) => {
+        return res.render ('users/register')
+    },
 
 
 
-processRegister: async (req, res) => {
-    const resulValidation = validationResult (req);
-    console.log(req.file);
-    if (resulValidation.errors.length > 0 ){
-        return res.render ('users/register',{
-        errors: resulValidation.mapped(),
-        oldData: req.body,
+    processRegister: async (req, res) => {
+        const resulValidation = validationResult (req);
+        console.log(req.body);
+        if (resulValidation.errors.length > 0 ){
+            return res.render ('users/register',{
+            errors: resulValidation.mapped(),
+            oldData: req.body,
         
     });
     }
    
-    let newUser = await User.create({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        mail: req.body.mail,
-        telephone: req.body.telephone,
-        avatar: req.file ? req.file.filename :'Avatar.jpg',
-        password: bcryptjs.hashSync(req.body.password, 10),
-        admin: 0
-    })
+        let user = await User.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            mail: req.body.mail,
+            telephone: req.body.telephone,
+            avatar: req.file ? req.file.filename :'logo-casa-alquiler.jpg',
+            password: bcryptjs.hashSync(req.body.password, 10),
+            admin: 0,
+            casa: req.body.casa,
+            departamento: req.body.depastamento,
+            hotel: req.body.hotel,
+            hosteria: req.body.hosteria,
+            aparts: req.body.aparts
 
-    return res.send(newUser)
-}, 
+        })
+        req.session.userLogged = user
+        res.redirect ('/profile')
+       
+},
 
 login: (req, res) => {
     res.render('users/login')
@@ -61,8 +75,7 @@ loginProcess: async (req, res) => {
                     console.log(req.cookies.userEmail);
                 }
 
-                //console.log(req.session);
-                return res.render('profile')
+                return res.redirect('/profile')
             }
             return res.render( "users/login", {
                 errors: {
@@ -81,7 +94,38 @@ loginProcess: async (req, res) => {
                 }
             }
         })
-    }     
+    },
+    edit:(req, res)=> {
+        let user = req.session.userLogged;
+        res.render('users/editUser', {user})
+    },
+    update: async (req, res)=> {
+        console.log("body.casa: " + req.body.casa);
+        //let casa = req.body.casa == 1 ? 1 : null
+        let user = await User.update({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            mail: req.body.mail,
+            telephone: req.body.telephone,
+            casa: req.body.casa == 1 ? 1 : null,
+            departamento: req.body.departamento == 1 ? 1 : null,
+            hotel: req.body.hotel == 1 ? 1 : null,
+            hosteria: req.body.hosteria == 1 ? 1 : null,
+            aparts: req.body.aparts == 1 ? 1 : null,
+            avatar: req.file ? req.file.filename :req.session.userLogged.avatar
+
+        },
+        {
+            where: {id: req.session.userLogged.id}
+        })
+        res.redirect('/profile')
+    },
+    logout: (req, res) => {
+        console.log("eNTRE EN LOGAOUT");
+        req.session.destroy();
+        return res.redirect('/login');
+    }
+
 
 
 }
