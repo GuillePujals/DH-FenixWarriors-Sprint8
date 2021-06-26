@@ -6,6 +6,7 @@ const session = require("express-session");
 const userLoggedMiddleware = require ('./middlewares/userLoggedMiddleware');
 
 //Traemos la inforamción de las rutas
+const homeRouter = require ('./routes/homeRouter');
 const productRouter = require ('./routes/productRouter');
 const userRouter = require ('./routes/userRouter');
 
@@ -37,7 +38,7 @@ app.use (userLoggedMiddleware);
 
 app.use('/products', productRouter);
 app.use('/', userRouter);
-app.use('/', (req, res) => res.json({ clave: "con el server" }));
+app.use('/', homeRouter);
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
