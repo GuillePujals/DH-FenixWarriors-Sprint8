@@ -10,7 +10,7 @@ function userLoggedMiddleware(req, res, next) {
     console.log("locals 2: " + res.locals.isLogged);
        
    }
-    next();
+   next();
 }
 
 module.exports = userLoggedMiddleware;

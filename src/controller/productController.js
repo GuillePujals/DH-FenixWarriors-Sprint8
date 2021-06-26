@@ -33,6 +33,7 @@ let productController = {
         let wifi = 0;
         let pileta = 0;
         let parrilla = 0;
+
         const validations = validationResult(req);
         console.log(validations.mapped())
         if (validations.errors.length > 0) {
@@ -69,8 +70,13 @@ let productController = {
             pool: pileta,
             parking: estatacionamiento,
             barbecue: parrilla
-            });
-        }
+        });
+
+        let image = await Image.create({
+            property_id: newProperty.id,
+            image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
+        })
+    }
 }
 
 

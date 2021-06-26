@@ -52,6 +52,7 @@ let usersController = {
 },
 
 login: (req, res) => {
+    console.log('ingreso login');
     res.render('users/login')
 }, 
 
