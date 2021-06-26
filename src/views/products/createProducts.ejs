@@ -1,10 +1,11 @@
 <%- include ('../partials/head') %>
 <body>
+
+
     <main class="main">
         <h3>Nueva propiedad</h3>
-        <form action="/products" method="POST" > 
-            <!-- enctype="multipart/form-data" -->
-            <div class="campo">
+        <form method="POST" action="/products" enctype="multipart/form-data" class="addProd"> 
+                <div class="campo">
                 <label for="categ">Categoría</label>
                 <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>>
                     <% categories.forEach(cat => {%>
@@ -20,14 +21,14 @@
             </div>
 
             <div class="campo">
-                <label for="image">Imagen</label>
-                <input type="file" name="image">
-                <input type="hidden" name="oldImage" value="<%= locals.casa ? casa.image : '0' %>">
-                <% if (locals.errors && errors.image) { %>
+                <label for="foto">Imagen</label>
+                <input type="file" name="foto">
+                <input type="hidden" name="oldFoto" value="<%= locals.casa ? casa.foto : '0' %>">
+                <% if (locals.errors && errors.foto) { %>
                     <div class="text-danger">
-                        <%= errors.image.msg %>
+                        <%= errors.foto.msg %>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
 
 
@@ -37,12 +38,11 @@
                     type="number" 
                     name="n_people" 
                     value="<%= locals.casa ? casa.n_people : null %>"
-                    class="n_people <%= locals.errors &&
-                    errors.n_people ? 'is-invalid' : null %>">
-                <% if (locals.errors && errors.n_people) { %>
-                    <div class="text-danger">
-                        <%= errors.n_people.msg %>
-                    </div>
+                    class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>">
+                    <% if (locals.errors && errors.n_people) { %>
+                        <div class="text-danger">
+                            <%= errors.n_people.msg %>
+                        </div>
                     <% } %>
             </div>
 

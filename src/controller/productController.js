@@ -33,6 +33,7 @@ let productController = {
         let wifi = 0;
         let pileta = 0;
         let parrilla = 0;
+
         const validations = validationResult(req);
         console.log(validations.mapped())
         if (validations.errors.length > 0) {
@@ -69,8 +70,30 @@ let productController = {
             pool: pileta,
             parking: estatacionamiento,
             barbecue: parrilla
+<<<<<<< HEAD
+        });
+
+        console.log(req.file);
+
+        let image = await Image.create({
+            property_id: newProperty.id,
+            image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
+        })
+=======
             });
+        },
+    detalleCrud: async (req, res) => {
+        let casa = await Property.findByPk(req.params.id);
+        console.log("casa: " + casa);
+        if (casa) {
+            res.render('products/detalleCrud', {casa});
+        } else {
+            res.render('error404');
         }
+
+       
+>>>>>>> 285a1bfb1c3fbe395ce94adb65d2f29b70beb8db
+    }
 }
 
 
