@@ -26,5 +26,9 @@ router.get('/profile', authMiddleware, controladorUser.profile);
 //Logout
 router.get('/logout', controladorUser.logout);
 
+//edición Profile
+router.get ('/editUser',authMiddleware, controladorUser.edit);
+router.put ('/editUser',controladorUser.store)
+
 
 module.exports = router;

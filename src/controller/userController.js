@@ -8,7 +8,7 @@ const {
 let usersController = {
 
     profile: (req, res) => {
-               
+               console.log(req.session.userLogged);
         res.render ('users/profile', {
             user: req.session.userLogged
             
@@ -39,7 +39,13 @@ let usersController = {
             telephone: req.body.telephone,
             avatar: req.file ? req.file.filename :'logo-casa-alquiler.jpg',
             password: bcryptjs.hashSync(req.body.password, 10),
-            admin: 0
+            admin: 0,
+            casa: req.body.casa,
+            departamento: req.body.depastamento,
+            hotel: req.body.hotel,
+            hosteria: req.body.hosteria,
+            aparts: req.body.aparts
+
         })
         req.session.userLogged = user
         res.redirect ('/profile')
@@ -89,6 +95,13 @@ loginProcess: async (req, res) => {
                 }
             }
         })
+    },
+    edit:(req, res)=> {
+        let user = req.session.userLogged;
+        res.render('users/editUser', {user})
+    },
+    store:(req, res)=> {
+        res.send("Estoy en edit");
     },
     logout: (req, res) => {
         console.log("eNTRE EN LOGAOUT");

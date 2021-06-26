@@ -8,34 +8,43 @@
         <%- include ('../partials/header') %>
             <section>
                 <div class="containerProf">
-                    <img src=/img/users/<%= user.avatar%>">
+                    <img src=/img/users/<%=user.avatar%>">
                     <div class="info">
                         <p>
-                           E-mai: <%= user.mail %>
+                            E-mai: <%= user.mail %>
                         </p>
                         <p>
                             Teléfono: <%= user.telephone %>
                         </p>
+
                         <div class="intereses">
                             <label class="label">Intereses</label>
-                            <label class="check"><input type="checkbox" name="casa" value= 1>Casas</label>
-                            <label class="check"><input type="checkbox" name="departamento" value= 1>Departamentos</label>
-                            <label class="check"><input type="checkbox" name="hotel" value= 1 >Hoteles</label>
-                            <label class="check"><input type="checkbox" name="hosteria" value= 1 >Hosterías</label>
-                            <label class="check"><input type="checkbox" name="aparts" value= 1 >Aparts</label>
+                            <label class="check"><input type="checkbox" <%=user.casa==1 ? 'checked' : null
+                                    %>>Casas</label>
+                            <label class="check"><input type="checkbox" <%=user.departamento==1 ? 'checked' : null
+                                    %>>Departamentos</label>
+                            <label class="check"><input type="checkbox" <%=user.hotel=='1' ? 'checked' : null
+                                    %>>Hoteles</label>
+                            <label class="check"><input type="checkbox" <%=user.hosteria=='1' ? 'checked' : null
+                                    %>>Hosterías</label>
+                            <label class="check"><input type="checkbox" <%=user.aparts=='1' ? 'checked' : null %>>
+                                Aparts</label>
                         </div>
-                        
-                       
+
+
                     </div>
 
                 </div>
 
             </section>
 
-
+            <button>
+                <a href="/editUser"> Editar</a>
+            </button>
 
             <%- include ('../partials/footer') %>
 
     </body>
+    <script src="/js/profile.js"></script>
 
 </html>
