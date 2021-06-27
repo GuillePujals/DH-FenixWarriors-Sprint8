@@ -73,7 +73,7 @@ loginProcess: async (req, res) => {
                 if(req.body.recordatorio){
                     res.cookie('userEmail', req.body.email, { maxAge: 1000 * 60})
                     console.log('hay cookie');
-                    console.log(req.cookies.userEmail);
+                    //console.log(req.cookies.userEmail);
                 }
 
                 return res.redirect('/profile')
