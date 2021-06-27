@@ -75,7 +75,7 @@ loginProcess: async (req, res) => {
                     console.log('hay cookie');
                     console.log(req.cookies.userEmail);
                 }
-
+                
                 return res.redirect('/profile')
             }
             return res.render( "users/login", {

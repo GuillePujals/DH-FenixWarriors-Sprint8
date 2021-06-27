@@ -4,12 +4,23 @@
 
     <main class="main">
         <h3>Nueva propiedad</h3>
+        
         <form method="POST" action="/products" enctype="multipart/form-data" class="addProd"> 
-                <div class="campo">
+            <div class="campo">
                 <label for="categ">Categoría</label>
-                <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>>
+                <select 
+                    name="categ" 
+                    class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
+                >
                     <% categories.forEach(cat => {%>
-                        <option value="<%= cat.id %>"><%= cat.category %></option>
+                        <option 
+                            value="<%= cat.id %>"
+                            <% if (locals.oldData && oldData.categ == cat.id) { %>
+                                selected="selected" 
+                            <% } %>
+                        >
+                            <%= cat.category %>
+                        </option>
                     <% }) %>
                 </select>
 
@@ -17,13 +28,21 @@
                     <div class="text-danger">
                         <%= errors.categ.msg %>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
 
             <div class="campo">
                 <label for="foto">Imagen</label>
-                <input type="file" name="foto">
-                <input type="hidden" name="oldFoto" value="<%= locals.casa ? casa.foto : '0' %>">
+                <input 
+                    type="file" 
+                    name="foto"
+                    value="<%= locals.oldData ? oldData.foto : '0' %>"
+                >
+                <input 
+                    type="hidden" 
+                    name="oldFoto" 
+                    value="<%= locals.oldData ? oldData.foto : '0' %>"
+                >
                 <% if (locals.errors && errors.foto) { %>
                     <div class="text-danger">
                         <%= errors.foto.msg %>
@@ -37,13 +56,14 @@
                 <input 
                     type="number" 
                     name="n_people" 
-                    value="<%= locals.casa ? casa.n_people : null %>"
-                    class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>">
-                    <% if (locals.errors && errors.n_people) { %>
-                        <div class="text-danger">
-                            <%= errors.n_people.msg %>
-                        </div>
-                    <% } %>
+                    value="<%= locals.oldData ? oldData.n_people : null %>"
+                    class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>"
+                >
+                <% if (locals.errors && errors.n_people) { %>
+                    <div class="text-danger">
+                        <%= errors.n_people.msg %>
+                    </div>
+                <% } %>
             </div>
 
             <div class="campo">
@@ -51,14 +71,14 @@
                 <input 
                     type="text" 
                     name="price" 
-                    value="<%= locals.casa ? casa.price : null %>"
-                    class="precio <%=locals.errors &&
-                    errors.price ? 'is-invalid' : null %>">
+                    value="<%= locals.oldData ? oldData.price : null %>"
+                    class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>"
+                >
                 <% if (locals.errors && errors.price) { %>
                     <div class="text-danger">
                         <%= errors.price.msg %>
                     </div>
-                    <% } %>
+                <% } %>
             </div>
 
             <div class="campo">
@@ -66,9 +86,9 @@
                 <input 
                     type="text" 
                     name="address" 
-                    value="<%= locals.casa ? casa.address : null %>"
-                    class=<%=locals.errors && errors.address ? 'is-invalid' :
-                    null %>>
+                    value="<%= locals.oldData ? oldData.address : null %>"
+                    class="<%=locals.errors && errors.address ? 'is-invalid' : null %>"
+                >
 
                     <% if (locals.errors && errors.address) { %>
                         <div class="text-danger">
@@ -79,9 +99,18 @@
 
             <div class="campo">
                 <label for="destination">Ciudad</label>
-                <select name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>>
+                <select 
+                    name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
+                >
                     <% destination.forEach(dest => {%>
-                        <option value="<%= dest.id %>"><%= dest.destination %></option>
+                        <option 
+                            value="<%= dest.id %>"
+                            <% if (locals.oldData && oldData.destination == dest.id) { %>
+                                selected="selected" 
+                            <% } %>
+                        >
+                            <%= dest.destination %>
+                        </option>
                     <% }) %>
                 </select>
 
@@ -99,28 +128,28 @@
                     type="checkbox" 
                     name="servicios" 
                     value="wifi"
-                    <%= locals.casa && casa.servicios && casa.servicios.includes("wifi") ? 'checked' : null %>>
+                    <%= locals.oldData && oldData.servicios && oldData.servicios.includes("wifi") ? 'checked' : null %>>
                 <label for="servicios">Wi-fi</label>
                 <br>
                 <input 
                     type="checkbox" 
                     name="servicios" 
                     value="pileta"
-                    <%= locals.casa && casa.servicios && casa.servicios.includes("pileta") ? 'checked' : null %>>
+                    <%= locals.oldData && oldData.servicios && oldData.servicios.includes("pileta") ? 'checked' : null %>>
                 <label for="servicios">Pileta</label>
                 <br>
                 <input 
                     type="checkbox" 
                     name="servicios" 
                     value="estacionamiento"
-                    <%= locals.casa && casa.servicios && casa.servicios.includes("estacionamiento") ? 'checked' : null %>>
+                    <%= locals.oldData && oldData.servicios && oldData.servicios.includes("estacionamiento") ? 'checked' : null %>>
                 <label for="servicios">Estacionamiento</label>
                 <br>
                 <input 
                     type="checkbox" 
                     name="servicios" 
                     value="parrilla"
-                    <%= locals.casa && casa.servicios && casa.servicios.includes("parrilla") ? 'checked' : null %>>
+                    <%= locals.oldData && oldData.servicios && oldData.servicios.includes("parrilla") ? 'checked' : null %>>
                 <label for="servicios">Parrilla</label>
             </div>
 
@@ -133,5 +162,6 @@
 
 
     </main>
+    <%- include ('../partials/footer') %>
 
 </body>
