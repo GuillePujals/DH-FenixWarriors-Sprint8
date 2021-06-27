@@ -5,11 +5,11 @@
 
 
     <body>
-        <%- include ('partials/header') %>
+       <%- include ('partials/header') %>
 
             <section class="main-body">
               
-                <form action="" method="POST" class="formBuscar">
+                <form action="/" method="POST" class="formBuscar">
                     <input type="text" name="donde" placeholder=" A donde vamos?" class="inp1">
                     <input type="date" name="fecha" class="inp2">
                     <select name="cuantos" class="inp3">
@@ -23,6 +23,7 @@
 
 
                 <h3 class="titulo-ofertas">Ofertas destacadas</h3>
+                
                 <div class="ofertas-destacadas">
                     <% for (let i=0; i<ofertas.length ; i++ ) { %>
                         <article class="oferta-destacada-<%=ofertas[i].id %>">
@@ -36,11 +37,11 @@
 
                 <h3 class="titulo-destinos">Destinos destacados</h3>
                 <div class="destinos-destacados">
-                    <% for (let i=0; i<Destination.length; i++) { %>
+                    <% for (let i=0; i<destinos.length; i++) { %>
                         <article class="destindo-destacado-<%=destinos[i].id%>">
                             <p>
                             
-                                <%=Destination[i].nombre%>
+                                <%=destinos[i].destination%>
                             </p>
                         </article>
                         <% } %>

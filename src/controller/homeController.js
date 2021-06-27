@@ -1,11 +1,28 @@
 let ofertas =  require('../data/datosOfertas')
-let destinos = require('../data/datosDestinos')
-const {Category, Destination, Image, Property, Users} = require('../database/models');
+//let destinos = require('../data/datosDestinos')
+const db = require('../database/models')
+const {Category, Destination, Image, Property, User} = require('../database/models');
+
 
 let homeController = {
 
-    show: (req, res) => {
-        res.render('index', {ofertas, destinos, Users, Destination})
+    show: async (req, res) => {
+        let destinos = await Destination.findAll();
+        let usuarios = await User.findAll();
+
+        res.render('index', {ofertas, destinos, usuarios })
+        
+    }, 
+    buscar: async (req, res) => {
+
+        let propiedades = await Property.findAll();
+
+        let propFilt = await propiedades.filter(function (propiedad) {
+            return propiedad.destination_id == req.body.donde
+        })
+
+        res.json(propFilt)
+        
     }
 }
 
