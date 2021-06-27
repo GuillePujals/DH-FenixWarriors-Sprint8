@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Image.belongsTo(models.Property);
+      Image.belongsTo(models.Property,{
+        as:"property",
+        foreignKey:"property_id"
+      });
     }
   };
   Image.init({

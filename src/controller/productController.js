@@ -84,10 +84,13 @@ let productController = {
    
     },     
     detalleCrud: async (req, res) => {
-        let property = await Property.findByPk(req.params.id);
-        console.log("casa: " + property);
-        if (property) {
-            res.render('products/detalleCrud', {property});
+        let casa = await Property.findByPk(req.params.id, 
+            {include:['image', 'destination']});
+
+        let user = req.session.userLogged;
+        
+        if (casa) {
+            res.render('products/detalleCrud', {casa, user});
         } else {
             res.render('error404');
         }

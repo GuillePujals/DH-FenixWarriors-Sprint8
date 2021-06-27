@@ -1,21 +1,45 @@
 <main class="main">
-    <section class="listadoDeProductos">
-        <h3>Dirección: <%= property.address %></h3>
-        <img src="/images/products/<%= property.image %>" alt="" class="listProductsImage">
-        <p>Cantidad máxima de personas: <%= property.n_of_people %></p>
-        <div class="campo">
-            <label for="servicios">Servicios</label> <br>
-            <input type="checkbox" name="servicios" value="wifi" <%= locals.property && property.wifi == 1 ? 'checked' : null %>>
-            <label for="servicios">Wi-fi</label><br>
-            <input type="checkbox" name="servicios" value="pool" <%= locals.property && property.pool == 1 ? 'checked' : null %>>
-            <label for="servicios">Pileta</label><br>
-            <input type="checkbox" name="servicios" value="parking"<%= locals.property && property.parking == 1 ? 'checked' : null %>>
-            <label for="servicios">Estacionamiento</label><br>
-            <input type="checkbox" name="servicios" value="barbecue"<%= locals.property && property.barbecue ? 'checked' : null %>>
-            <label for="servicios">Parrilla</label>
-        </div>
-        <h5>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(property.price) %></h5>
 
-        <script src="detalleCrud.ejs"></script>
+    <section class="DetalleDeProductos">
+        <h2>
+            Destino: <%= casa.destination.destination %>
+        </h2>
+        <h3>
+            Dirección: <%= casa.address %>
+        </h3>
+        <div class="containerProf">
+            <% casa.image.forEach(image=>{ %>
+                <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
+                <% }) %>
+                <div class="info">
+                    <p>
+                        Cantidad máxima de personas: <%= casa.n_of_people %>
+                    </p>
+                    <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price)
+                        %>
+                </p>
+                    <div class="campo">
+                        <div class="intereses">
+                        <label class="label">Servicios</label> <br>
+                        <label class="check"><input type="checkbox" name="wifi" <%=locals.casa && casa.wifi==1
+                                ? 'checked' : null %>>
+                            Wi-fi</label>
+                        <br>
+                        <label class="check"><input type="checkbox" name="pool" <%=locals.casa && casa.pool==1
+                                ? 'checked' : null %>>
+                            Pileta</label>
+                        <br>
+                        <label class="check"><input type="checkbox" name="parking" <%=locals.casa && casa.parking==1
+                                ? 'checked' : null %>>Estacionamiento</label>
+                        <br>
+                        <label class="check"><input type="checkbox" name="barbecue" <%=locals.casa && casa.barbecue
+                                ? 'checked' : null %>>
+                            Parrilla</label>
+                        </div>
+                    </div>
+                    
+                </div>
+        </div>
+        <script src="/js/detalleCrud.js"></script>
     </section>
 </main>
