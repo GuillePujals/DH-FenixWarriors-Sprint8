@@ -84,10 +84,6 @@ let productController = {
         })
    
     },     
-        
-
-        });
-    },
 
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id, 
