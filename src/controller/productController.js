@@ -47,17 +47,19 @@ let productController = {
             });
         }
 
-        console.log(req.body);
-        console.log('------------------------------');
-        console.log(req.session.userLogged);
-        console.log('------------------------------');
-        req.body.servicios.forEach(servicio => {
-            if (servicio == 'estacionamiento') estatacionamiento = 1;
-            if (servicio == 'parrilla') parrilla = 1;
-            if (servicio == 'pileta') pileta = 1;
-            if (servicio == 'wifi') wifi = 1;
+        // console.log(req.body);
+        // console.log('------------------------------');
+        // console.log(req.session.userLogged);
+        // console.log('------------------------------');
+        if (req.body.servicios){
+            req.body.servicios.forEach(servicio => {
+                if (servicio == 'estacionamiento') estatacionamiento = 1;
+                if (servicio == 'parrilla') parrilla = 1;
+                if (servicio == 'pileta') pileta = 1;
+                if (servicio == 'wifi') wifi = 1;
 
-        });
+            }); 
+        }
 
         let newProperty = await Property.create({
             user_id: req.session.userLogged.id,
@@ -70,7 +72,7 @@ let productController = {
             pool: pileta,
             parking: estatacionamiento,
             barbecue: parrilla
-        //<<<<<<< HEAD
+
         });
 
         console.log(req.file);
@@ -78,10 +80,15 @@ let productController = {
         let image = await Image.create({
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
+
         })
-        //=======
+   
     },     
         
+
+        });
+    },
+
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id);
         console.log("casa: " + casa);
@@ -92,7 +99,7 @@ let productController = {
         }
 
        
-        //>>>>>>> 285a1bfb1c3fbe395ce94adb65d2f29b70beb8db
+
     }
     
 }
