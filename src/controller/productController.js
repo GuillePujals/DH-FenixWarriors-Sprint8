@@ -70,7 +70,7 @@ let productController = {
             pool: pileta,
             parking: estatacionamiento,
             barbecue: parrilla
-<<<<<<< HEAD
+        //<<<<<<< HEAD
         });
 
         console.log(req.file);
@@ -79,9 +79,9 @@ let productController = {
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
         })
-=======
-            });
-        },
+        //=======
+    },     
+        
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id);
         console.log("casa: " + casa);
@@ -92,8 +92,9 @@ let productController = {
         }
 
        
->>>>>>> 285a1bfb1c3fbe395ce94adb65d2f29b70beb8db
+        //>>>>>>> 285a1bfb1c3fbe395ce94adb65d2f29b70beb8db
     }
+    
 }
 
 

@@ -36,10 +36,11 @@
 
                 <h3 class="titulo-destinos">Destinos destacados</h3>
                 <div class="destinos-destacados">
-                    <% for (let i=0; i<destinos.length; i++) { %>
+                    <% for (let i=0; i<Destination.length; i++) { %>
                         <article class="destindo-destacado-<%=destinos[i].id%>">
                             <p>
-                                <%=destinos[i].nombre%>
+                            
+                                <%=Destination[i].nombre%>
                             </p>
                         </article>
                         <% } %>
