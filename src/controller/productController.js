@@ -85,8 +85,18 @@ let productController = {
         let casa = await Property.findByPk(req.params.id, 
             {include:['image']});
 
+        /*let respuesta = await {
+                    meta: {
+                        status:200,
+                        total: casa.length
+                    },
+                    data: casa
+                }
+    
+                res.json(respuesta);*/
+
         let user = req.session.userLogged;
-        console.log("casa: " + casa.image);
+        
         if (casa) {
             res.render('products/detalleCrud', {casa, user});
         } else {
