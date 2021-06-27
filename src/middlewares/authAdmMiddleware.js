@@ -6,8 +6,8 @@ let authAdmMiddleware = {
         
         if (!req.session.userLogged  || req.session.userLogged.id != property.user_id) {
         return res.redirect('/login');
-        
     }
+
     next();
     }}
     
