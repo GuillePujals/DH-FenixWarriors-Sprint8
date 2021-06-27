@@ -104,6 +104,10 @@ section{
     color:red;
 }
 
+.main{
+    margin-top: 60;
+}
+
 /*================== Register =======================*/
 .form{
     background-color: #b0d4e9;
@@ -279,6 +283,16 @@ section{
             }
 
 
+
+.image img {
+    display: block;
+    /* width: 100%; */
+    max-height: 260px;
+    max-width: 260px;
+    height: auto;
+}
+            
+
 @media (min-width:860px){
     .accesos{
         display: block;
@@ -345,6 +359,7 @@ section{
             max-width: 100px;
         }
 }
+
 
 /*================== Index =======================*/
 .main-body{

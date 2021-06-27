@@ -25,7 +25,7 @@ let productController = {
     create: async (req, res) => {
         let categories = await Category.findAll();
         let destination = await Destination.findAll();
-        console.log(destination);
+        // console.log(destination);
         return res.render('products/createProducts', {categories, destination}) 
     },
     store: async (req, res) => {
@@ -35,7 +35,7 @@ let productController = {
         let parrilla = 0;
 
         const validations = validationResult(req);
-        console.log(validations.mapped())
+        // console.log(validations.mapped())
         if (validations.errors.length > 0) {
             let categories = await Category.findAll();
             let destination = await Destination.findAll();
@@ -80,23 +80,17 @@ let productController = {
         let image = await Image.create({
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
-
-        })
+        });
    
-        },     
-        
-
+    },     
     detalleCrud: async (req, res) => {
-        let casa = await Property.findByPk(req.params.id);
-        console.log("casa: " + casa);
-        if (casa) {
-            res.render('products/detalleCrud', {casa});
+        let property = await Property.findByPk(req.params.id);
+        console.log("casa: " + property);
+        if (property) {
+            res.render('products/detalleCrud', {property});
         } else {
             res.render('error404');
         }
-
-       
-
     }
     
 }

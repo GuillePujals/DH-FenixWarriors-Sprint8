@@ -1,36 +1,21 @@
+<main class="main">
+    <section class="listadoDeProductos">
+        <h3>Dirección: <%= property.address %></h3>
+        <img src="/images/products/<%= property.image %>" alt="" class="listProductsImage">
+        <p>Cantidad máxima de personas: <%= property.n_of_people %></p>
+        <div class="campo">
+            <label for="servicios">Servicios</label> <br>
+            <input type="checkbox" name="servicios" value="wifi" <%= locals.property && property.wifi == 1 ? 'checked' : null %>>
+            <label for="servicios">Wi-fi</label><br>
+            <input type="checkbox" name="servicios" value="pool" <%= locals.property && property.pool == 1 ? 'checked' : null %>>
+            <label for="servicios">Pileta</label><br>
+            <input type="checkbox" name="servicios" value="parking"<%= locals.property && property.parking == 1 ? 'checked' : null %>>
+            <label for="servicios">Estacionamiento</label><br>
+            <input type="checkbox" name="servicios" value="barbecue"<%= locals.property && property.barbecue ? 'checked' : null %>>
+            <label for="servicios">Parrilla</label>
+        </div>
+        <h5>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(property.price) %></h5>
 
-            <main class="main">
-
-
-                
-                <section class="listadoDeProductos">
-                    <h3>
-                        Dirección: <%= casa.address %>
-                    </h3>
-                    <img src="/images/products/<%= casa.image %>" alt="" class="listProductsImage">
-                    <p>
-                        Cantidad máxima de personas: <%= casa.n_of_people %>
-                    </p>
-                    <div class="campo">
-                        <label>Servicios</label> <br>
-                        <input class="check" type="checkbox" name="wifi" <%= locals.casa && casa.wifi == 1 ? 'checked' : null %>>
-                        <label>Wi-fi</label>
-                        <br>
-                        <input class="check" type="checkbox" name="pool" <%= locals.casa && casa.pool == 1 ? 'checked' : null %>>
-                        <label>Pileta</label>
-                        <br>
-                        <input class="check" type="checkbox" name="parking"
-                            <%= locals.casa && casa.parking == 1 ? 'checked' : null %>>
-                        <label>Estacionamiento</label>
-                        <br>
-                        <input class="check" type="checkbox" name="barbecue"
-                            <%= locals.casa && casa.barbecue ? 'checked' : null %>>
-                        <label>Parrilla</label>
-                    </div>
-                    <h5>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
-                    </h5>
-
-                    <script src="detalleCrud.ejs"></script>
-                </section>
-            </main>
-            
+        <script src="detalleCrud.ejs"></script>
+    </section>
+</main>

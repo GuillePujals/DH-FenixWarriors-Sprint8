@@ -3,30 +3,29 @@
 
 <%- include ('../partials/head') %>
     
-    <body>
+<body>
 
-        <%- include ('../partials/header') %>
+    <%- include ('../partials/header') %>
 
-            <main class="main">
+    <main class="main">
+        <h1>Detalle del producto</h1>
 
+        <%- include ('../partials/product') %>
 
-                <h1>Detalle del producto</h1>
-                <%- include ('../partials/product') %>
-                    <div class="botones">
-                        <form action="/products/<%= casa.id %>/edit" class="editar">
-                            <button>Editar</button>
-                        </form>
-                        <form action="/products" class="editar" >
-                            <button>Volver</button>
-                        </form>
-                        <form action="/products/<%= casa.id %>?_method=DELETE" method="POST">
-                            <button class="borrar">Borrar</button>
-                        </form>
-                    </div>
-            </main>
-            <%- include ('../partials/footer') %>
+        <div class="buttons">
+            <form action="/products/<%= property.id %>/edit" class="editar">
+                <button>Editar</button>
+            </form>
+            <form action="/products" class="editar" >
+                <button>Volver</button>
+            </form>
+            <form action="/products/<%= property.id %>?_method=DELETE" method="POST">
+                <button class="borrar">Borrar</button>
+            </form>
+        </div>
+    </main>
 
-
-    </body>
+    <%- include ('../partials/footer') %>
+</body>
 
 </html>
