@@ -88,17 +88,7 @@ let productController = {
 
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id, 
-            {include:['image']});
-
-        /*let respuesta = await {
-                    meta: {
-                        status:200,
-                        total: casa.length
-                    },
-                    data: casa
-                }
-    
-                res.json(respuesta);*/
+            {include:['image', 'destination']});
 
         let user = req.session.userLogged;
         

@@ -181,7 +181,7 @@ section{
 
 /*================== profile =======================*/         
 .containerProf{
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
 }
     .containerProf img{
@@ -224,7 +224,28 @@ section{
                 text-decoration: none;
                 color: #ffffff;
             }
+/*================== Detalle producto =======================*/
 
+.DetalleDeProductos{
+    margin-top: 0%;
+    color: hsl(202, 61%, 50%); 
+}
+.detall_button{
+    background-color:#1259c3;
+            border: none;
+            font-size: 15px;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            height: 35px;
+            margin: 2px;
+}
+.detalle_botones{
+    display: flex;
+}
+.botones {
+    display: flex;
+}
 /*================== Footer =======================*/
 .redes {
     display: flex;
