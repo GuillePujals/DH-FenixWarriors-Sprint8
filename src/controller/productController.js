@@ -72,6 +72,7 @@ let productController = {
             pool: pileta,
             parking: estatacionamiento,
             barbecue: parrilla
+
         });
 
         console.log(req.file);
@@ -79,8 +80,15 @@ let productController = {
         let image = await Image.create({
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
+
+        })
+   
+    },     
+        
+
         });
     },
+
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id, 
             {include:['image']});
@@ -104,7 +112,9 @@ let productController = {
         }
 
        
+
     }
+    
 }
 
 

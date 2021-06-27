@@ -345,3 +345,271 @@ section{
             max-width: 100px;
         }
 }
+
+/*================== Index =======================*/
+.main-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-main-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-width: 1500px;
+    height: 300px;
+    background-image: url('/img/mdq5.jpg');
+    background-position: center;
+}
+.sub-main-body p {
+    color: grey;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 30px;
+    max-height: 50px;
+}
+.formBuscar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    max-width: 1500px;
+    height: 300px;
+    background-image: url('/img/mdq5.jpg');
+    background-position: center;
+}
+.formBuscar .inp1, .inp2, .inp3 {
+    color: grey;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 30px;
+    max-height: 50px;
+    border: none;
+    padding: 6px;
+}
+
+.inp2 {
+    display: none; 
+    width: 30%;
+    max-width: 220px;
+    min-width: 160px;
+    
+}
+
+.inp3 {
+    display: none; 
+    width: 90px;
+    
+}
+#buscar {
+    display: none;
+    width: 30%;
+    height: 30px;
+    max-width: 90px;
+    min-width: 160px;
+    text-align: right;
+}
+
+.donde {
+    display: flex;
+    color: grey;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 30%;
+    height: 30px;
+    max-width: 220px;
+    min-width: 160px;
+    max-height: 50px;
+}
+
+.donde i {margin-right: 10px;}
+
+.titulo-ofertas {
+    width: 100vw;
+    text-align: left;
+    font-weight: bolder;
+    padding: 10px;
+}
+.ofertas-destacadas article{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 769px;
+    width: 100vw;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: solid 6px white;
+}
+.oferta-destacada-1 {
+    background-image: url('/img/ofertas/img1.jpg');
+}
+.oferta-destacada-1 :hover, .oferta-destacada-2 :hover, .oferta-destacada-3 :hover, .oferta-destacada-4 :hover{
+    background-color: red;
+}
+.oferta-destacada-2 {
+    background-image: url('/img/ofertas/img2.jpg');
+}
+.oferta-destacada-3 {
+    background-image: url('/img/ofertas/img3.jpg');
+}
+.oferta-destacada-4 {
+    background-image: url('/img/ofertas/img4.jpg');
+}
+
+
+.titulo-destinos {
+    width: 100vw;
+    text-align: left;
+    font-weight: bolder;
+    padding: 10px;
+}
+.ofertas-destacadas p {
+    color: white;
+    background-color: rgb(11, 130, 204);
+    margin-top: 20px;
+    max-width: 140px;
+    height: 50px;
+    text-align: center;
+    padding: 8px;
+    font-weight: bolder;
+    font-size: 30px;
+}
+.ofertas-destacadas a {
+    color: white;
+    background-color: rgb(11, 130, 204);
+    margin-top: 20px;
+    max-width: 140px;
+    height: 50px;
+    text-align: center;
+    padding: 8px;
+    font-weight: bolder;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+
+.destinos-destacados p {
+    color: white;
+    background-color: rgb(11, 130, 204);
+    margin-top: 20px;
+    max-width: 120px;
+    height: 35px;
+    text-align: center;
+    padding: 8px;
+    font-weight: bolder;
+}
+
+.destinos-destacados article{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 769px;
+    width: 100vw;
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: solid 6px white;
+}
+
+.destindo-destacado-1{ 
+    background-image: url('/img/destinos/mdq8.jpg');
+}
+.destindo-destacado-2{
+    background-image: url('/img/destinos/carilo4.jpg');
+}
+.destindo-destacado-3{
+    background-image: url('/img/destinos/gesell3.jpg'); 
+}
+.destindo-destacado-4{
+    background-image: url('/img/destinos/grutas1.jpg'); 
+}
+
+
+.suscripcion {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.suscripcion input {
+    border: lightgray solid 2px;
+    border-radius: 5px;
+    color: lightgray;
+    font-size: 15px;
+    padding: 3px;
+    max-width: 200px;
+}
+.suscripcion button {
+    border: rgb(11, 130, 204) solid 2px;
+    background-color: rgb(11, 130, 204);
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 3px;
+    max-width: 200px;
+}
+
+@media (min-width:769px){
+    .accesos{
+        display: block;  
+    }
+    .formBuscar .inp2, .inp3 {
+        margin-right: 5px;
+        margin-left: 5px;
+        display: flex;
+    }
+    .sub-main-body i {
+        margin-right: 5px;
+    }
+    #buscar {
+        display: flex;
+        color: white;
+        background-color: rgb(11, 130, 204);
+        border: none;
+        border-radius: 5px;
+        padding: 7px;
+        text-align: center;
+    }
+    
+    .destinos-destacados {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+   .destinos-destacados article{
+    max-width: 48vw;
+   }
+   .ofertas-destacadas article{
+    max-width: 48vw;
+   }
+   .ofertas-destacadas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+    
+}
+            
+@media(min-width: 1280px){
+    
+    .logo{
+        width: 140px;
+        height: 100px;
+    }
+    
+    .destinos-destacados {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

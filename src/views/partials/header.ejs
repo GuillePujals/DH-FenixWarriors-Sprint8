@@ -34,7 +34,7 @@
 
             <% if (locals.isLogged){ %>
 
-                <img src="/img/users/<%= user? user.avatar : locals.userLogged.avatar %>" width="40" style="border-radius: 100%">
+                <img src="/img/users/<%= Users ? Users.avatar : locals.userLogged.avatar %>" width="40" style="border-radius: 100%">
                 <nav class="accesos">
                     <a href="/profile">Perfil</a>
                     <a href="/Logout">Logout</a>
