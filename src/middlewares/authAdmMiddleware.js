@@ -1,9 +1,14 @@
-function authAdmMiddleware(req, res, next) {
-    if (!req.session.userLogged  || req.session.userLogged.perfil_usr != 'publicar') {
+const { Property} = require('../database/models');
+
+let authAdmMiddleware = {
+    auth: async (req, res, next) => {
+    let property = await Property.findByPk (req.params.id)
+        
+        if (!req.session.userLogged  || req.session.userLogged.id != property.user_id) {
         return res.redirect('/login');
         
     }
     next();
-    }
+    }}
     
-    module.exports = authAdmMiddleware;
+    module.exports = authAdmMiddleware.auth;
