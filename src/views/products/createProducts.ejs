@@ -127,29 +127,29 @@
                 <label for="servicios">Servicios</label> <br>
                 <input 
                     type="checkbox" 
-                    name="servicios" 
-                    value="wifi"
+                    name="wifi" 
+                    value=1
                     <%= locals.oldData && oldData.servicios && oldData.servicios.includes("wifi") ? 'checked' : null %>>
                 <label for="servicios">Wi-fi</label>
                 <br>
                 <input 
                     type="checkbox" 
-                    name="servicios" 
-                    value="pileta"
+                    name="pool" 
+                    value=1
                     <%= locals.oldData && oldData.servicios && oldData.servicios.includes("pileta") ? 'checked' : null %>>
                 <label for="servicios">Pileta</label>
                 <br>
                 <input 
                     type="checkbox" 
-                    name="servicios" 
-                    value="estacionamiento"
+                    name="parking" 
+                    value=1
                     <%= locals.oldData && oldData.servicios && oldData.servicios.includes("estacionamiento") ? 'checked' : null %>>
                 <label for="servicios">Estacionamiento</label>
                 <br>
                 <input 
                     type="checkbox" 
-                    name="servicios" 
-                    value="parrilla"
+                    name="barbacue" 
+                    value=1
                     <%= locals.oldData && oldData.servicios && oldData.servicios.includes("parrilla") ? 'checked' : null %>>
                 <label for="servicios">Parrilla</label>
             </div>
