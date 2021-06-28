@@ -35,14 +35,7 @@ let homeController = {
         //console.log(req.body.donde);
         res.json(propiedades)
 
-        console.log(req.boby);
-        let propiedades = await Property.findAll();
-
-        let propFilt = await propiedades.filter(function (propiedad) {
-            return propiedad.destination_id == req.body.donde
-        })
-
-        res.json(propFilt)
+    
 
         
     }
