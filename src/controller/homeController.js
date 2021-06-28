@@ -14,14 +14,29 @@ let homeController = {
         
     }, 
     buscar: async (req, res) => {
-        console.log(req.boby);
-        let propiedades = await Property.findAll();
 
-        let propFilt = await propiedades.filter(function (propiedad) {
-            return propiedad.destination_id == req.body.donde
-        })
+        let destino = await Destination.findOne(
+            {where: {
+                destination: req.body.donde
+            }
+            })
 
-        res.json(propFilt)
+        
+        let destinoId =  destino.id
+        
+        let propiedades = await Property.findAll({
+            where: {
+                destination_id: destinoId - 4
+            }
+        });
+
+        //console.log(destino);
+        //console.log(destinoId);
+        //console.log(req.body.donde);
+        res.json(propiedades)
+
+    
+
         
     }
 }
