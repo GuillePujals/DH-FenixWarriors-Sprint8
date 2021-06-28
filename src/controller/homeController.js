@@ -14,7 +14,7 @@ let homeController = {
         
     }, 
     buscar: async (req, res) => {
-
+        console.log(req.boby);
         let propiedades = await Property.findAll();
 
         let propFilt = await propiedades.filter(function (propiedad) {

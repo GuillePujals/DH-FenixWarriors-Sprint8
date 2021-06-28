@@ -11,7 +11,9 @@
                     <img src="/img/users/<%=user.avatar%>">
 
                     <div class="info">
-                        <p><%= user.first_name + " " + user.last_name %></p>
+                        <p>
+                            <%= user.first_name + " " + user.last_name %>
+                        </p>
                         <p>
                             E-mai: <%= user.mail %>
                         </p>
@@ -32,10 +34,17 @@
                             <label class="check"><input type="checkbox" <%=user.aparts=='1' ? 'checked' : null %>>
                                 Aparts</label>
                         </div>
-                        <button class="profile_button">
-                            <a href="/editUser"> Editar</a>
-                        </button>
-
+                        <div class="detalle_botones">
+                            <button class="profile_button">
+                                <a href="/editUser"> Editar</a>
+                            </button>
+                            <button class="profile_button">
+                                <a href="/products/create"> Publicar</a>
+                            </button>
+                            <button class="profile_button">
+                                <a href=""> Publicaciones</a>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
