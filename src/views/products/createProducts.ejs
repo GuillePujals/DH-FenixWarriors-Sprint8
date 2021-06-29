@@ -33,7 +33,7 @@
             </div>
 
             <div class="campo">
-                <label for="foto">Imagen</label>
+                <label for="foto">Imagen 1</label>
                 <input 
                     type="file" 
                     name="foto"
@@ -47,6 +47,42 @@
                 <% if (locals.errors && errors.foto) { %>
                     <div class="text-danger">
                         <%= errors.foto.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="campo">
+                <label for="foto2">Imagen 2</label>
+                <input 
+                    type="file" 
+                    name="foto2"
+                    value="<%= locals.oldData ? oldData.foto2 : '0' %>"
+                >
+                <input 
+                    type="hidden" 
+                    name="oldFoto2" 
+                    value="<%= locals.oldData ? oldData.foto2 : '0' %>"
+                >
+                <% if (locals.errors && errors.foto2) { %>
+                    <div class="text-danger">
+                        <%= errors.foto2.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="campo">
+                <label for="foto">Imagen 3</label>
+                <input 
+                    type="file" 
+                    name="foto3"
+                    value="<%= locals.oldData ? oldData.foto3 : '0' %>"
+                >
+                <input 
+                    type="hidden" 
+                    name="oldFoto3" 
+                    value="<%= locals.oldData ? oldData.foto3 : '0' %>"
+                >
+                <% if (locals.errors && errors.foto3) { %>
+                    <div class="text-danger">
+                        <%= errors.foto3.msg %>
                     </div>
                 <% } %>
             </div>

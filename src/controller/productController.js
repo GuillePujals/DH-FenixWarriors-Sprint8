@@ -30,7 +30,6 @@ let productController = {
     },
     store: async (req, res) => {
         const validations = validationResult(req);
-        // console.log(validations.mapped())
         if (validations.errors.length > 0) {
             let categories = await Category.findAll();
             let destination = await Destination.findAll();
@@ -42,8 +41,8 @@ let productController = {
             });
         }
 
-        console.log(req.body);
-        console.log('------------------------------');
+        // console.log(req.body);
+        // console.log('------------------------------');
 
         let newProperty = await Property.create({
             user_id: req.session.userLogged.id,
@@ -56,16 +55,37 @@ let productController = {
             pool: req.body.pool ? req.body.pool : 0,
             parking: req.body.parking ? req.body.parking : 0,
             barbecue: req.body.barbecue ? req.body.barbecue : 0
-
         });
 
-        // console.log(req.file);
+        // // console.log(req.file);
 
-        let image = await Image.create({
-            property_id: newProperty.id,
-            image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
-        });
+        // let image = await Image.Create({
+        //     property_id: newProperty.id,
+        //     image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
+        // });
 
+        // console.log(req.files.foto);
+        // console.log(req.files.foto[0].filename);
+        // console.log('------------------------------');
+        let imagesFiles = [];
+        let nameImage = '';
+        for (let i = 0; i < 3; i++) {
+            if (i==0) nameImage = req.files.foto[0] ? req.files.foto[0].filename : 'logo-casa-alquiler.jpg';
+            if (i==1) nameImage = req.files.foto2[0] ? req.files.foto2[0].filename : 'logo-casa-alquiler.jpg';
+            if (i==2) nameImage = req.files.foto3[0] ? req.files.foto3[0].filename : 'logo-casa-alquiler.jpg';
+            imagesFiles.push({
+                property_id: newProperty.id,
+                image_name: nameImage
+            })
+        }
+
+        // imagesFiles.push(req.files.foto[0] ? req.files.foto[0].filename : 'logo-casa-alquiler.jpg');
+        // imagesFiles.push(req.files.foto2[0] ? req.files.foto2[0].filename : 'logo-casa-alquiler.jpg');
+
+        console.log(imagesFiles);
+        console.log('------------------------------');
+        let images = await Image.bulkCreate(imagesFiles);
+        
         let user = req.session.userLogged;
         let casa = await Property.findByPk(newProperty.id, 
             {include:['image', 'destination']});

@@ -23,6 +23,7 @@ router.get('/', controladorproduct.list);
 router.get('/:id/edit', authMiddleware, controladorproduct.edit);
 router.put('/update/:id', authMiddleware, controladorproduct.update);
 
-router.post('/', upload.single('foto'), productValidate, controladorproduct.store);
+// router.post('/', upload.single('foto'), productValidate, controladorproduct.store);
+router.post('/', upload.fields([{name: 'foto'}, {name: 'foto2'}, {name: 'foto3'}]), productValidate, controladorproduct.store);
 
 module.exports = router;
