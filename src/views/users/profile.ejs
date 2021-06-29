@@ -44,6 +44,12 @@
                             <button class="profile_button">
                                 <a href=""> Publicaciones</a>
                             </button>
+                            <% if(locals.admLogged){ %>
+                                <button class="profile_button">
+                                    <a href="/register"> Crear Usuario</a>
+                                </button>
+                            
+                            <%} %>
                         </div>
                     </div>
 

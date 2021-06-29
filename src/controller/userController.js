@@ -38,7 +38,7 @@ let usersController = {
             telephone: req.body.telephone,
             avatar: req.file ? req.file.filename :'avatar.jpg',
             password: bcryptjs.hashSync(req.body.password, 10),
-            admin: 0,
+            admin:req.body.admin,
             casa: req.body.casa,
             departamento: req.body.depastamento,
             hotel: req.body.hotel,
@@ -46,7 +46,8 @@ let usersController = {
             aparts: req.body.aparts
 
         })
-        req.session.userLogged = user
+        !req.session.userLogged ? req.session.userLogged = user : "";
+        
         res.redirect ('/profile')
        
 },

@@ -4,6 +4,7 @@ const path = require('path');
 const session = require("express-session");
 
 const userLoggedMiddleware = require ('./middlewares/userLoggedMiddleware');
+const admLoggedMiddleware = require ('./middlewares/admLoggedMiddleware');
 
 //Traemos la inforamción de las rutas
 const homeRouter = require ('./routes/homeRouter');
@@ -35,6 +36,7 @@ app.use(session({
 
 //Este middleware debe ir después de ssesion
 app.use (userLoggedMiddleware);
+app.use (admLoggedMiddleware);
 
 app.use('/products', productRouter);
 app.use('/', userRouter);
