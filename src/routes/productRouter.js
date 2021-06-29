@@ -20,6 +20,9 @@ router.get('/create',authMiddleware, controladorproduct.create);
 //3. /products/:id (GET) Detalle de un producto particular
 router.get('/:id', authAdmMiddleware, controladorproduct.detalleCrud);
 router.get('/', controladorproduct.list);
+router.get('/:id/edit', authMiddleware, controladorproduct.edit);
+router.put('/update/:id', authMiddleware, controladorproduct.update);
+
 router.post('/', upload.single('foto'), productValidate, controladorproduct.store);
 
 module.exports = router;
