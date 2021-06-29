@@ -10,7 +10,7 @@ const admLoggedMiddleware = require ('./middlewares/admLoggedMiddleware');
 const homeRouter = require ('./routes/homeRouter');
 const productRouter = require ('./routes/productRouter');
 const userRouter = require ('./routes/userRouter');
-
+const destinationRoute = require ('./routes/destinationRoute');
 
 //Para que llegue la información por body
 app.use(express.urlencoded({ extended: false }));
@@ -39,6 +39,7 @@ app.use (userLoggedMiddleware);
 app.use (admLoggedMiddleware);
 
 app.use('/products', productRouter);
+app.use('/destinations', destinationRoute)
 app.use('/', userRouter);
 app.use('/', homeRouter);
 
