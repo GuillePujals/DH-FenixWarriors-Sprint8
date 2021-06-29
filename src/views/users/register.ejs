@@ -62,7 +62,10 @@
                             </div>
                             <% } %>
                     </div>
-
+                    <% if(locals.admLogged){ %>
+                        <label class="check"><input type="checkbox" name="admin" value = 1 <%= locals.oldData && oldData.admin == 1 ? 'checked' : null %>>Admin</label>
+                    
+                    <%} %>
                     <div class="intereses">
                         <label class="label">Intereses</label>
                         <label class="check"><input type="checkbox" name="casa" value = 1 <%= locals.oldData && oldData.casa == 1 ? 'checked' : null %>>Casas</label>

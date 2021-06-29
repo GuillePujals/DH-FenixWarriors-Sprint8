@@ -22,11 +22,11 @@ let homeController = {
             })
 
         
-        let destinoId =  destino.id
+        let destinoId =  await destino.id
         
         let propiedades = await Property.findAll({
             where: {
-                destination_id: destinoId - 4
+                destination_id: destinoId
             }
         });
 
