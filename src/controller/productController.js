@@ -74,7 +74,7 @@ let productController = {
     },     
     detalleCrud: async (req, res) => {
         let casa = await Property.findByPk(req.params.id, 
-            {include:['image', 'destination']});
+            {include:['image', 'destination', 'category']});
 
         let user = req.session.userLogged;
         

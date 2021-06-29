@@ -13,6 +13,9 @@
                 <% }) %>
                 <div class="info">
                     <p>
+                        Categoría: <%= casa.category.category %>
+                    </p>
+                    <p>
                         Cantidad máxima de personas: <%= casa.n_of_people %>
                     </p>
                     <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price)
