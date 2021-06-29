@@ -1,0 +1,154 @@
+<%- include ('../partials/head') %>
+
+<body>
+
+<%- include ('../partials/header') %>
+
+<main class="main">
+    
+
+    <h3>Editar propiedad</h3>
+    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST"  >
+
+        <div class="campo">
+            <label for="categ">Categoría</label>
+            <select 
+                name="categ" 
+                class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
+            >
+                <% categories.forEach(cat => {%>
+                    <option 
+                        value="<%= cat.id %>"
+                        <% if (locals.property && property.category_id == cat.id) { %>
+                            selected="selected" 
+                        <% } %>
+                    >
+                        <%= cat.category %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <% if (locals.errors && errors.categ) { %>
+                <div class="text-danger">
+                    <%= errors.categ.msg %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="campo">
+            <label for="n_people">Nro de personas</label>
+            <input 
+                type="number" 
+                name="n_people" 
+                value="<%= locals.property ? property.n_of_people : null %>"
+                class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>"
+            >
+            <% if (locals.errors && errors.n_people) { %>
+                <div class="text-danger">
+                    <%= errors.n_people.msg %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="campo">
+            <label for="price">Precio</label>
+            <input 
+                type="text" 
+                name="price" 
+                value="<%= property.price ? property.price : null %>"
+                class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>"
+            >
+            <% if (locals.errors && errors.price) { %>
+                <div class="text-danger">
+                    <%= errors.price.msg %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="campo">
+            <label for="location">Dirección</label>
+            <input 
+                type="text" 
+                name="address" 
+                value="<%= locals.property ? property.address : null %>"
+                class="<%=locals.errors && errors.address ? 'is-invalid' : null %>"
+            >
+
+                <% if (locals.errors && errors.address) { %>
+                    <div class="text-danger">
+                        <%= errors.address.msg %>
+                    </div>
+                <% } %>
+        </div>
+
+        <div class="campo">
+            <label for="destination">Ciudad</label>
+            <select 
+                name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
+            >
+                <% destination.forEach(dest => {%>
+                    <option 
+                        value="<%= dest.id %>"
+                        <% if (locals.property && property.destination_id == dest.id) { %>
+                            selected="selected" 
+                        <% } %>
+                    >
+                        <%= dest.destination %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <% if (locals.errors && errors.destination) { %>
+                <div class="text-danger">
+                    <%= errors.destination.msg %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="campo">
+            <label for="servicios">Servicios</label> <br>
+            <input 
+                type="checkbox" 
+                name="wifi" 
+                value=1
+                <%= locals.property && property.wifi ? 'checked' : null %>>
+            <label for="servicios">Wi-fi</label>
+            <br>
+            <input 
+                type="checkbox" 
+                name="pool" 
+                value=1
+                <%= locals.property && property.pool ? 'checked' : null %>>
+            <label for="servicios">Pileta</label>
+            <br>
+            <input 
+                type="checkbox" 
+                name="parking" 
+                value=1
+                <%= locals.property && property.parking ? 'checked' : null %>>
+            <label for="servicios">Estacionamiento</label>
+            <br>
+            <input 
+                type="checkbox" 
+                name="barbecue" 
+                value=1
+                <%= locals.property && property.barbecue ? 'checked' : null %>>
+            <label for="servicios">Parrilla</label>
+        </div>
+
+
+        <button type="submit" class="button">Actualizar</button>
+        <button type="reset" class="button">Cancelar</button>
+    </form>
+    <form action="/products/<%= property.id %>">
+        <button  class="button">Volver</button>
+    </form>
+
+
+</main>
+
+
+<%- include ('../partials/footer') %>
+
+</body>
+
