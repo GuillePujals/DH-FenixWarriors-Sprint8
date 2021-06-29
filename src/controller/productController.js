@@ -29,11 +29,6 @@ let productController = {
         return res.render('products/createProducts', {categories, destination}) 
     },
     store: async (req, res) => {
-        let estatacionamiento = 0;
-        let wifi = 0;
-        let pileta = 0;
-        let parrilla = 0;
-
         const validations = validationResult(req);
         // console.log(validations.mapped())
         if (validations.errors.length > 0) {
@@ -47,19 +42,8 @@ let productController = {
             });
         }
 
-        // console.log(req.body);
-        // console.log('------------------------------');
-        // console.log(req.session.userLogged);
-        // console.log('------------------------------');
-        if (req.body.servicios){
-            req.body.servicios.forEach(servicio => {
-                if (servicio == 'estacionamiento') estatacionamiento = 1;
-                if (servicio == 'parrilla') parrilla = 1;
-                if (servicio == 'pileta') pileta = 1;
-                if (servicio == 'wifi') wifi = 1;
-
-            }); 
-        }
+        console.log(req.body);
+        console.log('------------------------------');
 
         let newProperty = await Property.create({
             user_id: req.session.userLogged.id,
@@ -68,19 +52,24 @@ let productController = {
             price: req.body.price,
             address: req.body.address,
             n_of_people: req.body.n_people,
-            wifi: wifi,
-            pool: pileta,
-            parking: estatacionamiento,
-            barbecue: parrilla
+            wifi: req.body.wifi ? req.body.wifi : 0,
+            pool: req.body.pool ? req.body.pool : 0,
+            parking: req.body.parking ? req.body.parking : 0,
+            barbecue: req.body.barbecue ? req.body.barbecue : 0
 
         });
 
-        console.log(req.file);
+        // console.log(req.file);
 
         let image = await Image.create({
             property_id: newProperty.id,
             image_name: req.file ? req.file.filename :'logo-casa-alquiler.jpg'
         });
+
+        let user = req.session.userLogged;
+        let casa = await Property.findByPk(newProperty.id, 
+            {include:['image', 'destination']});
+        res.render('products/detalleCrud', {casa, user});
    
     },     
     detalleCrud: async (req, res) => {
