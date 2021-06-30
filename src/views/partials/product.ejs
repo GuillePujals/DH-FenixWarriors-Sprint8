@@ -8,40 +8,41 @@
             Dirección: <%= casa.address %>
         </h3>
         <div class="containerProf">
-            <% casa.image.forEach(image=>{ %>
-                <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
-                <% }) %>
-                <div class="info">
-                    <p>
-                        Categoría: <%= casa.category.category %>
-                    </p>
-                    <p>
-                        Cantidad máxima de personas: <%= casa.n_of_people %>
-                    </p>
-                    <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price)
-                        %>
+            <div class="fotos">
+                <% casa.image.forEach(image=>{ %>
+                    <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
+                    <% }) %>
+            </div>
+            <div class="info_prod">
+                <p>
+                    Categoría: <%= casa.category.category %>
                 </p>
-                    <div class="campo">
-                        <div class="intereses">
-                        <label class="label">Servicios</label> <br>
-                        <label class="check"><input type="checkbox" name="wifi" <%=locals.casa && casa.wifi==1
-                                ? 'checked' : null %>>
-                            Wi-fi</label>
-                        <br>
-                        <label class="check"><input type="checkbox" name="pool" <%=locals.casa && casa.pool==1
-                                ? 'checked' : null %>>
-                            Pileta</label>
-                        <br>
-                        <label class="check"><input type="checkbox" name="parking" <%=locals.casa && casa.parking==1
-                                ? 'checked' : null %>>Estacionamiento</label>
-                        <br>
-                        <label class="check"><input type="checkbox" name="barbecue" <%=locals.casa && casa.barbecue
-                                ? 'checked' : null %>>
-                            Parrilla</label>
-                        </div>
-                    </div>
-                    
-                </div>
+                <p>
+                    Cantidad máxima de personas: <%= casa.n_of_people %>
+                </p>
+                <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
+                </p>
+
+
+                <label class="label">Servicios</label> <br>
+                <label class="check"><input type="checkbox" name="wifi" <%=locals.casa && casa.wifi==1 ? 'checked' :
+                        null %>>
+                    Wi-fi</label>
+                <br>
+                <label class="check"><input type="checkbox" name="pool" <%=locals.casa && casa.pool==1 ? 'checked' :
+                        null %>>
+                    Pileta</label>
+                <br>
+                <label class="check"><input type="checkbox" name="parking" <%=locals.casa && casa.parking==1 ? 'checked'
+                        : null %>>Estacionamiento</label>
+                <br>
+                <label class="check"><input type="checkbox" name="barbecue" <%=locals.casa && casa.barbecue ? 'checked'
+                        : null %>>
+                    Parrilla</label>
+
+
+
+            </div>
         </div>
         <script src="/js/detalleCrud.js"></script>
     </section>
