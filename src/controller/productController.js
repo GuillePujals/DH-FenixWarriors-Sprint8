@@ -88,7 +88,7 @@ let productController = {
         
         let user = req.session.userLogged;
         let casa = await Property.findByPk(newProperty.id, 
-            {include:['image', 'destination']});
+            {include:['image', 'destination', 'category']});
         res.render('products/detalleCrud', {casa, user});
    
     },     
