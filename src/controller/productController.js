@@ -3,6 +3,7 @@ const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const {Category, Destination, Image, Property, Users} = require('../database/models');
 const {	validationResult } = require('express-validator');
+const imageController = require('./imageController');
 
 let productController = {
     list: (req, res) => {
@@ -74,21 +75,18 @@ let productController = {
             if (i==1) nameImage = req.files.foto2[0] ? req.files.foto2[0].filename : 'logo-casa-alquiler.jpg';
             if (i==2) nameImage = req.files.foto3[0] ? req.files.foto3[0].filename : 'logo-casa-alquiler.jpg';
             imagesFiles.push({
-                property_id: newProperty.id,
+                // property_id: newProperty.id,
                 image_name: nameImage
             })
         }
 
         // imagesFiles.push(req.files.foto[0] ? req.files.foto[0].filename : 'logo-casa-alquiler.jpg');
         // imagesFiles.push(req.files.foto2[0] ? req.files.foto2[0].filename : 'logo-casa-alquiler.jpg');
-
-        console.log(imagesFiles);
-        console.log('------------------------------');
-        let images = await Image.bulkCreate(imagesFiles);
+        let images = imageController.bulkCreate(newProperty.id, imagesFiles);
         
         let user = req.session.userLogged;
         let casa = await Property.findByPk(newProperty.id, 
-            {include:['image', 'destination']});
+            {include:['image', 'destination', 'category']});
         res.render('products/detalleCrud', {casa, user});
    
     },     
@@ -136,10 +134,21 @@ let productController = {
             where: {id: propertyId}
         });
 
+        //Edición de las imágenes
+        let imagesFiles = [];
+        // console.log(req.files);
+        // console.log("--------------------Antes de leer files---------------------------")
+        if (req.files.foto1) imagesFiles.push({image_name: req.files.foto1[0].filename, image_num:1})
+        if (req.files.foto2) imagesFiles.push({image_name: req.files.foto2[0].filename, image_num:2})
+        if (req.files.foto3) imagesFiles.push({image_name: req.files.foto3[0].filename, image_num:3})
+        // console.log(imagesFiles);
+        // console.log("--------------------Voy a bulkEdit--------------------------------")
+        // console.log(await imageController.bulkEdit(propertyId, imagesFiles));
+        let imagesNew = await imageController.bulkEdit(propertyId, imagesFiles);
+
         let user = req.session.userLogged;
-        // console.log()
         let casa = await Property.findByPk(propertyId, 
-            {include:['image', 'destination']});
+            {include:['image', 'destination', 'category']});
         if (casa) {
           res.render('products/detalleCrud', {casa, user});  
         }

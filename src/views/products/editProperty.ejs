@@ -8,7 +8,7 @@
     
 
     <h3>Editar propiedad</h3>
-    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST"  >
+    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST" enctype="multipart/form-data" >
 
         <div class="campo">
             <label for="categ">Categoría</label>
@@ -33,6 +33,16 @@
                     <%= errors.categ.msg %>
                 </div>
             <% } %>
+        </div>
+
+        <div class="editImagenes">
+            <%i=0%>
+            <% property.image.forEach( image => { %>
+                <article class="imagenAEditar">
+                    <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
+                    <input type="file" name=<%= "foto" + ++i%>>
+                </article>
+            <% }) %>
         </div>
 
         <div class="campo">

@@ -307,7 +307,33 @@ section{
     max-width: 260px;
     height: auto;
 }
-            
+
+.editImagenes{
+    display: flex;
+    flex-direction: row;
+}
+    .imagenAEditar{
+        display: flex;
+        flex-direction: column;
+        margin-right: 4px;
+    }
+    .listProductsImage{
+        max-height: 260px;
+        max-width: 260px;
+        height: auto;
+        position: relative;
+    }
+    .editImagenes input{
+        width:260px;
+        height:40px;
+        margin-top: 2px;
+        /*position:absolute;
+        left:0;
+        top:0;*/
+        cursor:pointer;
+     } 
+    
+
 
 @media (min-width:860px){
     .accesos{

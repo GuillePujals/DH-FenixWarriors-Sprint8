@@ -21,7 +21,7 @@ router.get('/create',authMiddleware, controladorproduct.create);
 router.get('/:id', authAdmMiddleware, controladorproduct.detalleCrud);
 router.get('/', controladorproduct.list);
 router.get('/:id/edit', authMiddleware, controladorproduct.edit);
-router.put('/update/:id', authMiddleware, controladorproduct.update);
+router.put('/update/:id', upload.fields([{name: 'foto1'}, {name: 'foto2'}, {name: 'foto3'}]), authMiddleware, controladorproduct.update);
 
 // router.post('/', upload.single('foto'), productValidate, controladorproduct.store);
 router.post('/', upload.fields([{name: 'foto'}, {name: 'foto2'}, {name: 'foto3'}]), productValidate, controladorproduct.store);
