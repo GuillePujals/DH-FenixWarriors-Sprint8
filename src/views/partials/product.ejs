@@ -2,21 +2,18 @@
 
     <section class="DetalleDeProductos">
         <h2>
-            Destino: <%= casa.destination.destination %>
+            Destino: <%= destino.destination %>
         </h2>
         <h3>
             Dirección: <%= casa.address %>
         </h3>
         <div class="containerProf">
-            <div class="fotos">
-                <% casa.image.forEach(image=>{ %>
-                    <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
-                    <% }) %>
-            </div>
+           
             <div class="info_prod">
                 <p>
-                    Categoría: <%= casa.category.category %>
+                    Categoría: <%= casa.category_id %>
                 </p>
+                
                 <p>
                     Cantidad máxima de personas: <%= casa.n_of_people %>
                 </p>

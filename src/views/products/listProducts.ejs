@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<%- include ('../partials/head') %>
+    <link rel="stylesheet" href="/css/listProducts.css">
+    <body>
+        <%- include ('../partials/header') %>
+            <main class="main">
+
+                <h1>Listado de productos</h1>
+                
+               <section class="listadoDeProductos">
+                    <% casas.forEach (casa => {%>
+                        <%- include ('../partials/product', {casa}) %>      
+                        <% } )%>
+                </section>
+
+            </main>
+            <%- include ('../partials/footer') %>
+    </body>
+</html>

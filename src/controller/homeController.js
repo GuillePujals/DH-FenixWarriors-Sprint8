@@ -24,20 +24,23 @@ let homeController = {
         
         let destinoId =  await destino.id
         
-        let propiedades = await Property.findAll({
+
+        let casas = await Property.findAll({
             where: {
                 destination_id: destinoId
             }
         });
 
+    
+    
+
         //console.log(destino);
         //console.log(destinoId);
         //console.log(req.body.donde);
-        res.json(propiedades)
-
-    
-
+        res.render ('products/listProducts', {casas, destino});
         
+        //console.log(casas[0]);
+        //console.log(casas[1]);
     }
 }
 

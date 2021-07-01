@@ -19,6 +19,8 @@ const upload = multer({ storage });
 router.get('/create',authMiddleware, controladorproduct.create);
 //3. /products/:id (GET) Detalle de un producto particular
 router.get('/:id', authAdmMiddleware, controladorproduct.detalleCrud);
+router.delete('/:id', authAdmMiddleware, controladorproduct.delete);
+
 router.get('/', controladorproduct.list);
 router.get('/:id/edit', authMiddleware, controladorproduct.edit);
 router.put('/update/:id', upload.fields([{name: 'foto1'}, {name: 'foto2'}, {name: 'foto3'}]), authMiddleware, controladorproduct.update);

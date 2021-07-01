@@ -9,6 +9,7 @@
                 <li><a href="/">Inicio</a></li>
                 
                 <% if (locals.isLogged){ %>
+                   
                     <li><a href="/profile">Perfil</a></li>
                     <li><a href="/Logout">Logout</a></li>
                     <% } else { %>
@@ -26,6 +27,11 @@
             <img src="/img/logo-casas-alquiler.jpg" alt="" class="logo">
 
             <h1 class="nombre-logo">Serena</h1>
+            
+<% if (locals.isLogged){ %>
+<p class="saludos">   Hola <%=locals.user.first_name%>!</p>
+<% } %>
+
         </div>
         <div class="crt-prof">
             <a href="/products/Cart" class="icono-carrito">
@@ -33,14 +39,16 @@
             </a>
 
             <% if (locals.isLogged){ %>
-                
+                 
                 <img src="/img/users/<%= locals.userLogged.avatar %>" width="40" style="border-radius: 100%">
-
+               
                 <nav class="accesos">
+                 
                     <a href="/profile">Perfil</a>
                     <a href="/Logout">Logout</a>
+                    
                 </nav>
-
+                
 
                 <% } else { %>
                     <nav class="accesos">

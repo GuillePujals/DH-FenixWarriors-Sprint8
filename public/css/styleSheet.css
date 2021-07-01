@@ -99,6 +99,11 @@ section{
             .login{
                 margin-right: 10px;
             }
+            p.saludos {
+                color: #3295ce;
+                display: block;
+                margin-left: 65px;
+            }
 
 .form .div .text-danger{
     color:red;

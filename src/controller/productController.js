@@ -154,6 +154,13 @@ let productController = {
         }
         
         
+    }, 
+    delete: async (req,res) => {
+        
+        let propertyId = req.params.id;
+        let casaBorrar = await Property.delete(propertyId)
+        
+        res.redirect('/index');
     }
     
 }
