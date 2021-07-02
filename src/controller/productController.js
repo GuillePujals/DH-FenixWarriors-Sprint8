@@ -158,12 +158,16 @@ let productController = {
     delete: async (req,res) => {
         
         let propertyId = req.params.id;
+<<<<<<< HEAD
         
         let casaBorrar = await Property.destroy({
             where: {
                 id: propertyId
             }
         })
+=======
+        let casaBorrar = await Property.destroy(propertyId)
+>>>>>>> a4dbb1aebc48c6c09c547da994fc551eb7c7d921
         
         res.redirect('/index');
     }
