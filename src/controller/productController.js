@@ -55,7 +55,8 @@ let productController = {
             wifi: req.body.wifi ? req.body.wifi : 0,
             pool: req.body.pool ? req.body.pool : 0,
             parking: req.body.parking ? req.body.parking : 0,
-            barbecue: req.body.barbecue ? req.body.barbecue : 0
+            barbecue: req.body.barbecue ? req.body.barbecue : 0,
+            activated: 1
         });
 
         // // console.log(req.file);
