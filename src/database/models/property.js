@@ -48,7 +48,8 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL,
     category_id: DataTypes.INTEGER,
     n_of_people: DataTypes.INTEGER,
-    address: DataTypes.STRING
+    address: DataTypes.STRING,
+    activated: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Property',
