@@ -50,6 +50,9 @@ module.exports = {
       n_of_people: {
         type: Sequelize.INTEGER
       },
+      activated: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
