@@ -36,23 +36,26 @@
             <article class="resumen">
                 <h4>Alquiler en <%= property.destination.destination %></h4>
                 <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                    <% for (let i = 1; i<= property.category.id; i++){ %>
+                        <i class="fas fa-star"></i>
+                    <% } %>
                 </div>
-                <p class="comentario">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit quaerat, veniam
-                    non sequi commodi maxime debitis rem cupiditate fugiat iste quidem quo sapiente? Id assumenda vel
-                    labore nulla perspiciatis animi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit quaerat, veniam
-                    non sequi commodi maxime debitis rem cupiditate fugiat iste quidem quo sapiente? Id assumenda vel
-                    labore nulla perspiciatis animi.</p>
+                <p class="comentario">
+                    Dirección: <%= property.address %>. Capacidad <%= property.n_of_people %> personas.
+                </p>
                 <div class="services">
-                    <i class="fas fa-swimmer"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-utensils"></i>
-                    <i class="fas fa-car"></i>
+                    <% if (property.wifi) { %>
+                        <i class="fas fa-wifi"></i>
+                    <% } %>
+                    <% if (property.barbecue) { %>
+                        <i class="fas fa-utensils"></i>
+                    <% } %>
+                    <% if (property.parking) { %>
+                        <i class="fas fa-car"></i>
+                    <% } %>
+                    <% if (property.pool) { %>
+                        <i class="fas fa-swimmer"></i>
+                    <% } %>
                 </div>
             </article>
             <div class="info-cont">
@@ -83,7 +86,7 @@
                             </div>
                         </div>
                         <article class="condiciones">
-                            <p class="precio">$3.000 por noche</p>
+                            <p class="precio">$<%= property.price%> por noche</p>
                             <p class="precio-tot">$18.000 total</p>
                         </article>
                     </div>
@@ -92,69 +95,14 @@
                             <h4 class="titulo-datos">Datos personales</h4>
                             <div class="datos-personales">
                                 <h5 class="titulo">Nombre y Apellido:</h5>
-                                <h5 class="dato">Juan Carlos Perez</h5>
+                                <h5 class="dato"><%= user.first_name%></h5>
                                 <h5 class="titulo">E-mail:</h5>
-                                <h5 class="dato">juancarlosperez@gmail.com</h5>
-                                <h5 class="titulo">Pais de Recidencia:</h5>
-                                <h5 class="dato">Argentina</h5>
+                                <h5 class="dato"><%= user.mail%></h5>
                                 <h5 class="titulo">celular:</h5>
-                                <h5 class="dato">+54-11-38574086</h5>
+                                <h5 class="dato"><%= user.telephone%></h5>
                             </div>
                         </article>
 
-                        <h4>Datos para el pago:</h4>
-                        <div class="datos-pago">
-
-                            <div class="titular-tta">
-                                <label>Titular de la Tarjeta:</label>
-                                <input type="text" name="titularTarjeta" class="control-pago" required>
-                            </div>
-                            <div class="tipo-tta">
-                                <label>Tipo de Tarjeta de Crédito:</label>
-                                <select name="tipoTarjeta" class="control-pago" required>
-                                    <option value="visa">Visa</option>
-                                    <option value="master">Mastercard</option>
-                                    <option value="American">American Express</option>
-                                </select>
-                            </div>
-                            <div class="fecha-expir">
-                                <label>Fecha de expiración:</label>
-                                <select name="mesExpiracion" class="control-pago" required>
-                                    <option value="ene">Enero</option>
-                                    <option value="feb">Febrero</option>
-                                    <option value="mar">Marzo</option>
-                                    <option value="abr">Abril</option>
-                                    <option value="may">Mayo</option>
-                                    <option value="jun">Junio</option>
-                                    <option value="jul">Julio</option>
-                                    <option value="ago">Agosto</option>
-                                    <option value="sept">Septiembre</option>
-                                    <option value="oct">Octubre</option>
-                                    <option value="nov">Noviembre</option>
-                                    <option value="dic">Diciembre</option>
-                                </select>
-
-                                <label class="separador">/</label>
-                                <select name="mesExpiracion" class="control-pago" required>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                    <option value="2027">2027</option>
-                                    <option value="2028">2028</option>
-                                    <option value="2029">2029</option>
-                                    <option value="2030">2030</option>
-                                    <option value="2031">2031</option>
-                                    <option value="2032">2032</option>
-                                </select>
-                            </div>
-                            <div class="codigo-cvc">
-                                <label>Código CVC:</label>
-                                <input type="number" name="codigoCvc" class="control-pago-cvc" required>
-                            </div>
-                        </div>
                     </div>
                     <div class="botones">
                         <button type="submit">Enviar</button>
