@@ -20,9 +20,12 @@ router.get('/create',authMiddleware, controladorproduct.create);
 //3. /products/:id (GET) Detalle de un producto particular
 router.get('/:id', authAdmMiddleware, controladorproduct.detalleCrud);
 //router.delete('/:id', authAdmMiddleware, controladorproduct.delete);
+router.put('/desactivar/:id/', authAdmMiddleware, controladorproduct.desactivar);
+router.put('/activar/:id/', authAdmMiddleware, controladorproduct.activar);
 
 router.get('/', controladorproduct.list);
 router.get('/:id/edit', authMiddleware, controladorproduct.edit);
+
 router.put('/update/:id', upload.fields([{name: 'foto1'}, {name: 'foto2'}, {name: 'foto3'}]), authMiddleware, controladorproduct.update);
 
 // router.post('/', upload.single('foto'), productValidate, controladorproduct.store);

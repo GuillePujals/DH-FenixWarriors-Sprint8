@@ -19,8 +19,11 @@
                         <form action="/products" class="editar" >
                             <button class="detall_button">Volver</button>
                         </form>
-                        <form action="/products/<%= casa.id %>?_method=DELETE" method="POST">
-                            <button class="detall_button">Borrar</button>
+                        <form action="/products/desactivar/<%= casa.id %>?_method=PUT" method="POST">
+                            <button class="detall_button">Desactivar</button>
+                        </form>
+                        <form action="/products/activar/<%= casa.id %>?_method=PUT" method="POST">
+                            <button class="detall_button">Activar</button>
                         </form>
                     </div>
             </main>

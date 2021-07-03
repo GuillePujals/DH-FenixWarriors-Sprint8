@@ -10,7 +10,35 @@
             <section class="main-body">
               
                 <form action="/" method="POST" class="formBuscar">
+
+<!--
                     <input type="text" name="donde" placeholder=" A donde vamos?" class="inp1">
+-->
+                    <select 
+                    name="destination" class= "inp1" <%=locals.errors && errors.destinos ? 'is-invalid' : null %> 
+                >
+                    <% destinos.forEach(dest => {%>
+                        <option 
+                            value="<%= dest.id %>"
+                            <% if (locals.oldData && oldData.destinos == dest.id) { %>
+                                selected="selected" 
+                            <% } %>
+                        >
+                            <%= dest.destination %>
+                            
+                        </option>
+                    <% }) %>
+                </select>
+
+                <% if (locals.errors && errors.destinos) { %>
+                    <div class="text-danger">
+                        <%= errors.destinos.msg %>
+                    </div>
+                <% } %>
+            </div>
+
+
+
                     <input type="date" name="fecha" class="inp2">
                     <select name="cuantos" class="inp3">
                         <option value="1">1</option>
