@@ -15,32 +15,25 @@ let homeController = {
     }, 
     buscar: async (req, res) => {
 
+        /*
         let destino = await Destination.findOne(
             {where: {
-                destination: req.body.donde
+                id: req.body.destination
             }
             })
-
-        
         let destinoId =  await destino.id
+        */
         
 
         let casas = await Property.findAll({
             where: {
-                destination_id: destinoId
-            }
+                destination_id: req.body.destination,
+                activated: 1
+            }, 
+            include:['category', 'user', 'destination', 'image']
         });
 
-    
-    
-
-        //console.log(destino);
-        //console.log(destinoId);
-        //console.log(req.body.donde);
-        res.render ('products/listProducts', {casas, destino});
-        
-        //console.log(casas[0]);
-        //console.log(casas[1]);
+        res.render ('products/listProducts', {casas});
     }
 }
 
