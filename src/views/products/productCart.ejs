@@ -1,0 +1,175 @@
+<%- include ('../partials/head') %>
+<link rel="stylesheet" href="/css/productCart.css">
+
+<body>
+
+    <%- include ('../partials/header') %>
+
+    <main class="container">
+        <div class="container-all">
+
+            <input type="radio" id="1" name="image-slide" hidden />
+            <input type="radio" id="2" name="image-slide" hidden />
+            <input type="radio" id="3" name="image-slide" hidden />
+
+            <div class="slide">
+                <% property.image.forEach( image => { %>
+                    <div class="item-slide">
+                        <img src="/img/products/<%= image.image_name%>">
+                    </div>
+                <% });%>
+
+            </div>
+
+            <div class="pagination">
+                <% let i=0; %>
+                <% property.image.forEach( image => { %>
+                    <label class="pagination-item" for=<%= ++i%>>
+                        <img src="/img/products/<%= image.image_name%>">
+                    </label>
+                <% });%>
+            </div>
+
+        </div>
+
+        <section class="datos">
+            <article class="resumen">
+                <h4>Alquiler en <%= property.destination.destination %></h4>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="comentario">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit quaerat, veniam
+                    non sequi commodi maxime debitis rem cupiditate fugiat iste quidem quo sapiente? Id assumenda vel
+                    labore nulla perspiciatis animi.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit quaerat, veniam
+                    non sequi commodi maxime debitis rem cupiditate fugiat iste quidem quo sapiente? Id assumenda vel
+                    labore nulla perspiciatis animi.</p>
+                <div class="services">
+                    <i class="fas fa-swimmer"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-utensils"></i>
+                    <i class="fas fa-car"></i>
+                </div>
+            </article>
+            <div class="info-cont">
+                <form action="/procesrPago" method="POST" class="form-datos-pago">
+                    <h4>Condiciones del alquiler:</h4>
+                    <div class="cond-alq">
+                        <div class="datos-alq">
+                            <div class="fecha-alq">
+                                <div class="ingreso">
+                                    <label>Fecha ingreso:</label>
+                                    <input type="date" name="fechaingreso" value="2021-05-03">
+                                </div>
+                                <div class="egreso">
+                                    <label>Fecha egreso:</label>
+                                    <input type="date" name="fechaegreso" value="2021-05-10">
+                                </div>
+                            </div>
+                            <div class="cant-personas">
+                                <div class="adultos">
+                                    <label>Adultos:</label>
+                                    <input type="number" name="cantadultos" value="2">
+                                </div>
+                                <div class="ninos">
+
+                                    <label>Niños:</label>
+                                    <input type="number" name="cantninos" value="2">
+                                </div>
+                            </div>
+                        </div>
+                        <article class="condiciones">
+                            <p class="precio">$3.000 por noche</p>
+                            <p class="precio-tot">$18.000 total</p>
+                        </article>
+                    </div>
+                    <div class="datos-personales-pago">
+                        <article class="main-datos-personales">
+                            <h4 class="titulo-datos">Datos personales</h4>
+                            <div class="datos-personales">
+                                <h5 class="titulo">Nombre y Apellido:</h5>
+                                <h5 class="dato">Juan Carlos Perez</h5>
+                                <h5 class="titulo">E-mail:</h5>
+                                <h5 class="dato">juancarlosperez@gmail.com</h5>
+                                <h5 class="titulo">Pais de Recidencia:</h5>
+                                <h5 class="dato">Argentina</h5>
+                                <h5 class="titulo">celular:</h5>
+                                <h5 class="dato">+54-11-38574086</h5>
+                            </div>
+                        </article>
+
+                        <h4>Datos para el pago:</h4>
+                        <div class="datos-pago">
+
+                            <div class="titular-tta">
+                                <label>Titular de la Tarjeta:</label>
+                                <input type="text" name="titularTarjeta" class="control-pago" required>
+                            </div>
+                            <div class="tipo-tta">
+                                <label>Tipo de Tarjeta de Crédito:</label>
+                                <select name="tipoTarjeta" class="control-pago" required>
+                                    <option value="visa">Visa</option>
+                                    <option value="master">Mastercard</option>
+                                    <option value="American">American Express</option>
+                                </select>
+                            </div>
+                            <div class="fecha-expir">
+                                <label>Fecha de expiración:</label>
+                                <select name="mesExpiracion" class="control-pago" required>
+                                    <option value="ene">Enero</option>
+                                    <option value="feb">Febrero</option>
+                                    <option value="mar">Marzo</option>
+                                    <option value="abr">Abril</option>
+                                    <option value="may">Mayo</option>
+                                    <option value="jun">Junio</option>
+                                    <option value="jul">Julio</option>
+                                    <option value="ago">Agosto</option>
+                                    <option value="sept">Septiembre</option>
+                                    <option value="oct">Octubre</option>
+                                    <option value="nov">Noviembre</option>
+                                    <option value="dic">Diciembre</option>
+                                </select>
+
+                                <label class="separador">/</label>
+                                <select name="mesExpiracion" class="control-pago" required>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
+                                    <option value="2032">2032</option>
+                                </select>
+                            </div>
+                            <div class="codigo-cvc">
+                                <label>Código CVC:</label>
+                                <input type="number" name="codigoCvc" class="control-pago-cvc" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="botones">
+                        <button type="submit">Enviar</button>
+                        <button type="Reset">Reset</button>
+                    </div>
+                </form>
+
+
+
+
+
+            </div>
+        </section>
+    </main>
+    <%- include ('../partials/footer') %>
+
+</body>
+
