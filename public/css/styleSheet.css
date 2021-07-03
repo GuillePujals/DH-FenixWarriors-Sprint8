@@ -17,6 +17,7 @@ section{
     margin: 0;
     padding: 10px 0;
     width:100vw;
+    z-index: 1;
 }
     .top-bar{
         display: flex;
@@ -192,6 +193,7 @@ section{
 .containerProf{
     margin-top: 20px;
     display: flex;
+    
 }
     .avatar{
         margin-left: 0;
@@ -250,6 +252,13 @@ section{
 .DetalleDeProductos{
     margin-top: 0%;
     color: hsl(202, 61%, 50%); 
+}
+    .detalle_crud{
+        display: flex;
+    }
+
+.containerProf_product{
+    
 }
 .detall_button{
     background-color:#1259c3;

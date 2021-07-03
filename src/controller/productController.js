@@ -7,22 +7,27 @@ const imageController = require('./imageController');
 
 let productController = {
     list: (req, res) => {
-        db.Property.findAll({
-            include:['category', 'user']
-        })
-        .then(propertys => {
-            console.log(propertys);
+        db.Property.findAll(
+            {include:['category', 'user', 'destination', 'image']}
+            
+        )
+        .then(casas => {
+            return res.render('products/listProductsCrud', {casas})})
+           /*console.log(propertys);
             let respuesta = {
                 meta: {
                     status:200,
                     total: propertys.length
                 },
                 data: propertys
-            }
 
-            res.json(respuesta);
-        });
-    },
+          
+            
+            
+            //res.json(respuesta);
+        });*/
+       
+       },
     create: async (req, res) => {
         let categories = await Category.findAll();
         let destination = await Destination.findAll();
@@ -156,7 +161,7 @@ let productController = {
         
         
     }, 
-    delete: async (req,res) => {
+    /*delete: async (req,res) => {
         
         let propertyId = req.params.id;
 
@@ -172,7 +177,7 @@ let productController = {
 
         
         res.redirect('/index');
-    }
+    }*/
     
 }
 
