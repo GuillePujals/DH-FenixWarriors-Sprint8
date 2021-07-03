@@ -1,0 +1,514 @@
+* {
+    box-sizing: border-box;
+    font-family:Roboto;
+}
+
+.main-header{
+    border-bottom: 2px solid #3295ce;
+    position:fixed;
+    background-color: white;
+    top: 0;
+    margin: 0;
+    padding: 10px 0;
+    width: 100vw;
+    z-index: 2;
+}
+    .top-bar{
+        display: flex;
+        align-items:center;
+        max-height: 40px;
+    }
+               
+        #main-hamburger{
+            display: none;
+        }
+        .top-bar label{
+               color: #3295ce;
+               background-color: 8cc9ec;     
+               margin: 2px 3px; 
+               display: block; 
+               width: 30px;
+               height: 20px;
+               padding: 20px;
+               font-size: 30px;
+            }
+            .top-bar label i{
+                position:absolute;
+                top:10px;
+                left: 10px;
+            }
+
+            .top-bar label:hover{
+                background-color: #b0d4e9;
+                cursor: pointer;
+            }
+
+            #main-hamburger:checked ~ .menu-hamburger{
+                display: block;
+            }
+            .menu-hamburger{
+                display:none;
+                position:absolute;
+                top: 50px;
+                width: 80%;
+                
+            }
+               
+                    .menu-hamburger li{
+                    list-style: none;
+                    background-color: #b0d4e9;
+                    padding: 10px;
+                    }
+                        .menu-hamburger a{
+                            color:rgb(126, 124, 124);
+                            text-decoration: none;
+                        }
+        .logo-completo{
+            display: flex;
+            align-items: center;
+            height: 70%;
+            }
+            .logo{
+                width: 15%;
+                height: 80%;           
+            }
+            .nombre-logo{
+                color: #3295ce;
+                font-family: 'Lobster', cursive;
+                font-weight: lighter;
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+        .icono-carrito{
+            color: hsl(202, 61%, 50%);
+            font-size: 13px;
+            margin-right: 30px;
+        }
+            .icono-carrito i{
+            font-size: 1.5em;
+            }
+        .accesos{
+            display: none;
+            
+        }
+            .login{
+                margin-right: 10px;
+            }
+/*================== Sección principal =======================*/ 
+            .container{
+                position: relative;
+                margin-top: 70px;
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+                justify-content: center;
+                padding: 3px;
+                font-family: Roboto;
+                font-size: 12px;
+            }
+            
+            img{
+                max-width: 100%;
+            }
+            
+            .container-all{
+                position: relative;
+                max-width: 1000px;
+                width: 100%;
+                border-radius: 6px;
+                overflow: hidden; /*para que la imagen no se sobrepase*/
+                flex: 1 1 auto;
+            }
+            
+            /*esta sección muestra las imagenes*/
+            .slide{
+                display: flex; /*las ajusta*/
+                transform: translate3d(0, 0, 0); 
+                transition: all 600ms; 
+                animation-name: autoplay; /*Definimos el nombre de la animación*/
+                animation-duration: 6.5s; /*los s de duración de la animación*/
+                animation-direction: alternate; /*la dirección de la animación*/
+                animation-fill-mode: forwards; /*por dónde comienza la animación*/
+                animation-iteration-count: infinite; /*será infinita la animación*/
+            }
+            
+            /*c/u de los slides de las imagenes*/
+            .item-slide{ 
+                position: relative; 
+                display: flex;
+                flex-direction: column;
+                flex-shrink: 0; /*para que abarque todo el espacio demenera vert*/
+                flex-grow: 0; /*para que abarque todo el espacio demenera horiz*/
+                max-width: 100%;
+            }
+            
+            /*config. el espacio de paginación*/
+            .pagination{
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                display: flex;
+                flex-wrap: wrap;/*ajusta c/img a su contenedor padre*/
+                align-items: center; /*centra el contenido*/
+                justify-content: center;
+                width: 100%;
+            }
+            
+            /*los ítems de la paginación*/
+            .pagination-item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 2px solid white; /*borde sólido y blanco*/
+                width: 16px;
+                height: 16px;
+                border-radius: 4px;
+                overflow: hidden; /*recorta la img*/
+                cursor: pointer;  /*al posicionarse arriba cambia el curso a puntero*/
+                background: rgba(255, 255, 255, 0.5);
+                margin: 0 10px; /*margen vertical de 0 y horiz de 10px*/
+                text-align: center;
+                transition: all 300ms;
+            }
+            
+            /*en el evento hover, cuando me hago click, se transdorma al doble del tamaño*/
+            .pagination-item:hover{
+                transform: scale(2);
+            }
+            
+            .pagination-item img{
+                display: inline-block;
+                max-width: none;
+                height: 100%;
+                transform: scale(1);
+                opacity: 0; /*para que no se muestren las img*/
+                transition: all 300ms;
+            }
+            
+            /*cuando paso el mouse, si se muestra la img*/
+            .pagination-item:hover img{
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            /*detengo la animación cuando hago click en la paginación*/
+            input[id="1"]:checked ~ .slide{
+                animation: none;
+                transform: translate3d(0, 0, 0);
+            }
+            /*Luego de hacer click pone en blanco la img*/
+            input[id="1"]:checked ~ .pagination .pagination-item[for="1"]{
+                background: #fff;
+            }
+            
+            input[id="2"]:checked ~ .slide{
+                animation: none;
+                transform: translate3d(calc(-100% * 1), 0, 0);/*hace una transición*/
+            }
+            
+            input[id="2"]:checked ~ .pagination .pagination-item[for="2"]{
+                background: #fff;
+            }
+            
+            
+            input[id="3"]:checked ~ .slide{
+                animation: none;
+                transform: translate3d(calc(-100% * 2), 0, 0);
+            }
+            
+            input[id="3"]:checked ~ .pagination .pagination-item[for="3"]{
+                background: #fff;
+            }
+            @keyframes autoplay{
+                33%{
+                    transform: translate3d(calc(-100% * 0), 0, 0);
+                }
+                
+                66%{
+                    transform: translate3d(calc(-100% * 1), 0, 0);
+                }
+                
+                100%{
+                    transform: translate3d(calc(-100% * 2), 0, 0);
+                }
+            }
+            .datos{
+                border-top:#ebebeb solid 2px;
+                display: flex;
+                flex-flow: row wrap;
+                flex: 2 1 auto;
+                margin-top: 3px;
+            }
+                .info-cont{
+                    display: flex;
+                    justify-content: center;
+                }
+                .resumen{
+                    flex: 1 1 67%;
+                }
+                .datos-alq{
+                    border: solid #3295ce 1px;
+                    padding: 5px;
+                }
+                        .ingreso{
+                            margin: 10px 0;
+                            }
+                            .datos-alq input{
+                                border: solid gray 0.5px;
+                            }
+                            
+                        .egreso{
+                            margin: 10px 0;
+                            
+                        }
+                            .egreso input{
+                                position: relative;
+                                left: 3px;
+                                border: solid gray 0.5px;
+                            }
+                        
+                        .adultos{
+                            margin: 5px 0;
+                        }
+                            .adultos input{
+                                width: 10%;
+                            }
+                        .ninos{
+                            margin: 5px 0;
+                        }
+                            .ninos input{
+                                width: 10%;
+                                position:relative;
+                                left: 9px;
+                            }
+                .condiciones{
+                    flex: 1 1 27%;
+                    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+                    margin: auto;
+                    padding-left: 5px;
+                    height: 40%;
+                    width: 60%;
+
+                    
+                }
+                    .precio-tot{
+                        color:  #39b54a;
+                        font-weight: 700;
+                    }
+           
+                    .titulo-datos{
+                        margin-bottom: 0;
+                    }
+                    .datos-personales{
+                        padding: 10px 0 10px 10px;
+                        display: flex;
+                        width: 100%;
+                        flex-flow: row wrap;
+                        background-color: #b0d4e9;
+                        border-radius: 5px;
+                        margin-top: 0;
+                    }
+                        .datos-personales h5{
+                            padding: 0;
+                            margin: 0px;
+                            color: rgb(126, 124, 124);
+                        }
+
+                        .datos-personales .titulo{
+                            flex: 1 1 25%;
+                        }
+                        .datos-personales .dato{
+                            flex: 1 1 55%;
+                        }
+                    
+                    
+                       .datos-pago{
+                        border:solid #3295ce 1px;
+                        padding: 5px;
+                       }
+                            .datos-pago input{
+                                border: solid gray 0.5px;
+                            }
+                            .datos-pago select{
+                                border: solid gray 0.5px;
+                            }
+
+                        .titular-tta{
+                            margin: 10px 0;
+                        }
+                        .fech-expir{
+                            display: block;
+                        }
+                        
+                        .form-datos-pago{
+                        padding: 10px 0 10px 10px;
+                        width: 90%;
+                        flex-flow: row wrap;
+                        margin-top: 0;
+                        }
+                        .form-datos-pago h4{
+                                margin-bottom: 0;
+                            }
+                                .datos-pagos input{
+                                    border: solid gray 0.5px;
+                                }
+                                .datos-pagos select{
+                                    border: solid gray 0.5px;
+                                }
+
+                        .control-pago{
+                            margin-bottom: 8px;
+                        }
+                        .control-pago-cvc{
+                            margin: 8px 0;
+                            width: 60px;
+                       }
+                        .separador{
+                            margin-left: 5px;
+                        }
+                .botones{
+                    justify-content: center;
+                    display: flex;
+                }   
+                    .botones button{
+                        background-color: #1259c3;
+                        border: none;
+                        width: 40%;
+                        font-size: 15px;
+                        color: #ffffff;
+                        
+                        border-radius: 4px;
+                        height: 35px;
+                        margin: 10px 5px;
+                    }
+/*================== footer =======================*/
+.redes {
+    display: flex;
+    padding-left: 30vw;
+    padding-right: 30vw;
+    margin-top: 3%;
+}
+    .icono-red{
+        flex: 1 1 auto;
+    }
+        .icono-red i{
+            color: #3295ce;
+            margin: 0px 3px 0px 3px;
+            
+        }
+    
+    .menu-footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-top: #3295ce solid 1px;
+        margin-top: 3%;
+    }
+        .menu-footer i{
+            color:#3295ce;
+
+        }
+        .lista-footer {
+            align-self: start;
+        }
+            .lista-footer a{
+                display: block;
+                text-decoration: none;
+                color:rgb(150, 147, 147)
+            }
+            .lista-footer h4{
+                margin-bottom: 5px;
+            }
+        
+    .legales{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+        .legales i{
+            display: flex;
+            align-items: center;
+        }
+        .legales p{
+            font-family:Roboto;
+            font-size: 12px;
+               
+        }
+
+@media (min-width:860px){
+
+.menu-hamburger{
+    width:40%;
+}
+.logo-completo{
+    margin-left: 20px;
+}
+
+.accesos{
+    display: block;
+               
+}
+
+    .cond-alq{
+        display:flex;
+        justify-content: space-between;
+    }
+        .datos-alq{
+            flex: 1 1 50%;
+            margin-right: 10%;
+        }
+            .ninos input{
+                position:relative;
+                left: 15px;
+            }
+        .condiciones{
+            flex: 1 1 30%;
+        }
+
+    .datos{
+        font-size: 20px;
+        justify-content: center;
+    }
+
+    .form-datos-pago input{
+        font-size: 20px;
+    }
+    .form-datos-pago select{
+        font-size: 20px;
+    }
+.icono-red i{
+    font-size: 30px;
+}
+
+    .accesos a{
+        color: #3295ce;
+        text-decoration: none;
+        font-weight: bold;
+    }
+       
+.lista-footer{
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+}
+        
+}
+        
+@media(min-width: 1000px){
+.nombre-logo{
+    font-size: 40px;
+}
+
+.accesos{
+    font-size: 20px;
+    flex: 1 1 5%;
+} 
+.logo-completo{
+    flex: 1 1 50%;
+}
+    .logo{
+        max-height: 60px;
+        max-width: 100px;
+    }
+    
+}
