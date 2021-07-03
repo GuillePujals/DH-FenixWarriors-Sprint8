@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const {Category, Destination, Image, Property, Users} = require('../database/models');
 const {	validationResult } = require('express-validator');
 const imageController = require('./imageController');
+let ofertas =  require('../data/datosOfertas')
 
 let productController = {
     list: (req, res) => {
@@ -161,29 +162,41 @@ let productController = {
         
         
     }, 
-    /*delete: async (req,res) => {
-        
+    desactivar: async (req,res) => {
+
+        let destinos = await Destination.findAll();
+        let usuarios = req.session.userLogged;
         let propertyId = req.params.id;
-<<<<<<< HEAD
-=======
 
-        let casaBorrar = await Property.destroy(propertyId)
-
->>>>>>> 5b7e45690a08bbd77b2b02da19cfdfccb477d939
+        let casaDesactivar = await Property.update({
+            activated: 0,
+        },{
+            where: {id: propertyId}
+        }); 
         
-        let casaBorrar = await Property.destroy({
-            where: {
-                id: propertyId
-            }
-        })
-<<<<<<< HEAD
-=======
-        let casaBorrar = await Property.destroy(propertyId)
+    console.log("desactivada");
+        res.render('index', {ofertas, destinos, usuarios })
+    },
 
->>>>>>> 5b7e45690a08bbd77b2b02da19cfdfccb477d939
+    activar: async (req,res) => {
+
+        let destinos = await Destination.findAll();
+        let usuarios = req.session.userLogged;
+        let propertyId = req.params.id;
+
+
+        let casaActivar = await Property.update({
+            activated: 1,
+        },{
+            where: {id: propertyId}
+        }); 
+
+
         
-        res.redirect('/index');
-    }*/
+    console.log("desactivada");
+        res.render('index', {ofertas, destinos, usuarios })
+    },
+
     
 }
 

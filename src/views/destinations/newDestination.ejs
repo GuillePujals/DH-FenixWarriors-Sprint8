@@ -1,0 +1,36 @@
+<%- include ('../partials/head') %>
+<body>
+
+    <%- include ('../partials/header') %>
+
+    <main class="main">
+        <h3 class="titulos">Nuevo destino</h3>
+        
+        <form method="POST" action="/destinations" class="form_edit"> 
+
+            <div class="campo">
+                <label for="destination">Ciudad</label>
+                <input 
+                    type="text" 
+                    name="destination" 
+                    value="<%= locals.oldData ? oldData.n_people : null %>"
+                >
+                <% if(locals.errors ) { %>
+                    <div class="text-danger">
+                        <%= errors.destination.msg %>
+                    </div>
+                    <% } %>
+            </div>
+
+            <button type="reset" class="button">Cancelar</button>
+            <button type="submit" class="button">Confirmar</button>
+            <button  class="profile_button"><a href="/destinations">Volver</a></button>
+            
+        </form>
+
+
+
+    </main>
+    <%- include ('../partials/footer') %>
+
+</body>

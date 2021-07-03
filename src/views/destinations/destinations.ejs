@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<%- include ('../partials/head') %>
+
+    <body>
+
+        <%- include ('../partials/header') %>
+
+            <main class="main">
+
+
+                <h1 class="titulos">Destinos</h1>
+                <% if(locals.errors ) { %>
+                    <div class="text-danger">
+                        <%= errors.destination.msg %>
+                    </div>
+                    <% } %>
+                        <div class="info">
+                            <ul>
+
+                                <% for (let i=0; i < destinos.length; i++){ %>
+
+                                    <li class="destino">
+                                        <div class="texto">
+                                            <%= destinos[i].destination %>
+                                        </div>
+                                        <form action="/destinations/delete/<%= destinos[i].id %>?_method=DELETE"
+                                            method="POST">
+                                            <button class="detall_button">Borrar</button>
+                                        </form>
+                                    </li>
+
+                                    <%} %>
+
+                            </ul>
+                        </div>
+                        <button class="profile_button">
+                            <a href="/destinations/create"> Nuevo destino</a>
+                        </button>
+            </main>
+            <%- include ('../partials/footer') %>
+
+
+    </body>
+
+</html>
