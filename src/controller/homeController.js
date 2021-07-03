@@ -33,7 +33,8 @@ let homeController = {
             include:['category', 'user', 'destination', 'image']
         });
 
-        res.render ('products/listProducts', {casas});
+        res.render ('products/listProductsFilter', {casas});
+        console.log(casas);
     }
 }
 
