@@ -373,7 +373,16 @@ section{
                     border: red solid 1px;
                 }
     
-
+.destino{
+    display: flex;
+    font-size: 30px;
+}
+    .texto{
+    width: 200px;
+}
+    .destino form{
+        margin-left: 50px;
+    }
 
 /*================== Botones =======================*/
 .button{
@@ -412,6 +421,7 @@ section{
             border-radius: 4px;
             height: 35px;
             margin-left: 20px;
+            margin-bottom: 20px;
         }
             .profile_button a{
                 text-decoration: none;
