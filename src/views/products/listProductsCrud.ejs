@@ -15,8 +15,12 @@
                         <% if (locals.userLogged.id==casa.user_id){ %>
                             <%- include ('../partials/product', {casa}) %>
                                 <% } %>
+                                <button class="profile_button">
+                                    <a href="/products/<%= casa.id %>"> Detalle</a>
+                                </button>
                                     <% } )%>
                 </section>
+                
 
             </main>
             <%- include ('../partials/footer') %>
