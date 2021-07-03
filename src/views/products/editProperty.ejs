@@ -7,8 +7,9 @@
 <main class="main">
     
 
-    <h3>Editar propiedad</h3>
-    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST" enctype="multipart/form-data" >
+    <h3 class = "titulos">Editar propiedad</h3>
+    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST" 
+        enctype="multipart/form-data" class="form_edit">
 
         <div class="campo">
             <label for="categ">Categoría</label>
@@ -149,10 +150,11 @@
 
         <button type="submit" class="button">Actualizar</button>
         <button type="reset" class="button">Cancelar</button>
+        <form action="/products/<%= property.id %>">
+            <button  class="button">Volver</button>
+        </form>
     </form>
-    <form action="/products/<%= property.id %>">
-        <button  class="button">Volver</button>
-    </form>
+    
 
 
 </main>

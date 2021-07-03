@@ -1,4 +1,4 @@
-<main class="main">
+
 
     <section class="DetalleDeProductos">
         <h2>
@@ -7,31 +7,31 @@
         <h3>
             Dirección: <%= casa.address %>
         </h3>
-
-        <div class="fotos">
-            <%i=0%>
-            <% casa.image.forEach( image => { %>
-                <article class="imagenAEditar">
-                    <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
-                </article>
-            <% }) %>
-        </div>
-
-        
-        <div class="containerProf">
-           
-            <div class="info_prod">
-                <p>
-                    Categoría: <%= casa.category_id %>
-                </p>
-                
-                <p>
-                    Cantidad máxima de personas: <%= casa.n_of_people %>
-                </p>
-                <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
-                </p>
+        <div class="detalle_crud">
+            <div class="fotos">
+                <%i=0%>
+                    <% casa.image.forEach( image=> { %>
+                        <article class="imagenAEditar">
+                            <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
+                        </article>
+                        <% }) %>
+            </div>
 
 
+            <div class="containerProf_product">
+
+                <div class="info_prod">
+                    <p>
+                        Categoría: <%= casa.category_id %>
+                    </p>
+
+                    <p>
+                        Cantidad máxima de personas: <%= casa.n_of_people %>
+                    </p>
+                    <p>Precio por noche: $<%= new Intl.NumberFormat('de-DE', { style: 'decimal' }).format(casa.price) %>
+                    </p>
+
+                </div>
                 <label class="label">Servicios</label> <br>
                 <label class="check"><input type="checkbox" name="wifi" <%=locals.casa && casa.wifi==1 ? 'checked' :
                         null %>>
@@ -54,4 +54,3 @@
         </div>
         <script src="/js/detalleCrud.js"></script>
     </section>
-</main>

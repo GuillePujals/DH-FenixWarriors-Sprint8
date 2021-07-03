@@ -17,6 +17,7 @@ section{
     margin: 0;
     padding: 10px 0;
     width:100vw;
+    z-index: 1;
 }
     .top-bar{
         display: flex;
@@ -111,6 +112,8 @@ section{
 
 .main{
     margin-top: 60;
+    padding-top: 20px;
+    background-color: #b0d4e9;
 }
 
 /*================== Register =======================*/
@@ -164,21 +167,6 @@ section{
         /*align-items: center;*/
     }
 
-.buttons{
-    display: flex;
-}
-    .boton-formulario{
-        background-color:#1259c3;
-        border: none;
-        width: 80%;
-        font-size: 15px;
-        color: #ffffff;
-        padding: 10px;
-        border-radius: 4px;
-        height: 35px;
-        margin: 2px;
-    }
-
     .text-danger{
         color: red;
         font-size: 13px;
@@ -192,6 +180,7 @@ section{
 .containerProf{
     margin-top: 20px;
     display: flex;
+    
 }
     .avatar{
         margin-left: 0;
@@ -214,20 +203,7 @@ section{
             color: hsl(202, 61%, 50%); 
             padding: 0; 
         }
-        .profile_button{
-            background-color:#1259c3;
-            border: none;
-            font-size: 15px;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 4px;
-            height: 35px;
-            margin: 2px;
-        }
-            .profile_button a{
-                text-decoration: none;
-                color: #ffffff;
-            }
+        
 /*================== Detalle producto =======================*/
 .fotos{
     width: 40%;
@@ -250,23 +226,16 @@ section{
 .DetalleDeProductos{
     margin-top: 0%;
     color: hsl(202, 61%, 50%); 
+    margin-left: 20px;
 }
-.detall_button{
-    background-color:#1259c3;
-            border: none;
-            font-size: 15px;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 4px;
-            height: 35px;
-            margin: 2px;
+    .detalle_crud{
+        display: flex;
+    }
+
+.containerProf_product{
+    
 }
-.detalle_botones{
-    display: flex;
-}
-.botones {
-    display: flex;
-}
+
 /*================== Footer =======================*/
 .redes {
     display: flex;
@@ -356,6 +325,115 @@ section{
      } 
     
 
+/*================== Edit Product =======================*/
+
+   
+    .titulos{
+        
+        font-size: 50px;
+        color: #3295ce;
+        font-family: 'Lobster', cursive;
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+        .form_edit{
+            margin-left: 20px;
+            padding-bottom: 20px;
+        }
+      
+    
+            .campo{
+                display: block;
+                margin-bottom: 30px;
+            }
+    
+                .campo label{
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: #3295ce;
+                }
+    
+                .campo input, select, textarea{
+                    margin-left: 30px;
+                    font-size: 20px;
+                    border-radius: 10px;
+                    border: 2px solid #3295ce;
+                }
+                .habit{
+                    width: 50px;
+                }
+    
+                .precio{
+                    width: 100px;
+                }
+                .text-danger{
+                    color: red;
+                }
+                .is-invalid{
+                    border: red solid 1px;
+                }
+    
+
+
+/*================== Botones =======================*/
+.button{
+    background-color:#1259c3;
+            border: none;
+            font-size: 15px;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            height: 35px;
+            margin: 2px;
+    }
+    
+    .buttons{
+        display: flex;
+        margin-left: 60px;
+    }
+        .boton-formulario{
+            background-color:#1259c3;
+            border: none;
+            width: 80%;
+            font-size: 15px;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            height: 35px;
+            margin: 2px;
+        }
+    
+        .profile_button{
+            background-color:#1259c3;
+            border: none;
+            font-size: 15px;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            height: 35px;
+            margin-left: 20px;
+        }
+            .profile_button a{
+                text-decoration: none;
+                color: #ffffff;
+            }
+    
+            .detall_button{
+                background-color:#1259c3;
+                        border: none;
+                        font-size: 15px;
+                        color: #ffffff;
+                        padding: 10px;
+                        border-radius: 4px;
+                        height: 35px;
+                        margin: 2px;
+            }
+            .detalle_botones{
+                display: flex;
+            }
+            .botones {
+                display: flex;
+            }
 
 @media (min-width:860px){
     .accesos{
@@ -366,10 +444,15 @@ section{
             color: #3295ce;
             text-decoration: none;
             font-weight: bold;
+            margin-right: 20px;
         }
+      
+        
     .form{
         justify-content: center;
         display: flex;
+        margin-left: 20px;
+        padding-bottom: 20px;
     }
         .register{
             width: 500px;
@@ -380,30 +463,26 @@ section{
         .logo-completo{
             margin-left: 20px;
         }
-    
-
 
 .icono-red i{
     font-size: 30px;
 }
-   .accesos a{
-        color: #3295ce;
-        text-decoration: none;
-        font-weight: bold;
-    }
-       
+
+ 
 .lista-footer{
     display:flex;
     justify-content: space-around;
     width: 100%;
 }
 .crt-prof{
-    display: flex;
     margin-right: 50px;
-    }
+    display: flex;
 }
+    .crt-prof img{
+       margin-right: 20px;
+    }
 
- 
+}
 
 
 @media(min-width: 1000px){

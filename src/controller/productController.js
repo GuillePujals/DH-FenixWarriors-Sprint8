@@ -7,22 +7,27 @@ const imageController = require('./imageController');
 
 let productController = {
     list: (req, res) => {
-        db.Property.findAll({
-            include:['category', 'user']
-        })
-        .then(propertys => {
-            console.log(propertys);
+        db.Property.findAll(
+            {include:['category', 'user', 'destination', 'image']}
+            
+        )
+        .then(casas => {
+            return res.render('products/listProductsCrud', {casas})})
+           /*console.log(propertys);
             let respuesta = {
                 meta: {
                     status:200,
                     total: propertys.length
                 },
                 data: propertys
-            }
 
-            res.json(respuesta);
-        });
-    },
+          
+            
+            
+            //res.json(respuesta);
+        });*/
+       
+       },
     create: async (req, res) => {
         let categories = await Category.findAll();
         let destination = await Destination.findAll();
@@ -55,7 +60,8 @@ let productController = {
             wifi: req.body.wifi ? req.body.wifi : 0,
             pool: req.body.pool ? req.body.pool : 0,
             parking: req.body.parking ? req.body.parking : 0,
-            barbecue: req.body.barbecue ? req.body.barbecue : 0
+            barbecue: req.body.barbecue ? req.body.barbecue : 0,
+            activated: 1
         });
 
         // // console.log(req.file);
@@ -155,18 +161,29 @@ let productController = {
         
         
     }, 
-    delete: async (req,res) => {
+    /*delete: async (req,res) => {
         
         let propertyId = req.params.id;
+<<<<<<< HEAD
+=======
+
+        let casaBorrar = await Property.destroy(propertyId)
+
+>>>>>>> 5b7e45690a08bbd77b2b02da19cfdfccb477d939
         
         let casaBorrar = await Property.destroy({
             where: {
                 id: propertyId
             }
         })
+<<<<<<< HEAD
+=======
+        let casaBorrar = await Property.destroy(propertyId)
+
+>>>>>>> 5b7e45690a08bbd77b2b02da19cfdfccb477d939
         
         res.redirect('/index');
-    }
+    }*/
     
 }
 
