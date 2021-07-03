@@ -1,0 +1,123 @@
+<%- include ('../partials/head') %>
+<link rel="stylesheet" href="/css/productCart.css">
+
+<body>
+
+    <%- include ('../partials/header') %>
+
+    <main class="container">
+        <div class="container-all">
+
+            <input type="radio" id="1" name="image-slide" hidden />
+            <input type="radio" id="2" name="image-slide" hidden />
+            <input type="radio" id="3" name="image-slide" hidden />
+
+            <div class="slide">
+                <% property.image.forEach( image => { %>
+                    <div class="item-slide">
+                        <img src="/img/products/<%= image.image_name%>">
+                    </div>
+                <% });%>
+
+            </div>
+
+            <div class="pagination">
+                <% let i=0; %>
+                <% property.image.forEach( image => { %>
+                    <label class="pagination-item" for=<%= ++i%>>
+                        <img src="/img/products/<%= image.image_name%>">
+                    </label>
+                <% });%>
+            </div>
+
+        </div>
+
+        <section class="datos">
+            <article class="resumen">
+                <h4>Alquiler en <%= property.destination.destination %></h4>
+                <div class="stars">
+                    <% for (let i = 1; i<= property.category.id; i++){ %>
+                        <i class="fas fa-star"></i>
+                    <% } %>
+                </div>
+                <p class="comentario">
+                    Dirección: <%= property.address %>. Capacidad <%= property.n_of_people %> personas.
+                </p>
+                <div class="services">
+                    <% if (property.wifi) { %>
+                        <i class="fas fa-wifi"></i>
+                    <% } %>
+                    <% if (property.barbecue) { %>
+                        <i class="fas fa-utensils"></i>
+                    <% } %>
+                    <% if (property.parking) { %>
+                        <i class="fas fa-car"></i>
+                    <% } %>
+                    <% if (property.pool) { %>
+                        <i class="fas fa-swimmer"></i>
+                    <% } %>
+                </div>
+            </article>
+            <div class="info-cont">
+                <form action="/procesrPago" method="POST" class="form-datos-pago">
+                    <h4>Condiciones del alquiler:</h4>
+                    <div class="cond-alq">
+                        <div class="datos-alq">
+                            <div class="fecha-alq">
+                                <div class="ingreso">
+                                    <label>Fecha ingreso:</label>
+                                    <input type="date" name="fechaingreso" value="2021-05-03">
+                                </div>
+                                <div class="egreso">
+                                    <label>Fecha egreso:</label>
+                                    <input type="date" name="fechaegreso" value="2021-05-10">
+                                </div>
+                            </div>
+                            <div class="cant-personas">
+                                <div class="adultos">
+                                    <label>Adultos:</label>
+                                    <input type="number" name="cantadultos" value="2">
+                                </div>
+                                <div class="ninos">
+
+                                    <label>Niños:</label>
+                                    <input type="number" name="cantninos" value="2">
+                                </div>
+                            </div>
+                        </div>
+                        <article class="condiciones">
+                            <p class="precio">$<%= property.price%> por noche</p>
+                            <p class="precio-tot">$18.000 total</p>
+                        </article>
+                    </div>
+                    <div class="datos-personales-pago">
+                        <article class="main-datos-personales">
+                            <h4 class="titulo-datos">Datos personales</h4>
+                            <div class="datos-personales">
+                                <h5 class="titulo">Nombre y Apellido:</h5>
+                                <h5 class="dato"><%= user.first_name%></h5>
+                                <h5 class="titulo">E-mail:</h5>
+                                <h5 class="dato"><%= user.mail%></h5>
+                                <h5 class="titulo">celular:</h5>
+                                <h5 class="dato"><%= user.telephone%></h5>
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="botones">
+                        <button type="submit">Enviar</button>
+                        <button type="Reset">Reset</button>
+                    </div>
+                </form>
+
+
+
+
+
+            </div>
+        </section>
+    </main>
+    <%- include ('../partials/footer') %>
+
+</body>
+

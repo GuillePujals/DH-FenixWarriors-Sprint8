@@ -11,6 +11,7 @@ const homeRouter = require ('./routes/homeRouter');
 const productRouter = require ('./routes/productRouter');
 const userRouter = require ('./routes/userRouter');
 const destinationRoute = require ('./routes/destinationRoute');
+const cartRoute = require('./routes/cartRouter');
 
 //Para que llegue la información por body
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +41,7 @@ app.use (admLoggedMiddleware);
 
 app.use('/products', productRouter);
 app.use('/destinations', destinationRoute)
+app.use('/cart', cartRoute);
 app.use('/', userRouter);
 app.use('/', homeRouter);
 

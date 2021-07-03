@@ -168,7 +168,6 @@ let productController = {
         let usuarios = req.session.userLogged;
         let propertyId = req.params.id;
 
-
         let casaDesactivar = await Property.update({
             activated: 0,
         },{
@@ -191,6 +190,8 @@ let productController = {
         },{
             where: {id: propertyId}
         }); 
+
+
         
     console.log("desactivada");
         res.render('index', {ofertas, destinos, usuarios })
