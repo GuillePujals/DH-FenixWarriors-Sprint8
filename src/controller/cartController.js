@@ -44,6 +44,10 @@ let cartController = {
         // console.log(req.params.id)
         // console.log(req.body);
         let user = req.session.userLogged;
+        let property = await db.Property.findByPk(req.params.id, 
+            {
+                include:['image', 'destination', 'category']
+            });
 
         let days = cartController.daysReserve(req.body.fechaingreso, req.body.fechaegreso);
         let totalPrice = await cartController.totalCost(req.params.id, days);
@@ -53,31 +57,28 @@ let cartController = {
         // console.log(expDay);
         const resulValidation = validationResult (req);
         if (resulValidation.errors.length > 0 ){
-           let property = await db.Property.findByPk(req.params.id, 
-                {
-                    include:['image', 'destination', 'category']
-                })
             let user = req.session.userLogged;
+
             return res.render ('products/productCart',{
-            errors: resulValidation.mapped(),
-            oldData: req.body,
-            property, user
-        
-    });
-} else{
-        db.Order.create({
-            property_id: req.params.id,
-            user_id: user.id,
-            check_in: req.body.fechaingreso,
-            check_out: req.body.fechaegreso,
-            n_of_people: parseInt(req.body.cantadultos) + parseInt(req.body.cantninos),
-            credit_card: req.body.titularTarjeta,
-            expiry_date: expDay
-        })
-        .then(order => {
-            res.render('products/detailCart', {user});
-        });
+                errors: resulValidation.mapped(),
+                oldData: req.body,
+                property, user
+            });
+        } else {
+            db.Order.create({
+                property_id: req.params.id,
+                user_id: user.id,
+                check_in: req.body.fechaingreso,
+                check_out: req.body.fechaegreso,
+                n_of_people: parseInt(req.body.cantadultos) + parseInt(req.body.cantninos),
+                credit_card: req.body.titularTarjeta,
+                expiry_date: expDay
+            })
+            .then(order => {
+                res.render('products/detailCart', {user, order, property});
+            });
+        }
     }
-}}
+}
 
 module.exports = cartController;
