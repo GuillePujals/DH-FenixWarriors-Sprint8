@@ -75,7 +75,7 @@ let cartController = {
             expiry_date: expDay
         })
         .then(order => {
-            res.render('error404');
+            res.render('products/detailCart', {user});
         });
     }
 }}
