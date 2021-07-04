@@ -15,18 +15,20 @@ let homeController = {
     }, 
     buscar: async (req, res) => {
 
-    let casas = await Property.findAll({
-        where: {
-            destination_id: req.body.destination,
-            activated: 1
-        }, 
-        include:['category', 'user', 'destination', 'image']
-    });
-    console.log(casas);
-       return casas == "" ? res.render ('error404') : res.render ('products/listProductsFilter', {casas})
-    
-    
-}        
+        let casas = await Property.findAll({
+            where: {
+                destination_id: req.body.destination,
+                activated: 1
+            }, 
+            include:['category', 'user', 'destination', 'image']
+        });
+        console.log(casas);
+        return casas == "" ? res.render ('error404') : res.render ('products/listProductsFilter', {casas})
+    },
+    email: async (req, res) => {
+
+        res.send("Gracias por tu contacto!")
+    },
 }
 
 

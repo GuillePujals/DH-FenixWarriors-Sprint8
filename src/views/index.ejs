@@ -55,7 +55,7 @@
                 <div class="ofertas-destacadas">
                     <% for (let i=0; i<ofertas.length ; i++ ) { %>
                         <article class="oferta-destacada-<%=ofertas[i].id %>">
-                            <a href="/products/detail">
+                            <a href="/">
                                 <%=ofertas[i].descuento%>
                             </a>
                         </article>
@@ -78,7 +78,7 @@
             </section>
 
 
-            <form action="" method="POST" class="suscripcion">
+            <form action="/email" method="POST" class="suscripcion">
                 <input type="email" placeholder="Ingresar e-mail">
                 <button type="submit">Enviar</button>
             </form>
