@@ -12,6 +12,11 @@
 
                 <h1 class="titulos">Detalle del producto</h1>
                 <%- include ('../partials/product') %>
+                <div class="info_prod">
+                    <p>
+                        En alquiler: <%= casa.activated==1 ? 'Si' : 'N0' %>
+                    </p>
+                </div>
                     <div class="botones">
                         <form action="/products/<%= casa.id %>/edit" class="editar">
                             <button class="detall_button">Editar</button>
@@ -19,12 +24,16 @@
                         <form action="/products" class="editar" >
                             <button class="detall_button">Volver</button>
                         </form>
+                        <% if(casa.activated == 1){ %>
                         <form action="/products/desactivar/<%= casa.id %>?_method=PUT" method="POST">
                             <button class="detall_button">Desactivar</button>
                         </form>
-                        <form action="/products/activar/<%= casa.id %>?_method=PUT" method="POST">
-                            <button class="detall_button">Activar</button>
-                        </form>
+                        <% } else { %>
+                            <form action="/products/activar/<%= casa.id %>?_method=PUT" method="POST">
+                                <button class="detall_button">Activar</button>
+                            </form>
+                        <% } %>
+                       
                     </div>
             </main>
             <%- include ('../partials/footer') %>

@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const moment = require('moment');
+const {validationResult} = require('express-validator');
 
 
 let cartController = {
@@ -50,8 +51,20 @@ let cartController = {
 
         let expDay = cartController.expirationDay(req.body.mesExpiracion, req.body.anioExpiracion);
         // console.log(expDay);
-
-
+        const resulValidation = validationResult (req);
+        if (resulValidation.errors.length > 0 ){
+           let property = await db.Property.findByPk(req.params.id, 
+                {
+                    include:['image', 'destination', 'category']
+                })
+            let user = req.session.userLogged;
+            return res.render ('products/productCart',{
+            errors: resulValidation.mapped(),
+            oldData: req.body,
+            property, user
+        
+    });
+} else{
         db.Order.create({
             property_id: req.params.id,
             user_id: user.id,
@@ -65,6 +78,6 @@ let cartController = {
             res.render('products/detailCart', {user});
         });
     }
-}
+}}
 
 module.exports = cartController;
