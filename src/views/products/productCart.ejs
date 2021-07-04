@@ -66,22 +66,37 @@
                             <div class="fecha-alq">
                                 <div class="ingreso">
                                     <label>Fecha ingreso:</label>
-                                    <input type="date" name="fechaingreso" value="2021-05-03">
+                                    <input type="date" name="fechaingreso" value="<%= locals.oldData ? oldData.fechaingreso : null %>">
+                                    <% if(locals.errors && errors.check_in) { %>
+                                        <div class="text-danger">
+                                            <%= errors.check_in.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                                 <div class="egreso">
                                     <label>Fecha egreso:</label>
-                                    <input type="date" name="fechaegreso" value="2021-05-10">
+                                    <input type="date" name="fechaegreso" value="<%= locals.oldData ? oldData.fechaegreso : null %>">
+                                    <% if(locals.errors && errors.check_out) { %>
+                                        <div class="text-danger">
+                                            <%= errors.check_out.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
                             <div class="cant-personas">
                                 <div class="adultos">
                                     <label>Adultos:</label>
-                                    <input type="number" name="cantadultos" value="2">
+                                    <input type="number" name="cantadultos" value="<%= locals.oldData ? oldData.cantadultos : 2 %>">
                                 </div>
                                 <div class="ninos">
 
                                     <label>Niños:</label>
-                                    <input type="number" name="cantninos" value="2">
+                                    <input type="number" name="cantninos" value="<%= locals.oldData ? oldData.cantninos : 2 %>">
+                                    <% if(locals.errors && errors.n_of_people) { %>
+                                        <div class="text-danger">
+                                            <%= errors.n_of_people.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +124,12 @@
 
                         <div class="titular-tta">
                             <label>Titular de la Tarjeta:</label>
-                            <input type="text" name="titularTarjeta" class="control-pago" required>
+                            <input type="text" name="titularTarjeta" class="control-pago" value="<%= locals.oldData ? oldData.titularTarjeta : null %>" >
+                            <% if(locals.errors && errors.titularTarjeta) { %>
+                                <div class="text-danger">
+                                    <%= errors.titularTarjeta.msg %>
+                                </div>
+                                <% } %>
                         </div>
                         <div class="tipo-tta">
                             <label>Tipo de Tarjeta de Crédito:</label>

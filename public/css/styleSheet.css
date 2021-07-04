@@ -3,9 +3,7 @@
     font-family:Roboto;
 }
 
-section{
-    margin-top: 90px;
-}
+
 
 /*================== header =======================*/
 
@@ -111,9 +109,8 @@ section{
 }
 
 .main{
-    margin-top: 60;
-    padding-top: 20px;
     background-color: #b0d4e9;
+    margin-top: 70px;
 }
 
 /*================== Register =======================*/
@@ -178,7 +175,7 @@ section{
 
 /*================== profile =======================*/         
 .containerProf{
-    margin-top: 20px;
+    margin-top: 80px;
     display: flex;
     
 }
@@ -217,6 +214,10 @@ section{
     margin-left: 30px ;
     font-size: 20px;
 }
+    .info_prod p{
+        color: hsl(202, 61%, 50%);
+
+    }
 
 .info_prod label{
    
@@ -224,7 +225,7 @@ section{
 } 
 
 .DetalleDeProductos{
-    margin-top: 0%;
+   
     color: hsl(202, 61%, 50%); 
     margin-left: 20px;
 }
@@ -232,9 +233,7 @@ section{
         display: flex;
     }
 
-.containerProf_product{
-    
-}
+
 
 /*================== Footer =======================*/
 .redes {
@@ -334,7 +333,7 @@ section{
         color: #3295ce;
         font-family: 'Lobster', cursive;
         margin-left: 20px;
-        margin-top: 30px;
+       
     }
         .form_edit{
             margin-left: 20px;
@@ -466,6 +465,7 @@ section{
     }
         .register{
             width: 500px;
+            margin-top: 80px;
         }
         .menu-hamburger{
             width:40%;
@@ -520,6 +520,7 @@ section{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-top: 80px;
 }
 
 .sub-main-body {
