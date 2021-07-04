@@ -20,14 +20,12 @@ const validations = [
         let property = await Property.findByPk (req.params.id);
         
         let n_of_people = await property.n_of_people
-        console.log("CANTIDADES")
-        console.log(req.body.cantninos);
-        console.log(req.body.cantadultos);
+      
         let cantninos = 1
         let cantaduls = 1
-        cantninos = parseFloat(req.body.cantninos);
-        cantaduls = parseFloat(req.body.cantadultos);
-        console.log(cantninos + cantaduls);
+        cantninos = parseInt(req.body.cantninos);
+        cantaduls = parseInt(req.body.cantadultos);
+        
         if(cantninos + cantaduls > n_of_people){
             throw new Error ('La cantidad total de personas no puede ser mayor a: ' + n_of_people)
         } else{
