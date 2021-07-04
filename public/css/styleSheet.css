@@ -355,7 +355,7 @@ section{
     
                 .campo input, select, textarea{
                     margin-left: 30px;
-                    font-size: 20px;
+                    font-size: 15px;
                     border-radius: 10px;
                     border: 2px solid #3295ce;
                 }

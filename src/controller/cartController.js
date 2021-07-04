@@ -1,5 +1,7 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
+const moment = require('moment');
+
 
 let cartController = {
 
@@ -19,22 +21,49 @@ let cartController = {
                 }
             });
     },
-    totalCost: (idPoperty, days) => {
-        db.Property.findByPk(idPoperty)
-        .then(property => {
-            // console.log(property.price + " dias "+ days);
-            return (property.price * days);
-        });
+    totalCost: async (idPoperty, days) => {
+        let property = await db.Property.findByPk(idPoperty);
+        let total = property.price  * days;
+        return (total);
     },
-    payProcess: (req, res) => {
-        console.log("-------------------------")
-        console.log(req.params.id)
-        console.log(req.body);
+    daysReserve: (from, to) =>{
+        let l_from = moment(from);
+        let l_to = moment(to);
 
-        let totalCost = cartController.totalCost(req.params.id, 2);
-        console.log("Total" + totalCost);
+        let days = l_to.diff(l_from, 'days');
 
-        // db.Order.create        
+        return days;
+    },
+    expirationDay: (mes, anio)=>{
+        let expDay = new Date( anio +'/' + mes +'/'+ '01' );
+        return expDay;
+    },
+    payProcess: async (req, res) => {
+        // console.log("-------------------------")
+        // console.log(req.params.id)
+        // console.log(req.body);
+        let user = req.session.userLogged;
+
+        let days = cartController.daysReserve(req.body.fechaingreso, req.body.fechaegreso);
+        let totalPrice = await cartController.totalCost(req.params.id, days);
+        console.log("Precio total:" + totalPrice);
+
+        let expDay = cartController.expirationDay(req.body.mesExpiracion, req.body.anioExpiracion);
+        // console.log(expDay);
+
+
+        db.Order.create({
+            property_id: req.params.id,
+            user_id: user.id,
+            check_in: req.body.fechaingreso,
+            check_out: req.body.fechaegreso,
+            n_of_people: parseInt(req.body.cantadultos) + parseInt(req.body.cantninos),
+            credit_card: req.body.titularTarjeta,
+            expiry_date: expDay
+        })
+        .then(order => {
+            res.render('error404');
+        });
     }
 }
 

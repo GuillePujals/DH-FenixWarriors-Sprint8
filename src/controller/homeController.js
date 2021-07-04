@@ -15,26 +15,18 @@ let homeController = {
     }, 
     buscar: async (req, res) => {
 
-        /*
-        let destino = await Destination.findOne(
-            {where: {
-                id: req.body.destination
-            }
-            })
-        let destinoId =  await destino.id
-        */
-        
-
-        let casas = await Property.findAll({
-            where: {
-                destination_id: req.body.destination,
-                activated: 1
-            }, 
-            include:['category', 'user', 'destination', 'image']
-        });
-
-        res.render ('products/listProducts', {casas});
-    }
+    let casas = await Property.findAll({
+        where: {
+            destination_id: req.body.destination,
+            activated: 1
+        }, 
+        include:['category', 'user', 'destination', 'image']
+    });
+    console.log(casas);
+       return casas == "" ? res.render ('error404') : res.render ('products/listProductsFilter', {casas})
+    
+    
+}        
 }
 
 
