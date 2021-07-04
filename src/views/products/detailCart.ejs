@@ -19,11 +19,25 @@
                 </div>
             </article>
             <article>
-                <h4>Datos de la propiedad alquilada</h4>
-                <div>
-                    <h5>Propiedad</h5>
-                    <h5>"Destino:"<%=property.destination.destination%>"  Dirección:"<%=property.address%></h5>
-
+                <h4 class="titulo-datos">Datos de la propiedad alquilada</h4>
+                <div class="datos-personales">
+                    <h5 class="titulo">Propiedad:</h5>
+                    <h5 class="dato"><%=property.destination.destination%>,   <%=property.address%></h5>
+                    <h5 class="titulo">Capacidad:</h5>
+                    <h5 class="dato"><%=property.n_of_people%></h5>
+                    <h5 class="titulo">Categoría:</h5>
+                    <h5 class="dato"><%=property.category.category%></h5>
+                </div>
+            </article>
+            <article>
+                <h4 class="titulo-datos">Orden de compra</h4>
+                <div class="datos-personales">
+                    <h5 class="titulo">Período:</h5>
+                    <h5 class="dato">Desde:<%=order.check_in.toISOString().slice(0,10)%>   Hasta:<%=order.check_out.toISOString().slice(0,10)%></h5>
+                    <h5 class="titulo">Cant. de personas:</h5>
+                    <h5 class="dato"><%=order.n_of_people%>   </h5>
+                    <h5 class="titulo">Nro. tarjeta:</h5>
+                    <h5 class="dato"><%=order.credit_card%>   </h5>
                 </div>
             </article>
         </div>
