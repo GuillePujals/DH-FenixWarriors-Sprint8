@@ -67,18 +67,18 @@
                                 <div class="ingreso">
                                     <label>Fecha ingreso:</label>
                                     <input type="date" name="fechaingreso" value="<%= locals.oldData ? oldData.fechaingreso : null %>">
-                                    <% if(locals.errors && errors.check_in) { %>
+                                    <% if(locals.errors && errors.fechaingreso) { %>
                                         <div class="text-danger">
-                                            <%= errors.check_in.msg %>
+                                            <%= errors.fechaingreso.msg %>
                                         </div>
                                         <% } %>
                                 </div>
                                 <div class="egreso">
                                     <label>Fecha egreso:</label>
                                     <input type="date" name="fechaegreso" value="<%= locals.oldData ? oldData.fechaegreso : null %>">
-                                    <% if(locals.errors && errors.check_out) { %>
+                                    <% if(locals.errors && errors.fechaegreso) { %>
                                         <div class="text-danger">
-                                            <%= errors.check_out.msg %>
+                                            <%= errors.fechaegreso.msg %>
                                         </div>
                                         <% } %>
                                 </div>
