@@ -109,6 +109,7 @@
             
             img{
                 max-width: 100%;
+                
             }
             
             .container-all{
@@ -141,6 +142,9 @@
                 flex-grow: 0; /*para que abarque todo el espacio demenera horiz*/
                 max-width: 100%;
             }
+             .item-slide img{
+                height: 504;
+             }
             
             /*config. el espacio de paginación*/
             .pagination{
@@ -271,13 +275,13 @@
                             margin: 5px 0;
                         }
                             .adultos input{
-                                width: 10%;
+                                width: 20%;
                             }
                         .ninos{
                             margin: 5px 0;
                         }
                             .ninos input{
-                                width: 10%;
+                                width: 20%;
                                 position:relative;
                                 left: 9px;
                             }

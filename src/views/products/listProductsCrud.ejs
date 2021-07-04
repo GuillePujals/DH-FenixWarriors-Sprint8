@@ -11,16 +11,22 @@
                 <h1 class="titulos">Listado de productos</h1>
 
                 <section class="listadoDeProductos">
-                    <% casas.forEach (casa=> {%>
+                    <% casas.forEach (casa=> { %>
                         <% if (locals.userLogged.id==casa.user_id){ %>
                             <%- include ('../partials/product', {casa}) %>
-                                <% } %>
-                                <button class="profile_button">
-                                    <a href="/products/<%= casa.id %>"> Detalle</a>
-                                </button>
-                                    <% } )%>
+
+                                <div class="info_prod">
+                                    <p>
+                                        En alquiler: <%= casa.activated==1 ? 'Si' : 'N0' %>
+                                    </p>
+                                    <button class="profile_button">
+                                        <a href="/products/<%= casa.id %>"> Detalle</a>
+                                    </button>
+                        <% } %>
+                    <% } )%>
+                                </div>
                 </section>
-                
+
 
             </main>
             <%- include ('../partials/footer') %>

@@ -66,22 +66,37 @@
                             <div class="fecha-alq">
                                 <div class="ingreso">
                                     <label>Fecha ingreso:</label>
-                                    <input type="date" name="fechaingreso" value="2021-05-03">
+                                    <input type="date" name="fechaingreso" value="<%= locals.oldData ? oldData.fechaingreso : null %>">
+                                    <% if(locals.errors && errors.fechaingreso) { %>
+                                        <div class="text-danger">
+                                            <%= errors.fechaingreso.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                                 <div class="egreso">
                                     <label>Fecha egreso:</label>
-                                    <input type="date" name="fechaegreso" value="2021-05-10">
+                                    <input type="date" name="fechaegreso" value="<%= locals.oldData ? oldData.fechaegreso : null %>">
+                                    <% if(locals.errors && errors.fechaegreso) { %>
+                                        <div class="text-danger">
+                                            <%= errors.fechaegreso.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
                             <div class="cant-personas">
                                 <div class="adultos">
                                     <label>Adultos:</label>
-                                    <input type="number" name="cantadultos" value="2">
+                                    <input type="number" name="cantadultos" value="<%= locals.oldData ? oldData.cantadultos : 2 %>">
                                 </div>
                                 <div class="ninos">
 
                                     <label>Niños:</label>
-                                    <input type="number" name="cantninos" value="2">
+                                    <input type="number" name="cantninos" value="<%= locals.oldData ? oldData.cantninos : 2 %>">
+                                    <% if(locals.errors && errors.n_of_people) { %>
+                                        <div class="text-danger">
+                                            <%= errors.n_of_people.msg %>
+                                        </div>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +124,12 @@
 
                         <div class="titular-tta">
                             <label>Titular de la Tarjeta:</label>
-                            <input type="text" name="titularTarjeta" class="control-pago" required>
+                            <input type="text" name="titularTarjeta" class="control-pago" value="<%= locals.oldData ? oldData.titularTarjeta : null %>" >
+                            <% if(locals.errors && errors.titularTarjeta) { %>
+                                <div class="text-danger">
+                                    <%= errors.titularTarjeta.msg %>
+                                </div>
+                                <% } %>
                         </div>
                         <div class="tipo-tta">
                             <label>Tipo de Tarjeta de Crédito:</label>
@@ -122,22 +142,22 @@
                         <div class="fecha-expir">
                             <label>Fecha de expiración:</label>
                             <select name="mesExpiracion" class="control-pago" required>
-                                <option value="ene">Enero</option>
-                                <option value="feb">Febrero</option>
-                                <option value="mar">Marzo</option>
-                                <option value="abr">Abril</option>
-                                <option value="may">Mayo</option>
-                                <option value="jun">Junio</option>
-                                <option value="jul">Julio</option>
-                                <option value="ago">Agosto</option>
-                                <option value="sept">Septiembre</option>
-                                <option value="oct">Octubre</option>
-                                <option value="nov">Noviembre</option>
-                                <option value="dic">Diciembre</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
 
                             <label class="separador">/</label>
-                            <select name="mesExpiracion" class="control-pago" required>
+                            <select name="anioExpiracion" class="control-pago" required>
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>

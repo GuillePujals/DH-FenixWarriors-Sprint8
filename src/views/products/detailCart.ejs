@@ -1,0 +1,29 @@
+<%- include ('../partials/head') %>
+<link rel="stylesheet" href="/css/productCart.css">
+
+<body>
+
+<%- include ('../partials/header') %>
+<main class="container">
+    <div class="info-cont">
+        <div class="datos-personales-pago">
+            <article class="main-datos-personales">
+                <h4 class="titulo-datos">Datos personales</h4>
+                <div class="datos-personales">
+                    <h5 class="titulo">Nombre y Apellido:</h5>
+                    <h5 class="dato"><%= user.first_name%></h5>
+                    <h5 class="titulo">E-mail:</h5>
+                    <h5 class="dato"><%= user.mail%></h5>
+                    <h5 class="titulo">Móvil:</h5>
+                    <h5 class="dato"><%= user.telephone%></h5>
+                </div>
+            </article>
+        </div>
+    </div>
+
+
+</main>
+
+<%- include ('../partials/footer') %>
+
+</body>
