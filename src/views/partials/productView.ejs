@@ -1,0 +1,33 @@
+<div class="card">
+    <h2>Dirección: <%= casa.address %></h2>
+
+    <div class="stars">
+        <% for (let i = 1; i<= casa.category.id; i++){ %>
+            <i class="fas fa-star"></i>
+        <% } %>
+    </div>
+
+    <div class="services">
+        <% if (casa.wifi) { %>
+            <i class="fas fa-wifi"></i>
+        <% } %>
+        <% if (casa.barbecue) { %>
+            <i class="fas fa-utensils"></i>
+        <% } %>
+        <% if (casa.parking) { %>
+            <i class="fas fa-car"></i>
+        <% } %>
+        <% if (casa.pool) { %>
+            <i class="fas fa-swimmer"></i>
+        <% } %>
+    </div>
+
+
+    <img src="/img/products/<%= casa.image[0].image_name %>" alt="" class="imageCard">
+
+    <h4>Precio por noche: $<%= casa.price %></h4>
+    <h5>Cantidad máxima de personas: <%= casa.n_of_people %></h5>
+    <button class="profile_button">
+        <a href="/cart/<%=casa.id%>"> Alquilar</a>
+    </button>           
+</div>

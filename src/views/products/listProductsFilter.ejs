@@ -7,18 +7,13 @@
         <%- include ('../partials/header') %>
             <main class="main">
                 
-               <section class="listadoDeProductos">
+                <div class="container">
                     <% casas.forEach (casa => {%>
-                        <%- include ('../partials/product', {casa}) %>    
+                        <%- include ('../partials/productView', {casa}) %>    
 
-                        <button class="profile_button">
-                                <a href="/cart/<%=casa.id%>"> Alquilar</a>
-                        </button>           
 
                         <% } )%>
-
-                     
-                </section>
+                </div>
 
             </main>
             <%- include ('../partials/footer') %>
