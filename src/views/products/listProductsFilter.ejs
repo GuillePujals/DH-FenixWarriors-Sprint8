@@ -6,7 +6,7 @@
     <body>
         <%- include ('../partials/header') %>
             <main class="main">
-                
+                <h1><%=casas[0].destination.destination%></h1>
                 <div class="container">
                     <% casas.forEach (casa => {%>
                         <%- include ('../partials/productView', {casa}) %>    
