@@ -448,7 +448,6 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    flex: 1 2 calc(50% - 2rem);
     }
               
 .card {
