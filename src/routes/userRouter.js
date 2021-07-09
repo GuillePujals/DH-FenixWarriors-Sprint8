@@ -5,6 +5,7 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 const userValidation = require ('../middlewares/userValidate');
 const uploadFile = require('../middlewares/multerMiddleware');
+const userLogginValidate = require ('../middlewares/userLogginValidate');
 
 
 
@@ -18,7 +19,7 @@ router.post('/register', uploadFile.single('avatar'), userValidation, controlado
 router.get('/login', guestMiddleware, controladorUser.login);
 
 // Procesar de login
-router.post('/login', controladorUser.loginProcess);
+router.post('/login', userValidation, controladorUser.loginProcess);
 
 // Perfil del usuario
 router.get('/profile', authMiddleware, controladorUser.profile);
