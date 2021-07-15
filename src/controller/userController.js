@@ -58,7 +58,45 @@ login: (req, res) => {
 }, 
 
 loginProcess: async (req, res) => {
+    const resulValidation = validationResult (req);
         
+        if (resulValidation.errors.length > 0 ){
+            return res.render ('users/login',{
+            errors: resulValidation.mapped(),
+            oldData: req.body
+             })
+        } else {
+           
+            let userToLogin = await User.findOne({
+                where: {
+                    mail : req.body.email
+                }
+            })
+            
+            let isPasswordOk = bcryptjs.compareSync(req.body.password, userToLogin.password)
+            if (isPasswordOk) {
+                req.session.userLogged = userToLogin
+                if(req.body.recordatorio){
+                        res.cookie('userEmail', req.body.email, { maxAge: 1000 * 60})
+                        console.log('hay cookie');
+                        //console.log(req.cookies.userEmail);
+                    }
+                    
+                    return res.redirect('/profile')
+                }
+                return res.render( "users/login", {
+                    oldData: req.body,
+                    errors: {
+                        email: {
+                            msg: "Las credenciales son inválidas"
+                        }
+                    }
+                })
+            }
+
+        },
+    
+        /*
         let userToLogin = await User.findOne({
             where: {
                 mail : req.body.email
@@ -96,7 +134,9 @@ loginProcess: async (req, res) => {
                 }
             }
         })
-    },
+    */
+    
+    
     edit: async (req, res)=> {
         let user = await User.findByPk(req.session.userLogged.id);
         res.render('users/editUser', {user})

@@ -10,7 +10,7 @@
 <section class="form">
         <form method="POST" action="/login" class="register">
                 <div class="control-formulario">
-                    <input type="email" placeholder="E-mail" name="email" class="control">
+                    <input type="text" placeholder="e-mail" name="email" class="control" value="<%= locals.oldData ? oldData.email : null %>">
                 </div> 
                 <% if (locals.errors && errors.email) { %>
                     <div class="123">
@@ -18,8 +18,14 @@
                     </div>
                 <% }  %>       
                 <div class="control-formulario">
-                    <input type="password" placeholder="password" name="contraseña" class="control" >
-                </div>            
+                    <input type="password" placeholder="password" name="password" class="control" >
+                </div>    
+                <% if (locals.errors && errors.password) { %>
+                    <div class="123">
+                        <%= errors.password.msg %>
+                    </div>
+                <% }  %>  
+                
                 <div class="control-formulario">
                         <label for="recordatorio de cuenta"></label>
                         <input type="checkbox" name="recordatorio" id="recordatorio de cuenta">Recuérdame

@@ -19,7 +19,7 @@ router.post('/register', uploadFile.single('avatar'), userValidation, controlado
 router.get('/login', guestMiddleware, controladorUser.login);
 
 // Procesar de login
-router.post('/login', userValidation, controladorUser.loginProcess);
+router.post('/login', userLogginValidate, controladorUser.loginProcess);
 
 // Perfil del usuario
 router.get('/profile', authMiddleware, controladorUser.profile);
