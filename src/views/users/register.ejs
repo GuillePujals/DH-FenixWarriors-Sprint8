@@ -9,11 +9,18 @@
 
             <section class="form">
                 <form method="POST" action="/register" enctype="multipart/form-data" class="register">
+
+                    <div class="errores">
+                        <ul>
+
+                        </ul>
+                    </div>
                     <div class="control-formulario">
 
-                        <input type="text" placeholder="Nombre" name="first_name"
+                        <input type="text" placeholder="Nombre" name="first_name" id= "name"
                             class="control <%= locals.errors && errors.first_name ? 'is-invalid' : null %>"
                             value="<%= locals.oldData ? oldData.first_name : null %>">
+                            <div class="text-danger"></div>
                         <% if(locals.errors && errors.first_name) { %>
                             <div class="text-danger">
                                 <%= errors.first_name.msg %>
@@ -21,9 +28,10 @@
                             <% } %>
                     </div>
                     <div class="control-formulario">
-                        <input type="text" placeholder="Apellido" name="last_name"
+                        <input type="text" placeholder="Apellido" name="last_name" id= "lastName"
                             class="control <%= locals.errors && errors.last_name ? 'is-invalid' : null %>"
                             value="<%= locals.oldData ? oldData.last_name : null %>">
+                            <div class="text-danger"></div>
                         <% if(locals.errors && errors.last_name) { %>
                             <div class="text-danger">
                                 <%= errors.last_name.msg %>
@@ -31,9 +39,10 @@
                             <% } %>
                     </div>
                     <div class="control-formulario">
-                        <input type="text" placeholder="E-mail" name="mail"
+                        <input type="text" placeholder="E-mail" name="mail" id="email"
                             class="control <%= locals.errors && errors.mail ? 'is-invalid' : null %>"
                             value="<%= locals.oldData ? oldData.mail : null %>">
+                            <div class="text-danger"></div>
                         <% if(locals.errors && errors.mail) { %>
                             <div class="text-danger">
                                 <%= errors.mail.msg %>
@@ -42,9 +51,10 @@
                     </div>
 
                     <div class="control-formulario">
-                        <input type="text" placeholder="Celular" name="telephone"
+                        <input type="text" placeholder="Celular" name="telephone" id="phone"
                             class="control <%= locals.errors && errors.telephone ? 'is-invalid' : null %>"
                             value="<%= locals.oldData ? oldData.telephone : null %>">
+                            <div class="text-danger"></div>
                         <% if(locals.errors && errors.telephone) { %>
                             <div class="text-danger">
                                 <%= errors.telephone.msg %>
@@ -54,8 +64,10 @@
 
                     <div class="control-formulario">
                         <label class="label">Imagen de perfil:</label>
-                        <input type="file" name="avatar"
+                        <input type="file" name="avatar" id = "avatar"
+                        
                             class="control-formulario <%= locals.errors && errors.avatar ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
                         <% if (locals.errors && errors.avatar) { %>
                             <div class="text-danger">
                                 <%= errors.avatar.msg %>
@@ -76,8 +88,9 @@
                     </div>
                     
                     <div class="control-formulario">
-                        <input type="password" placeholder="Ingrese la password" name="password"
+                        <input type="password" placeholder="Ingrese la password" name="password" id="password"
                             class="control <%= locals.errors && errors.password ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
                         <div class="text-danger">
                             <% if(locals.errors && errors.password) { %>
                                 <div class="text-danger">
@@ -97,6 +110,8 @@
             </section>
 
             <%- include ('../partials/footer') %>
+           
+            <script src ="/js/validatorRegister.js"></script>
     </body>
 
 </html>
