@@ -34,7 +34,8 @@ window.onload = () => {
             console.log(errors);
         }
         else{
-            feedbackElement.innerText = ''
+            feedbackElement.innerText = '';
+            if (name.phone) {delete errors.phone};
         }
         });
         
@@ -55,6 +56,8 @@ lastName.addEventListener('blur', () => {
         
     }else{
         feedbackElement.innerText = '';
+        if (lastName.phone) {delete errors.phone};
+        
     }
     });
 
@@ -74,6 +77,7 @@ email.addEventListener('blur', () => {
         errors.email = feedback;
     }else{
         feedbackElement.innerText = '';
+        if (email.phone) {delete errors.phone};
     }
     });
     
@@ -94,6 +98,7 @@ password.addEventListener('blur', () => {
         errors.password = feedback;
     }else{
         feedbackElement.innerText = '';
+        if (password.phone) {delete errors.phone};
     }
     });
     
@@ -116,7 +121,9 @@ password.addEventListener('blur', () => {
         errors.phone = feedback;
     }else{
         feedbackElement.innerText = '';
-    }
+        if (errors.phone) {delete errors.phone};
+            
+        }
     });
 
     //Valido información del imagen
@@ -143,12 +150,14 @@ password.addEventListener('blur', () => {
 
     }else{
         feedbackElement.innerText = '';
+        if (avatar.phone) {delete errors.phone};
+        
     }
 })
        
        form.addEventListener('submit', function(e){
         
-        console.log(name.value.trim() == "");
+        console.log(Object.keys(errors).length);
         if (Object.keys(errors).length > 0) {
             e.preventDefault();
             }
