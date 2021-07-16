@@ -99,6 +99,7 @@
                     value="<%= locals.oldData ? oldData.n_people : null %>"
                     class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>"
                 >
+                <div class="text-danger"></div>
                 <% if (locals.errors && errors.n_people) { %>
                     <div class="text-danger">
                         <%= errors.n_people.msg %>
@@ -115,6 +116,7 @@
                     value="<%= locals.oldData ? oldData.price : null %>"
                     class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>"
                 >
+                <div class="text-danger"></div>
                 <% if (locals.errors && errors.price) { %>
                     <div class="text-danger">
                         <%= errors.price.msg %>
@@ -131,6 +133,7 @@
                     value="<%= locals.oldData ? oldData.address : null %>"
                     class="<%=locals.errors && errors.address ? 'is-invalid' : null %>"
                 >
+                <div class="text-danger"></div>
 
                     <% if (locals.errors && errors.address) { %>
                         <div class="text-danger">
