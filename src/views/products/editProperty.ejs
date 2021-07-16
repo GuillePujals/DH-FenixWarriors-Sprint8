@@ -8,6 +8,7 @@
     
 
     <h3 class = "titulos">Editar propiedad</h3>
+    <ul class="errores"></ul>
     <form action="/products/update/<%= property.id %>?_method=PUT" method="POST" 
         enctype="multipart/form-data" class="form_edit">
 
@@ -51,9 +52,11 @@
             <input 
                 type="number" 
                 name="n_people" 
+                id="n_people" 
                 value="<%= locals.property ? property.n_of_people : null %>"
                 class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>"
             >
+            <div class="text-danger"></div>
             <% if (locals.errors && errors.n_people) { %>
                 <div class="text-danger">
                     <%= errors.n_people.msg %>
@@ -66,9 +69,11 @@
             <input 
                 type="text" 
                 name="price" 
+                id="price" 
                 value="<%= property.price ? property.price : null %>"
                 class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>"
             >
+            <div class="text-danger"></div>
             <% if (locals.errors && errors.price) { %>
                 <div class="text-danger">
                     <%= errors.price.msg %>
@@ -81,9 +86,11 @@
             <input 
                 type="text" 
                 name="address" 
+                id="address" 
                 value="<%= locals.property ? property.address : null %>"
                 class="<%=locals.errors && errors.address ? 'is-invalid' : null %>"
             >
+            <div class="text-danger"></div>
 
                 <% if (locals.errors && errors.address) { %>
                     <div class="text-danger">
@@ -161,6 +168,6 @@
 
 
 <%- include ('../partials/footer') %>
-
+<script src="/js/editProduct.js"></script>
 </body>
 
