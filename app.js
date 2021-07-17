@@ -3,22 +3,22 @@ const app = express();
 const path = require('path');
 const session = require("express-session");
 
-const userLoggedMiddleware = require ('./middlewares/userLoggedMiddleware');
-const admLoggedMiddleware = require ('./middlewares/admLoggedMiddleware');
+const userLoggedMiddleware = require ('./src/middlewares/userLoggedMiddleware');
+const admLoggedMiddleware = require ('./src/middlewares/admLoggedMiddleware');
 
 //Traemos la inforamción de las rutas
-const homeRouter = require ('./routes/homeRouter');
-const productRouter = require ('./routes/productRouter');
-const userRouter = require ('./routes/userRouter');
-const destinationRoute = require ('./routes/destinationRoute');
-const cartRoute = require('./routes/cartRouter');
+const homeRouter = require ('./src/routes/homeRouter');
+const productRouter = require ('./src/routes/productRouter');
+const userRouter = require ('./src/routes/userRouter');
+const destinationRoute = require ('./src/routes/destinationRoute');
+const cartRoute = require('./src/routes/cartRouter');
 
 //Para que llegue la información por body
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // view engine setup
-app.set('views', path.resolve(__dirname, './views'));
+app.set('views', path.resolve(__dirname, './src/views'));
 app.set('view engine', 'ejs');
 
 //Para usar métodos put y delete
