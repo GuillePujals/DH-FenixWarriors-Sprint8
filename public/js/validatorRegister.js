@@ -157,7 +157,7 @@ password.addEventListener('blur', () => {
        
        form.addEventListener('submit', function(e){
         
-        console.log(Object.keys(errors).length);
+        //console.log(Object.keys(errors).length);
         if (Object.keys(errors).length > 0) {
             e.preventDefault();
             }
