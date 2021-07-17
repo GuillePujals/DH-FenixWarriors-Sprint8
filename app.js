@@ -26,7 +26,7 @@ const methodOverride = require ('method-override');
 //Aquí estoy disponiendo la posibilidad para utilizar el seteo en los formularios para el usod e los metodos put ó delete
 app.use(methodOverride('_method'));
 
-//app.use(express.static(path.resolve(__dirname, '../public')));
+//app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.static('public'));
 
 app.use(session({
