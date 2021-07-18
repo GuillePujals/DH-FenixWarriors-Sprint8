@@ -12,12 +12,15 @@
                 <label for="categ">Categoría</label>
                 <select 
                     name="categ" 
+                    id="categ"
                     class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
+                    
                 >
                 <option value="">Seleccionar</option>
                     <% categories.forEach(cat => {%>
                         
                         <option 
+                            
                             value="<%= cat.id %>"
                             <% if (locals.oldData && oldData.categ == cat.id) { %>
                                 selected="selected" 
@@ -53,6 +56,7 @@
                     id="foto"
                     value="<%= locals.oldData ? oldData.foto : '0' %>"
                 >
+                <div class="text-danger"></div>
                 <input 
                     type="hidden" 
                     name="oldFoto" 
@@ -69,8 +73,10 @@
                 <input 
                     type="file" 
                     name="foto2"
+                    id = "foto2"
                     value="<%= locals.oldData ? oldData.foto2 : '0' %>"
                 >
+                <div class="text-danger"></div>
                 <input 
                     type="hidden" 
                     name="oldFoto2" 
@@ -87,8 +93,10 @@
                 <input 
                     type="file" 
                     name="foto3"
+                    id = "foto3"
                     value="<%= locals.oldData ? oldData.foto3 : '0' %>"
                 >
+                <div class="text-danger"></div>
                 <input 
                     type="hidden" 
                     name="oldFoto3" 
@@ -157,7 +165,7 @@
             <div class="campo">
                 <label for="destination">Ciudad</label>
                 <select 
-                    name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
+                    name="destination" id = "destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
                 >
                 <option value="">Seleccionar</option>
                     <% destination.forEach(dest => {%>

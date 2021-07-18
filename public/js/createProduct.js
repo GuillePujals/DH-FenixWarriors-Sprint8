@@ -3,13 +3,121 @@ window.onload = function(){
     let form = document.querySelector('.form_edit');
     let address = document.querySelector('#address');
     let foto = document.querySelector('#foto');
+    let foto2 = document.querySelector('#foto2');
+    let foto3 = document.querySelector('#foto3');
     let price = document.querySelector('#price');
     let n_people = document.querySelector('#n_people');
-
-
+    let description = document.querySelector('#description');
+    let categ = document.querySelector('#categ');
+    let destination = document.querySelector('#destination');
+    
+   
 
     let acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];
     let errors = [];
+
+    
+    description.addEventListener('blur', () => {    
+        let feedback = ''; 
+        let feedbackElement = description.nextElementSibling;
+       
+        // console.log(feedbackElement);
+        if(description.value.length < 20){
+            feedback = 'La descripción debe tener 20 o mas caracteres'
+        } 
+        // console.log(feedbackElement);
+
+        if (feedback) {
+            feedbackElement.innerText = feedback
+            errors.address = feedback;
+        } else {
+            feedbackElement.innerText = '';
+        }
+    });
+
+      //Valido información del imagenes
+      foto.addEventListener('blur', () => {
+        let feedback = ''; 
+        let feedbackElement = foto.nextElementSibling;
+        console.log(foto);
+       console.log("-----------------------");
+        if(foto){
+            let filename = foto.value;
+            let fileExtension = filename.split(".").pop();
+            console.log(acceptedExtensions);
+            console.log(fileExtension);
+            console.log(acceptedExtensions.includes(fileExtension));
+            if (!acceptedExtensions.includes(fileExtension)) {
+                feedback = `Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`
+                
+            }
+            
+        }
+        if (feedback) {
+            feedbackElement.innerText = feedback;
+            errors.foto = feedback;
+    
+        }else{
+            feedbackElement.innerText = '';
+            
+            
+        }
+    });
+
+    foto2.addEventListener('blur', () => {
+        let feedback = ''; 
+        let feedbackElement = foto2.nextElementSibling;
+        console.log(foto2);
+       console.log("-----------------------");
+        if(foto2){
+            let filename = foto2.value;
+            let fileExtension = filename.split(".").pop();
+            console.log(acceptedExtensions);
+            console.log(fileExtension);
+            console.log(acceptedExtensions.includes(fileExtension));
+            if (!acceptedExtensions.includes(fileExtension)) {
+                feedback = `Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`
+                
+            }
+            
+        }
+        if (feedback) {
+            feedbackElement.innerText = feedback;
+            errors.foto2 = feedback;
+    
+        }else{
+            feedbackElement.innerText = '';
+            
+            
+        }
+    });
+
+    foto3.addEventListener('blur', () => {
+        let feedback = ''; 
+        let feedbackElement = foto3.nextElementSibling;
+        console.log(foto3);
+       console.log("-----------------------");
+        if(foto3){
+            let filename = foto3.value;
+            let fileExtension = filename.split(".").pop();
+            console.log(acceptedExtensions);
+            console.log(fileExtension);
+            console.log(acceptedExtensions.includes(fileExtension));
+            if (!acceptedExtensions.includes(fileExtension)) {
+                feedback = `Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`
+                
+            }
+            
+        }
+        if (feedback) {
+            feedbackElement.innerText = feedback;
+            errors.foto3 = feedback;
+    
+        }else{
+            feedbackElement.innerText = '';
+            
+        }
+    });
 
     address.addEventListener('blur', () => {    
         let feedback = ''; 
@@ -37,7 +145,9 @@ window.onload = function(){
         // console.log(feedbackElement);
         if(price.value.trim() == ""){
             feedback = 'Debe completar el precio por noche'
-        } else if(Number(price.value) <= 0 ){
+        } else if(isNaN(price.value)){
+            feedback = 'Este campo solo recibe caracteres numéricos'
+        }else if(Number(price.value) <= 0 ){
             feedback = 'El precio debe ser mayor que cero'
         }
         // console.log(feedbackElement);
@@ -72,6 +182,19 @@ window.onload = function(){
 
     form.addEventListener('submit', (e) => {
 
+        if (categ.value == ''){
+            errors.push('Seleccione una categoría');
+            categ.classList.add('is-invalida');
+        }
+
+        if (foto.value == "" && foto2.value == "" && foto3.value == ""){
+            errors.push('Ingrese por lo menos 1 foto');
+            foto.classList.add('is-invalida');
+        }
+        if (description.value.length < 20){
+            errors.push('Ingrese una descripción de mas de 20 caracteres');
+            description.classList.add('is-invalida');
+        }
 
         if (address.value == ''){
             errors.push('Complete la dirección');
@@ -85,11 +208,11 @@ window.onload = function(){
             errors.push('Ingrese el precio por noche');
             price.classList.add('is-invalida');
         }
-        if (foto.value == ''){
-            errors.push('Ingrese al menos una foto');
-            foto.classList.add('is-invalida');
+        if (destination.value == ''){
+            errors.push('Seleccione una ciudad');
+            destination.classList.add('is-invalida');
         }
-
+  
         if (errors.length > 0){
             e.preventDefault();
             let ulErrors = document.querySelector('.errores');

@@ -150,7 +150,7 @@ password.addEventListener('blur', () => {
 
     }else{
         feedbackElement.innerText = '';
-        if (avatar.phone) {delete errors.phone};
+        if (errors.avatar) {delete errors.avatar};
         
     }
 })
