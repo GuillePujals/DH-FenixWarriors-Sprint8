@@ -49,7 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     category_id: DataTypes.INTEGER,
     n_of_people: DataTypes.INTEGER,
     address: DataTypes.STRING,
-    activated: DataTypes.STRING
+    activated: DataTypes.STRING, 
+    description: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Property',

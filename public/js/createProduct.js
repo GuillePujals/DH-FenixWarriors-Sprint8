@@ -1,3 +1,4 @@
+//<script src="/js/createProduct.js"></script>
 window.onload = function(){
     let form = document.querySelector('.form_edit');
     let address = document.querySelector('#address');
