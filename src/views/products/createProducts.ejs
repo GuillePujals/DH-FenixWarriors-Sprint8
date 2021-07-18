@@ -14,8 +14,9 @@
                     name="categ" 
                     class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
                 >
+                <option value="">Seleccionar</option>
                     <% categories.forEach(cat => {%>
-                        <option value="">Seleccionar</option>
+                        
                         <option 
                             value="<%= cat.id %>"
                             <% if (locals.oldData && oldData.categ == cat.id) { %>
@@ -158,6 +159,7 @@
                 <select 
                     name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
                 >
+                <option value="">Seleccionar</option>
                     <% destination.forEach(dest => {%>
                         <option 
                             value="<%= dest.id %>"
@@ -219,5 +221,5 @@
 
     </main>
     <%- include ('../partials/footer') %>
-    
+    <script src="/js/createProduct.js"></script>
 </body>

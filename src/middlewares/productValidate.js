@@ -17,20 +17,22 @@ const validations = [
         .isNumeric().withMessage('Ingresar un valor númerico'),
     body('address').notEmpty().withMessage('Informar la ubicación'),
     body('foto').custom((value, {req}) =>{
-        let file = req.files.foto[0];
+        let file = req.files.foto;
+        let file2 = req.files.foto2;
+        let file3 = req.files.foto3;
         let oldFoto = req.body.oldFoto;
         console.log("foto");
         console.log(file);
-        console.log(file.originalname);
+     
         console.log("-------------------");
         let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
         
-        if (!file && oldFoto == ""){
+        if (!file && !file2 && !file3 && oldFoto == "" && oldFoto2 == "" && oldFoto3 == ""){
             throw new Error ('Debe subir por lo menos una imagen');
         } else{
-            console.log(file.originalname);
+            
             if(file){
-                let fileExtension = path.extname(file.originalname);
+                let fileExtension = path.extname(file [0].originalname);
                 console.log("Extensi");
                 console.log(fileExtension);
                 console.log("-------------------");
@@ -38,6 +40,46 @@ const validations = [
                     throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
                 } 
             }
+        }
+        return true;
+    }),
+    body('foto2').custom((value, {req}) =>{
+        let file = req.files.foto2;
+        let oldFoto2 = req.body.oldFoto2;
+        //console.log("foto");
+        //console.log(file);
+        //console.log(file.originalname);
+        //console.log("-------------------");
+        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        //console.log(file.originalname);
+        if(file){
+            let fileExtension = path.extname(file[0].originalname);
+            //console.log("Extensi");
+            //console.log(fileExtension);
+            //console.log("-------------------");
+           if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            } 
+        }
+        return true;
+    }),
+    body('foto3').custom((value, {req}) =>{
+        let file = req.files.foto3;
+        let oldFoto3 = req.body.oldFoto3;
+        //console.log("foto");
+        //console.log(file);
+        //console.log(file.originalname);
+        //console.log("-------------------");
+        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        //console.log(file.originalname);
+        if(file){
+            let fileExtension = path.extname(file[0].originalname);
+            //console.log("Extensi");
+            //console.log(fileExtension);
+            //console.log("-------------------");
+           if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            } 
         }
         return true;
     }),
