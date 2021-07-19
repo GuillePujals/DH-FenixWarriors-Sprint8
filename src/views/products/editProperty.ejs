@@ -46,6 +46,22 @@
                 </article>
             <% }) %>
         </div>
+        <div class="campo">
+            <label for="description">Descripción</label>
+            <input 
+                type="text" 
+                name="description" 
+                id="description" 
+                value="<%= locals.property ? property.description : null %>"
+                class="description <%= locals.errors &&  errors.description ? 'is-invalid' : null %>"
+            >
+            <div class="text-danger"></div>
+            <% if (locals.errors && errors.description) { %>
+                <div class="text-danger">
+                    <%= errors.description.msg %>
+                </div>
+            <% } %>
+        </div>
 
         <div class="campo">
             <label for="n_people">Nro de personas</label>
@@ -168,6 +184,6 @@
 
 
 <%- include ('../partials/footer') %>
-<script src="/js/editProduct.js"></script>
+
 </body>
 
