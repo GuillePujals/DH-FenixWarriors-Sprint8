@@ -16,7 +16,26 @@ window.onload = function(){
     let acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];
     let errors = [];
 
-    
+//Valido categoria
+categ.addEventListener('blur', () => {    
+        let feedback = ''; 
+        let feedbackElement = categ.nextElementSibling;
+       
+        // console.log(feedbackElement);
+        if(categ.value.trim() == ""){
+            feedback = 'Debe seleccionar la categoría'
+        } 
+        // console.log(feedbackElement);
+
+        if (feedback) {
+            feedbackElement.innerText = feedback
+            errors.categ = feedback;
+        } else {
+            feedbackElement.innerText = '';
+        }
+    });
+
+    //Valido description
     description.addEventListener('blur', () => {    
         let feedback = ''; 
         let feedbackElement = description.nextElementSibling;
@@ -179,6 +198,25 @@ window.onload = function(){
             feedbackElement.innerText = '';
         }
     });
+
+    //Valido destination
+destination.addEventListener('blur', () => {    
+    let feedback = ''; 
+    let feedbackElement = destination.nextElementSibling;
+   
+    // console.log(feedbackElement);
+    if(destination.value.trim() == ""){
+        feedback = 'Debe seleccionar la ciudad'
+    } 
+    // console.log(feedbackElement);
+
+    if (feedback) {
+        feedbackElement.innerText = feedback
+        errors.destination = feedback;
+    } else {
+        feedbackElement.innerText = '';
+    }
+});
 
 
     form.addEventListener('submit', (e) => {
