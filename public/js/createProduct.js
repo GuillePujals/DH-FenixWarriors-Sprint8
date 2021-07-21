@@ -176,6 +176,7 @@ categ.addEventListener('blur', () => {
             errors.price = feedback;
         } else {
             feedbackElement.innerText = '';
+            if (errors.price) {delete errors.price};
             // console.log(feedback);
         }
     });

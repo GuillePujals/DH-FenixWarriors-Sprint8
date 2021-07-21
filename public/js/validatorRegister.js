@@ -77,7 +77,7 @@ email.addEventListener('blur', () => {
         errors.email = feedback;
     }else{
         feedbackElement.innerText = '';
-        if (email.phone) {delete errors.phone};
+        if (errors.mail) {delete errors.mail};
     }
     });
     
