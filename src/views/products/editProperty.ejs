@@ -43,7 +43,8 @@
                         <article class="imagenAEditar">
                             <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
                             <input type="file" 
-                                id="<%='foto'+ i %>" name="<%='foto' + i%>">
+                                id="<%='foto'+ i %>" name="<%='foto' + i%>"
+                                value="<%= locals.oldData ? 'oldData.foto' + i : '0' %>">
                             <div class="text-danger"></div>
                         </article>
                         <% }) %>

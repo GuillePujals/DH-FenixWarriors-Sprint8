@@ -1,5 +1,6 @@
 const path = require('path');
 const {body} = require ('express-validator');
+const {Image} = require('../database/models');
 
 const validations = [
     body('categ').notEmpty().withMessage('Definir la categoría de la propiedad'),
@@ -30,7 +31,9 @@ const validations = [
         
         if (!file && !file2 && !file3 && !oldImages){
             throw new Error ('Debe subir por lo menos una imagen');
-        }} else if (!file && !file2 && !file3){
+        }
+    }
+     else if (!file && !file2 && !file3){
             throw new Error ('Debe subir por lo menos una imagen');
         }
         let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];

@@ -53,6 +53,7 @@ let productController = {
 
         let newProperty = await Property.create({
             user_id: req.session.userLogged.id,
+            description:req.body.description,
             destination_id: req.body.destination,
             category_id: req.body.categ,
             price: req.body.price,
@@ -123,6 +124,8 @@ let productController = {
     update: async (req,res) => {
         let propertyId = req.params.id;
         const validations = validationResult(req);
+        console.log('--------------ESTOY ACA--------------------');
+        console.log(validations.errors);
         if (validations.errors.length > 0) {
             console.log(validations.errors);
             let categories = await Category.findAll();
@@ -137,11 +140,12 @@ let productController = {
                 destination
             });
         }
-        //console.log('--------------------------------------------');
-        //console.log(req.body);
-        //console.log('--------------------------------------------');
+        
+        //console.log(req.file);
+        console.log('--------------------------------------------');
 
         let propertyUpdated = await Property.update({
+            description:req.body.description,
             destination_id: req.body.destination,
             category_id: req.body.categ,
             price: req.body.price,
