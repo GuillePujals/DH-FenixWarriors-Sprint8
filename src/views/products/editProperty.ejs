@@ -13,7 +13,7 @@
                     enctype="multipart/form-data" class="form_edit">
 
                     <div class="campo">
-                        <label for="categ">Categoría</label>
+                        <label for="categ" id="categ">Categoría</label>
                         <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
                             >
                             <% categories.forEach(cat=> {%>
@@ -121,7 +121,7 @@
 
                         <div class="campo">
                             <label for="destination">Ciudad</label>
-                            <select name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' :
+                            <select name="destination" id="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' :
                                 null %>
                                 >
                                 <% destination.forEach(dest=> {%>
