@@ -35,7 +35,7 @@ window.onload = () => {
         }
         else{
             feedbackElement.innerText = '';
-            if (name.phone) {delete errors.phone};
+            if (errors.name) {delete errors.name};
         }
         });
         
@@ -56,7 +56,7 @@ lastName.addEventListener('blur', () => {
         
     }else{
         feedbackElement.innerText = '';
-        if (lastName.phone) {delete errors.phone};
+        if (errors.lastName) {delete errors.lastName};
         
     }
     });
@@ -77,7 +77,7 @@ email.addEventListener('blur', () => {
         errors.email = feedback;
     }else{
         feedbackElement.innerText = '';
-        if (errors.mail) {delete errors.mail};
+        if (errors.email) {delete errors.email};
     }
     });
     
@@ -98,7 +98,7 @@ password.addEventListener('blur', () => {
         errors.password = feedback;
     }else{
         feedbackElement.innerText = '';
-        if (password.phone) {delete errors.phone};
+        if (errors.password) {delete errors.password};
     }
     });
     
@@ -156,8 +156,9 @@ password.addEventListener('blur', () => {
 })
        
        form.addEventListener('submit', function(e){
-        
-        //console.log(Object.keys(errors).length);
+           console.log("aca estoy");
+        console.log(errors);
+        console.log(Object.keys(errors));
         if (Object.keys(errors).length > 0) {
             e.preventDefault();
             }
