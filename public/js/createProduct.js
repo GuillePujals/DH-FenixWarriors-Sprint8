@@ -61,7 +61,7 @@ categ.addEventListener('blur', () => {
         console.log(foto1);
        console.log("-----------------------");
         if(foto1){
-            let filename = foto.value;
+            let filename = foto1.value;
             let fileExtension = filename.split(".").pop();
             console.log(acceptedExtensions);
             console.log(fileExtension);
