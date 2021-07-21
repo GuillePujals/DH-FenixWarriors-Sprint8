@@ -16,32 +16,34 @@ const validations = [
         .notEmpty().withMessage('Informar el precio').bail()
         .isNumeric().withMessage('Ingresar un valor númerico'),
     body('address').notEmpty().withMessage('Informar la ubicación'),
-    body('foto1').custom((value, {req}) =>{
+    body('foto1').custom(async(value, {req}) =>{
         let file = req.files.foto1;
         let file2 = req.files.foto2;
         let file3 = req.files.foto3;
         
-        console.log("foto");
-        console.log(file);
+        if (req.params.id) {
+            let oldImages = await Image.findOne ({
+                where : {Property_id : req.params.id}
+            })
      
         console.log("-------------------");
-        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
         
-        if (!file && !file2 && !file3){
+        if (!file && !file2 && !file3 && !oldImages){
             throw new Error ('Debe subir por lo menos una imagen');
-        } else{
-            
-            if(file){
-                let fileExtension = path.extname(file [0].originalname);
-                console.log("Extensi");
-                console.log(fileExtension);
-                console.log("-------------------");
-                if (!acceptedExtensions.includes(fileExtension)) {
-                    throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
-                } 
-            }
+        }} else if (!file && !file2 && !file3){
+            throw new Error ('Debe subir por lo menos una imagen');
         }
-        return true;
+        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        if(file){
+            let fileExtension = path.extname(file [0].originalname);
+            console.log("Extensi");
+            console.log(fileExtension);
+            console.log("-------------------");
+            if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            } 
+            }
+            return true;
     }),
     body('foto2').custom((value, {req}) =>{
         let file = req.files.foto2;

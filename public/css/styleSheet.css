@@ -233,7 +233,10 @@
         display: flex;
     }
 
-
+#description{
+    width: 500px;
+    height: 100px;
+}
 
 /*================== Footer =======================*/
 .redes {

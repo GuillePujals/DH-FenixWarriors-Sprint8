@@ -3,6 +3,7 @@ window.onload = function(){
     let address = document.querySelector('#address');
     let price = document.querySelector('#price');
     let n_people = document.querySelector('#n_people');
+    let description = document.querySelector('#description');
 
 
     let acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];

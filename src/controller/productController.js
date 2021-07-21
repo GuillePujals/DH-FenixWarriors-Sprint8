@@ -78,7 +78,7 @@ let productController = {
         let imagesFiles = [];
         let nameImage = '';
         for (let i = 0; i < 3; i++) {
-            if (i==0) nameImage = req.files.foto ? req.files.foto[0].filename : 'logo-casa-alquiler.jpg';
+            if (i==0) nameImage = req.files.foto1 ? req.files.foto1[0].filename : 'logo-casa-alquiler.jpg';
             if (i==1) nameImage = req.files.foto2 ? req.files.foto2[0].filename : 'logo-casa-alquiler.jpg';
             if (i==2) nameImage = req.files.foto3 ? req.files.foto3[0].filename : 'logo-casa-alquiler.jpg';
             imagesFiles.push({

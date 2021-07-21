@@ -2,7 +2,7 @@
 window.onload = function(){
     let form = document.querySelector('.form_edit');
     let address = document.querySelector('#address');
-    let foto = document.querySelector('#foto');
+    let foto1 = document.querySelector('#foto1');
     let foto2 = document.querySelector('#foto2');
     let foto3 = document.querySelector('#foto3');
     let price = document.querySelector('#price');
@@ -10,7 +10,7 @@ window.onload = function(){
     let description = document.querySelector('#description');
     let categ = document.querySelector('#categ');
     let destination = document.querySelector('#destination');
-    
+    console.log("Estoy aca");
    
 
     let acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];
@@ -36,12 +36,12 @@ window.onload = function(){
     });
 
       //Valido información del imagenes
-      foto.addEventListener('blur', () => {
+      foto1.addEventListener('blur', () => {
         let feedback = ''; 
-        let feedbackElement = foto.nextElementSibling;
-        console.log(foto);
+        let feedbackElement = foto1.nextElementSibling;
+        console.log(foto1);
        console.log("-----------------------");
-        if(foto){
+        if(foto1){
             let filename = foto.value;
             let fileExtension = filename.split(".").pop();
             console.log(acceptedExtensions);
@@ -142,7 +142,7 @@ window.onload = function(){
         let feedback = ''; 
         let feedbackElement = price.nextElementSibling;
        
-        // console.log(feedbackElement);
+        console.log(feedbackElement);
         if(price.value.trim() == ""){
             feedback = 'Debe completar el precio por noche'
         } else if(isNaN(price.value)){
@@ -162,6 +162,7 @@ window.onload = function(){
     });
 
     n_people.addEventListener('blur', () => {    
+        
         let feedback = ''; 
         let feedbackElement = n_people.nextElementSibling;
        

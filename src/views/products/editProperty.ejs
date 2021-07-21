@@ -35,10 +35,15 @@
                     </div>
 
                     <div class="editImagenes">
+                        <%i=0%>
+                        
                         <% property.image.forEach( image => { %>
+                            <%i= ++i%>
+                            
                         <article class="imagenAEditar">
                             <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
-                            <input type="file" name=<%="foto" + ++i%>>
+                            <input type="file" 
+                                id="<%='foto'+ i %>" name="<%='foto' + i%>">
                             <div class="text-danger"></div>
                         </article>
                         <% }) %>
@@ -169,5 +174,5 @@
 
 
             <%- include ('../partials/footer') %>
-            <script src="/js/editProduct.js"></script>
+            <script src="/js/createProduct.js"></script>
     </body>
