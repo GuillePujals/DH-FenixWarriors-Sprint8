@@ -16,18 +16,18 @@ const validations = [
         .notEmpty().withMessage('Informar el precio').bail()
         .isNumeric().withMessage('Ingresar un valor númerico'),
     body('address').notEmpty().withMessage('Informar la ubicación'),
-    body('foto').custom((value, {req}) =>{
-        let file = req.files.foto;
+    body('foto1').custom((value, {req}) =>{
+        let file = req.files.foto1;
         let file2 = req.files.foto2;
         let file3 = req.files.foto3;
-        let oldFoto = req.body.oldFoto;
+        
         console.log("foto");
         console.log(file);
      
         console.log("-------------------");
         let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
         
-        if (!file && !file2 && !file3 && oldFoto == "" && oldFoto2 == "" && oldFoto3 == ""){
+        if (!file && !file2 && !file3){
             throw new Error ('Debe subir por lo menos una imagen');
         } else{
             

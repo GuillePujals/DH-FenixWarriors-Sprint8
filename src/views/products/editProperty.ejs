@@ -1,189 +1,173 @@
 <%- include ('../partials/head') %>
 
-<body>
+    <body>
 
-<%- include ('../partials/header') %>
+        <%- include ('../partials/header') %>
 
-<main class="main">
-    
+            <main class="main">
 
-    <h3 class = "titulos">Editar propiedad</h3>
-    <ul class="errores"></ul>
-    <form action="/products/update/<%= property.id %>?_method=PUT" method="POST" 
-        enctype="multipart/form-data" class="form_edit">
 
-        <div class="campo">
-            <label for="categ">Categoría</label>
-            <select 
-                name="categ" 
-                class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
-            >
-                <% categories.forEach(cat => {%>
-                    <option 
-                        value="<%= cat.id %>"
-                        <% if (locals.property && property.category_id == cat.id) { %>
-                            selected="selected" 
-                        <% } %>
-                    >
-                        <%= cat.category %>
-                    </option>
-                <% }) %>
-            </select>
+                <h3 class="titulos">Editar propiedad</h3>
+                <ul class="errores"></ul>
+                <form action="/products/update/<%= property.id %>?_method=PUT" method="POST"
+                    enctype="multipart/form-data" class="form_edit">
 
-            <% if (locals.errors && errors.categ) { %>
-                <div class="text-danger">
-                    <%= errors.categ.msg %>
-                </div>
-            <% } %>
-        </div>
+                    <div class="campo">
+                        <label for="categ">Categoría</label>
+                        <select name="categ" class=<%=locals.errors && errors.categ ? 'is-invalid' : null %>
+                            >
+                            <% categories.forEach(cat=> {%>
+                                <option value="<%= cat.id %>" <% if (locals.property && property.category_id==cat.id) {
+                                    %>
+                                    selected="selected"
+                                    <% } %>
+                                        >
+                                        <%= cat.category %>
+                                </option>
+                                <% }) %>
+                        </select>
 
-        <div class="editImagenes">
-            <%i=0%>
-            <% property.image.forEach( image => { %>
-                <article class="imagenAEditar">
-                    <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
-                    <input type="file" name=<%= "foto" + ++i%>>
-                </article>
-            <% }) %>
-        </div>
-        <div class="campo">
-            <label for="description">Descripción</label>
-            <input 
-                type="text" 
-                name="description" 
-                id="description" 
-                value="<%= locals.property ? property.description : null %>"
-                class="description <%= locals.errors &&  errors.description ? 'is-invalid' : null %>"
-            >
-            <div class="text-danger"></div>
-            <% if (locals.errors && errors.description) { %>
-                <div class="text-danger">
-                    <%= errors.description.msg %>
-                </div>
-            <% } %>
-        </div>
-
-        <div class="campo">
-            <label for="n_people">Nro de personas</label>
-            <input 
-                type="number" 
-                name="n_people" 
-                id="n_people" 
-                value="<%= locals.property ? property.n_of_people : null %>"
-                class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>"
-            >
-            <div class="text-danger"></div>
-            <% if (locals.errors && errors.n_people) { %>
-                <div class="text-danger">
-                    <%= errors.n_people.msg %>
-                </div>
-            <% } %>
-        </div>
-
-        <div class="campo">
-            <label for="price">Precio por noche</label>
-            <input 
-                type="text" 
-                name="price" 
-                id="price" 
-                value="<%= property.price ? property.price : null %>"
-                class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>"
-            >
-            <div class="text-danger"></div>
-            <% if (locals.errors && errors.price) { %>
-                <div class="text-danger">
-                    <%= errors.price.msg %>
-                </div>
-            <% } %>
-        </div>
-
-        <div class="campo">
-            <label for="location">Dirección</label>
-            <input 
-                type="text" 
-                name="address" 
-                id="address" 
-                value="<%= locals.property ? property.address : null %>"
-                class="<%=locals.errors && errors.address ? 'is-invalid' : null %>"
-            >
-            <div class="text-danger"></div>
-
-                <% if (locals.errors && errors.address) { %>
-                    <div class="text-danger">
-                        <%= errors.address.msg %>
+                        <% if (locals.errors && errors.categ) { %>
+                            <div class="text-danger">
+                                <%= errors.categ.msg %>
+                            </div>
+                            <% } %>
                     </div>
-                <% } %>
-        </div>
 
-        <div class="campo">
-            <label for="destination">Ciudad</label>
-            <select 
-                name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' : null %>
-            >
-                <% destination.forEach(dest => {%>
-                    <option 
-                        value="<%= dest.id %>"
-                        <% if (locals.property && property.destination_id == dest.id) { %>
-                            selected="selected" 
+                    <div class="editImagenes">
+                        <% property.image.forEach( image => { %>
+                        <article class="imagenAEditar">
+                            <img src="/img/products/<%= image.image_name %>" alt="" class="listProductsImage">
+                            <input type="file" name=<%="foto" + ++i%>>
+                            <div class="text-danger"></div>
+                        </article>
+                        <% }) %>
+                        <% if (locals.errors && errors.foto1) { %>
+                            <div class="text-danger">
+                                <%= errors.foto1.msg %>
+                            </div>
                         <% } %>
-                    >
-                        <%= dest.destination %>
-                    </option>
-                <% }) %>
-            </select>
+                        <% if (locals.errors && errors.foto2) { %>
+                            <div class="text-danger">
+                                <%= errors.foto2.msg %>
+                            </div>
+                        <% } %>
+                        <% if (locals.errors && errors.foto3) { %>
+                            <div class="text-danger">
+                                <%= errors.foto3.msg %>
+                            </div>
+                        <% } %>
+                    </div>
 
-            <% if (locals.errors && errors.destination) { %>
-                <div class="text-danger">
-                    <%= errors.destination.msg %>
-                </div>
-            <% } %>
-        </div>
+                    
+                        <div class="campo">
+                            <label for="description">Descripción</label>
+                            <input type="text" name="description" id="description"
+                                value="<%= locals.property ? property.description : null %>"
+                                class="description <%= locals.errors &&  errors.description ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
+                            <% if (locals.errors && errors.description) { %>
+                                <div class="text-danger">
+                                    <%= errors.description.msg %>
+                                </div>
+                                <% } %>
+                        </div>
 
-        <div class="campo">
-            <label for="servicios">Servicios</label> <br>
-            <input 
-                type="checkbox" 
-                name="wifi" 
-                value=1
-                <%= locals.property && property.wifi ? 'checked' : null %>>
-            <label for="servicios">Wi-fi</label>
-            <br>
-            <input 
-                type="checkbox" 
-                name="pool" 
-                value=1
-                <%= locals.property && property.pool ? 'checked' : null %>>
-            <label for="servicios">Pileta</label>
-            <br>
-            <input 
-                type="checkbox" 
-                name="parking" 
-                value=1
-                <%= locals.property && property.parking ? 'checked' : null %>>
-            <label for="servicios">Estacionamiento</label>
-            <br>
-            <input 
-                type="checkbox" 
-                name="barbecue" 
-                value=1
-                <%= locals.property && property.barbecue ? 'checked' : null %>>
-            <label for="servicios">Parrilla</label>
-        </div>
+                        <div class="campo">
+                            <label for="n_people">Nro de personas</label>
+                            <input type="number" name="n_people" id="n_people"
+                                value="<%= locals.property ? property.n_of_people : null %>"
+                                class="n_people <%= locals.errors &&  errors.n_people ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
+                            <% if (locals.errors && errors.n_people) { %>
+                                <div class="text-danger">
+                                    <%= errors.n_people.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div class="campo">
+                            <label for="price">Precio por noche</label>
+                            <input type="text" name="price" id="price"
+                                value="<%= property.price ? property.price : null %>"
+                                class="precio <%=locals.errors && errors.price ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
+                            <% if (locals.errors && errors.price) { %>
+                                <div class="text-danger">
+                                    <%= errors.price.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div class="campo">
+                            <label for="location">Dirección</label>
+                            <input type="text" name="address" id="address"
+                                value="<%= locals.property ? property.address : null %>"
+                                class="<%=locals.errors && errors.address ? 'is-invalid' : null %>">
+                            <div class="text-danger"></div>
+
+                            <% if (locals.errors && errors.address) { %>
+                                <div class="text-danger">
+                                    <%= errors.address.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div class="campo">
+                            <label for="destination">Ciudad</label>
+                            <select name="destination" class=<%=locals.errors && errors.destination ? 'is-invalid' :
+                                null %>
+                                >
+                                <% destination.forEach(dest=> {%>
+                                    <option value="<%= dest.id %>" <% if (locals.property &&
+                                        property.destination_id==dest.id) { %>
+                                        selected="selected"
+                                        <% } %>
+                                            >
+                                            <%= dest.destination %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+
+                            <% if (locals.errors && errors.destination) { %>
+                                <div class="text-danger">
+                                    <%= errors.destination.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div class="campo">
+                            <label for="servicios">Servicios</label> <br>
+                            <input type="checkbox" name="wifi" value=1 <%=locals.property && property.wifi ? 'checked' :
+                                null %>>
+                            <label for="servicios">Wi-fi</label>
+                            <br>
+                            <input type="checkbox" name="pool" value=1 <%=locals.property && property.pool ? 'checked' :
+                                null %>>
+                            <label for="servicios">Pileta</label>
+                            <br>
+                            <input type="checkbox" name="parking" value=1 <%=locals.property && property.parking
+                                ? 'checked' : null %>>
+                            <label for="servicios">Estacionamiento</label>
+                            <br>
+                            <input type="checkbox" name="barbecue" value=1 <%=locals.property && property.barbecue
+                                ? 'checked' : null %>>
+                            <label for="servicios">Parrilla</label>
+                        </div>
 
 
-        <button type="submit" class="button">Actualizar</button>
-        <button type="reset" class="button">Cancelar</button>
-        <form action="/products/<%= property.id %>">
-            <button  class="button">Volver</button>
-        </form>
-    </form>
-    
+                        <button type="submit" class="button">Actualizar</button>
+                        <button type="reset" class="button">Cancelar</button>
+                        <form action="/products/<%= property.id %>">
+                            <button class="button">Volver</button>
+                        </form>
+                </form>
 
 
-</main>
+
+            </main>
 
 
-<%- include ('../partials/footer') %>
-
-</body>
-
+            <%- include ('../partials/footer') %>
+            <script src="/js/editProduct.js"></script>
+    </body>

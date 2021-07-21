@@ -122,10 +122,24 @@ let productController = {
     },
     update: async (req,res) => {
         let propertyId = req.params.id;
-
-        console.log('--------------------------------------------');
-        console.log(req.body);
-        console.log('--------------------------------------------');
+        const validations = validationResult(req);
+        if (validations.errors.length > 0) {
+            console.log(validations.errors);
+            let categories = await Category.findAll();
+            let destination = await Destination.findAll();
+            let property = await Property.findByPk(propertyId,  {
+            include: ['image', 'destination', 'category']});
+            return res.render ('products/editProperty',{
+                errors: validations.mapped(),
+                oldData: req.body,
+                property,
+                categories,
+                destination
+            });
+        }
+        //console.log('--------------------------------------------');
+        //console.log(req.body);
+        //console.log('--------------------------------------------');
 
         let propertyUpdated = await Property.update({
             destination_id: req.body.destination,
