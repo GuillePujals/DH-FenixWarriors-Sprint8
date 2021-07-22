@@ -23,6 +23,9 @@ window.onload = () => {
     if (feedback) {
         feedbackElement.innerText = feedback
         errors.email = feedback;
+    }else{
+        feedbackElement.innerText = '';
+        if (errors.email) {delete errors.email};
     }
     });
 
@@ -40,6 +43,9 @@ password.addEventListener('blur', () => {
     if (feedback) {
         feedbackElement.innerText = feedback;
         errors.password = feedback;
+    }else{
+        feedbackElement.innerText = '';
+        if (errors.email) {delete errors.email};
     }
     });
 
