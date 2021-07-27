@@ -1,28 +1,32 @@
-const db = require('../../database/models');
-
-const Properties = db.Property;
+const {Category, Destination, Image, Property, User} = require('../../database/models');
 
 const propertyApiControler ={
-    list: (req, res) => {
-        Properties.findAll(
+    list: async (req, res) => {
+        let properties = await Property.findAll(
             {include:['category', 'user', 'destination', 'image']}
             
         )
-        .then (properties => {
-            let respuesta = {
+        let categories = await Category.findAll(
+            {include: ['properties']}
+        )
+        let contByCategory = {
+            estrellas1: categories[0].properties.length,
+            estrellas2: categories[1].properties.length,
+            estrellas3: categories[2].properties.length,
+            estrellas4: categories[3].properties.length,
+            estrellas5: categories[4].properties.length
+    }
+    
+        let respuesta = {
                 meta: {
                     status: 200,
-                    total: properties.length,
-                    url: 'api/properties'
+                    count: properties.length,
+                    countByCategory: contByCategory 
                 },
-                data: properties
+                products: properties,
             }
             res.json(respuesta);
-        })
-
-        
-
-    }
+        },
 
 
 }
