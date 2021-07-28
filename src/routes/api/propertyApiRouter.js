@@ -3,7 +3,7 @@ const router = express.Router();
 const propertyApiControler = require('../../controller/api/propertyApiController');
 
 router.get('/', propertyApiControler.list);
-//router.get('/:id')
+router.get('/:id', propertyApiControler.detail);
 
 
 

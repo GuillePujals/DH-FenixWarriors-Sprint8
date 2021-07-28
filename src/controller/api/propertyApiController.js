@@ -27,7 +27,24 @@ const propertyApiControler ={
             }
             res.json(respuesta);
         },
+    
+    detail: (req, res) => {
+        Property.findByPk(req.params.id,{
+            include: ['category', 'destination', 'image']
+        })
+        .then(property => {
+            let respuesta = {
+                meta: {
+                    status:200,
+                    total: property.length,
+                    url: '/api/propertie/:id'
+                },
+                data: property
+            }
 
+            res.json(respuesta);
+        });
+    }
 
 }
 
