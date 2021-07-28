@@ -56,14 +56,13 @@ const propertyApiControler ={
     },
     detail: (req, res) => {
         Property.findByPk(req.params.id,{
-            include: ['category', 'destination', 'image']
+            include: ['category', 'destination', 'image', 'user']
         })
         .then(property => {
             let respuesta = {
                 meta: {
                     status:200,
-                    total: property.length,
-                    url: '/api/propertie/:id'
+                    url: '/api/propertie/' + req.params.id
                 },
                 data: property
             }
