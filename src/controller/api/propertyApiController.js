@@ -11,7 +11,7 @@ const propertyApiControler ={
             {include: ['properties']}
             )
 
-        //Cuento las propiedades por cateoría
+        //Cuento las propiedades por cateoría para countByCategory
         let countByCategory = {
             estrellas1: categories[0].properties.length,
             estrellas2: categories[1].properties.length,
