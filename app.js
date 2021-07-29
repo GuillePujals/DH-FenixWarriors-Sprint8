@@ -13,6 +13,7 @@ const userRouter = require ('./src/routes/userRouter');
 const destinationRoute = require ('./src/routes/destinationRoute');
 const cartRoute = require('./src/routes/cartRouter');
 const propertyApiRouter = require('./src/routes/api/propertyApiRouter');
+const userApiRouter = require('./src/routes/api/userApiRouter');
 
 //Para que llegue la información por body
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +45,7 @@ app.use('/products', productRouter);
 app.use('/destinations', destinationRoute)
 app.use('/cart', cartRoute);
 app.use('/api/properties', propertyApiRouter);
+app.use('/api/users',userApiRouter)
 app.use('/', userRouter);
 app.use('/', homeRouter);
 
