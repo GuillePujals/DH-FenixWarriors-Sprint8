@@ -73,7 +73,7 @@ const propertyApiControler ={
             let respuesta = {
                 meta: {
                     status:200,
-                    url: '/api/propertie/' + req.params.id
+                    url: '/api/properties/' + req.params.id
                 },
                 data: property
             }
