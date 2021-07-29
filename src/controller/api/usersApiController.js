@@ -15,7 +15,7 @@ const userApiControler ={
              id: users[i].id,
              name: users[i].first_name + " " + users[i].last_name,
              email: users[i].mail, 
-             detail: "http://localhost:3000/api/properties/"+users[i].id
+             detail: "http://localhost:3000/api/users/"+users[i].id
 
          }
          usuarios.push(usuario)
