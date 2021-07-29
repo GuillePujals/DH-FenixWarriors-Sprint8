@@ -1,4 +1,7 @@
 const {Category, Destination, Image, Property, User} = require('../../database/models');
+const db = require('../../database/models');
+const sequelize = db.sequelize;
+
 
 const propertyApiControler ={
     list: async (req, res) => {
@@ -56,7 +59,15 @@ const propertyApiControler ={
     },
     detail: (req, res) => {
         Property.findByPk(req.params.id,{
-            include: ['category', 'destination', 'image', 'user']
+            // attributes: ['id', 'address','description','n_of_people', 'price', 'wifi', 'pool', 'parking', 'barbecue'],
+            attributes: { exclude: ['createdAt', 'updatedAt', 'category_id', 'user_id', 'destination_id'] },
+            // include: ['category', 'destination', 'image', 'user']
+            include: [
+                { model: Category, as: 'category', attributes: ['category'] },
+                { model: Destination, as: 'destination', attributes: ['destination'] },
+                { model: Image, as: 'image', attributes: [[sequelize.fn('concat',`http://${process.env.DB_HOST}/img/products/`, sequelize.col('image_name')), "URL"] ]},
+                { model: User, as: 'user', attributes: ['first_name', 'last_name', 'mail', 'telephone'] }
+            ]
         })
         .then(property => { 
             let respuesta = {
@@ -67,7 +78,8 @@ const propertyApiControler ={
                 data: property
             }
             res.json(respuesta);
-        });
+        })
+        .catch(error => res.send(error));
     }
 
 }
