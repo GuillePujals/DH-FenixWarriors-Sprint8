@@ -1,4 +1,6 @@
 const {Category, Destination, Image, Property, User} = require('../../database/models');
+const db = require('../../database/models');
+const sequelize = db.sequelize;
 
 
 const userApiControler ={
@@ -31,6 +33,34 @@ const userApiControler ={
             users: usuarios
         }
         res.json(respuesta)
+    },
+    detail: (req, res) => {
+        User.findByPk(req.params.id,{
+            attributes: [
+                'first_name',
+                'last_name',
+                'mail',
+                'telephone',
+                [sequelize.fn('concat',req.headers.host , '/img/users/', sequelize.col('avatar')), "URL"],
+                'admin',
+                'casa',
+                'departamento',
+                'hotel',
+                'hosteria',
+                'aparts'
+            ]
+        })
+        .then(user => {
+            let respuesta = {
+                meta: {
+                    status:200,
+                    url: '/api/user/' + req.params.id
+                },
+                data: user
+            }
+            res.json(respuesta);
+        })
+        .catch((error) => res.send(error));
     }
 }
 

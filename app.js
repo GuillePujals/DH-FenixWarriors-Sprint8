@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require("express-session");
+const cors = require('cors');
+
 
 const userLoggedMiddleware = require ('./src/middlewares/userLoggedMiddleware');
 const admLoggedMiddleware = require ('./src/middlewares/admLoggedMiddleware');
@@ -29,6 +31,7 @@ const methodOverride = require ('method-override');
 app.use(methodOverride('_method'));
 
 //app.use(express.static(path.resolve(__dirname, './public')));
+app.use(cors());
 app.use(express.static('public'));
 
 app.use(session({

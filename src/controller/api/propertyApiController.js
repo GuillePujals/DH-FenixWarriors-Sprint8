@@ -65,7 +65,8 @@ const propertyApiControler ={
             include: [
                 { model: Category, as: 'category', attributes: ['category'] },
                 { model: Destination, as: 'destination', attributes: ['destination'] },
-                { model: Image, as: 'image', attributes: [[sequelize.fn('concat',`https://${process.env.HOST}/img/products/`, sequelize.col('image_name')), "URL"] ]},
+                // { model: Image, as: 'image', attributes: [[sequelize.fn('concat',`https://${process.env.HOST}/img/products/`, sequelize.col('image_name')), "URL"] ]},
+                { model: Image, as: 'image', attributes: [[sequelize.fn('concat',req.headers.host , '/img/products/', sequelize.col('image_name')), "URL"] ]},
                 { model: User, as: 'user', attributes: ['first_name', 'last_name', 'mail', 'telephone'] }
             ]
         })
