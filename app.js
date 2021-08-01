@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require("express-session");
+const cors = require('cors');
+
 
 const userLoggedMiddleware = require ('./src/middlewares/userLoggedMiddleware');
 const admLoggedMiddleware = require ('./src/middlewares/admLoggedMiddleware');
@@ -14,6 +16,7 @@ const destinationRoute = require ('./src/routes/destinationRoute');
 const cartRoute = require('./src/routes/cartRouter');
 const propertyApiRouter = require('./src/routes/api/propertyApiRouter');
 const userApiRouter = require('./src/routes/api/userApiRouter');
+const categoryApiRouter = require('./src/routes/api/categoryApiRouter');
 
 //Para que llegue la información por body
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +32,7 @@ const methodOverride = require ('method-override');
 app.use(methodOverride('_method'));
 
 //app.use(express.static(path.resolve(__dirname, './public')));
+app.use(cors());
 app.use(express.static('public'));
 
 app.use(session({
@@ -46,10 +50,11 @@ app.use('/destinations', destinationRoute)
 app.use('/cart', cartRoute);
 app.use('/api/properties', propertyApiRouter);
 app.use('/api/users',userApiRouter)
+app.use('/api/category',categoryApiRouter);
 app.use('/', userRouter);
 app.use('/', homeRouter);
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 app.listen(PORT, () => {
     console.log('Servidor corriendo en el puerto' + PORT)
 }
