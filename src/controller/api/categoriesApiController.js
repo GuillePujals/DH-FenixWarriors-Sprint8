@@ -16,7 +16,10 @@ const categoriesApiController ={
                 }
             
             res.json(respuesta);
-        } catch(error) {res.send(error)};
+        } catch(error) {res.json({
+            status: "error 500",
+            message:"Error 500"});
 } 
+}
 }
 module.exports = categoriesApiController;

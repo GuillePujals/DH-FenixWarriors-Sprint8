@@ -40,7 +40,7 @@ const propertyApiControler ={
                     properties[i].description,
                     properties[i].image,
                     properties[i].category.category,
-                    "http://localhost:3000/api/properties/"+ properties[i].id)  
+                    "http://req.headers.host/api/properties/"+ properties[i].id)  
 
                 propertiesUrl.push(propertyUrl);
                 }
