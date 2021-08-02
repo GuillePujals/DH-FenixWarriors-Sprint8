@@ -81,7 +81,14 @@ const propertyApiControler ={
             }
             res.json(respuesta);
         })
-        .catch(error => res.send(error));
+        .catch(error => {
+            res.json({
+                meta:{
+                    status: 500,
+                    message: error
+                }
+            })
+        });
     }
 
 }
