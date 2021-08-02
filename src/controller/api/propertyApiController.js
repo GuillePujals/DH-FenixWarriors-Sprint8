@@ -40,7 +40,7 @@ const propertyApiControler ={
                     properties[i].description,
                     properties[i].image,
                     properties[i].category.category,
-                    "http://req.headers.host/api/properties/"+ properties[i].id)  
+                    "http://" +req.headers.host + "/api/properties/"+ properties[i].id)  
 
                 propertiesUrl.push(propertyUrl);
                 }
@@ -56,7 +56,10 @@ const propertyApiControler ={
                 }
             
             res.json(respuesta);
-        } catch (error) {res.send(error)};
+        } catch (error) {res.status (500).json ({
+            status:  500,
+            message: error});
+        }
         },
     detail: (req, res) => {
         Property.findByPk(req.params.id,{
