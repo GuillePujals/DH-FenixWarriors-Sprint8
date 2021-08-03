@@ -15,13 +15,13 @@ const propertyApiControler ={
                 )
 
             //Cuento las propiedades por cateoría para countByCategory
-            let countByCategory = {
+           /* let countByCategory = {
                 estrellas1: categories[0].properties.length,
                 estrellas2: categories[1].properties.length,
                 estrellas3: categories[2].properties.length,
                 estrellas4: categories[3].properties.length,
                 estrellas5: categories[4].properties.length
-            }
+            }*/
 
             //construyo el objeto literal con la url por propiedad
             let propertiesUrl = [];
@@ -50,9 +50,10 @@ const propertyApiControler ={
                     meta: {
                         status: 200,
                         count: properties.length,
-                        countByCategory: countByCategory 
+                        //countByCategory: countByCategory 
                     },
-                    properties: propertiesUrl,
+                    //properties: propertiesUrl,
+                    categories: categories
                 }
             
             res.json(respuesta);
