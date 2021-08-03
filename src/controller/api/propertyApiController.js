@@ -10,18 +10,25 @@ const propertyApiControler ={
         try{ let properties = await Property.findAll(
                 {include:['category', 'user', 'destination', 'image']}
                 )
-            let categories = await Category.findAll(
-                {include: ['properties']}
-                )
+            let categories = await Category.findAll({
+                    attributes: {
+                        include: [
+                            [
+                                sequelize.literal(`(
+                                    select count(*) 
+                                    from properties as p 
+                                    where p.category_id = category.id
+                                )`), 'cnt'
+                            ]
+                        ],
+                        exclude: [
+                            'createdAt',
+                            'updatedAt',
+                            'id'
+                        ]
+                    }
+                })
 
-            //Cuento las propiedades por cateoría para countByCategory
-           /* let countByCategory = {
-                estrellas1: categories[0].properties.length,
-                estrellas2: categories[1].properties.length,
-                estrellas3: categories[2].properties.length,
-                estrellas4: categories[3].properties.length,
-                estrellas5: categories[4].properties.length
-            }*/
 
             //construyo el objeto literal con la url por propiedad
             let propertiesUrl = [];
@@ -50,10 +57,9 @@ const propertyApiControler ={
                     meta: {
                         status: 200,
                         count: properties.length,
-                        //countByCategory: countByCategory 
+                        countByCategory: Object.assign({},categories)
                     },
-                    //properties: propertiesUrl,
-                    categories: categories
+                    properties: propertiesUrl,
                 }
             
             res.json(respuesta);
