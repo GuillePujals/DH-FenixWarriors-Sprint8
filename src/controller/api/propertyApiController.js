@@ -56,7 +56,10 @@ const propertyApiControler ={
                 }
             
             res.json(respuesta);
-        } catch (error) {res.send(error)};
+        } catch (error) {res.json({
+            status: 404,
+            message: error
+        })};
         },
     detail: (req, res) => {
         Property.findByPk(req.params.id,{
