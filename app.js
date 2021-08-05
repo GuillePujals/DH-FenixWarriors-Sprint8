@@ -53,6 +53,12 @@ app.use('/api/users',userApiRouter)
 app.use('/api/category',categoryApiRouter);
 app.use('/', userRouter);
 app.use('/', homeRouter);
+app.use((req, res, next) => {
+	res.status(404).json({
+		status: 404,
+		message: "Página inexistente"
+	})
+});
 
 const PORT = process.env.PORT || 3002
 app.listen(PORT, () => {

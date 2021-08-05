@@ -6,7 +6,8 @@ const sequelize = db.sequelize;
 const userApiControler ={
     list: async (req, res) => {
         
-        //Busco los usuarios
+      try{   
+          //Busco los usuarios
         let users = await User.findAll()
         let usuarios = []
 
@@ -17,12 +18,10 @@ const userApiControler ={
              id: users[i].id,
              name: users[i].first_name + " " + users[i].last_name,
              email: users[i].mail, 
-             detail: "http://localhost:3000/api/users/"+users[i].id
-
+             detail: "http://"+ req.headers.host + "/api/users/" + users[i].id
          }
          usuarios.push(usuario)
-           
-       }
+        }
 
         //Respuesta
         let respuesta = {
@@ -33,6 +32,11 @@ const userApiControler ={
             users: usuarios
         }
         res.json(respuesta)
+    } catch (error) {res.status (500).json ({
+        status:  500,
+        message: error});
+    }
+
     },
     detail: (req, res) => {
         User.findByPk(req.params.id,{
@@ -42,7 +46,6 @@ const userApiControler ={
                 'mail',
                 'telephone',
                 [sequelize.fn('concat',req.headers.host , '/img/users/', sequelize.col('avatar')), "URL"],
-                'admin',
                 'casa',
                 'departamento',
                 'hotel',
@@ -60,7 +63,15 @@ const userApiControler ={
             }
             res.json(respuesta);
         })
-        .catch((error) => res.send(error));
+        .catch((error) => {
+            res.json({
+                meta:{
+                    status: 500,
+                    message: error
+                }
+            })
+        });
+        // .catch((error) => res.send(error));
     }
 }
 
