@@ -46,7 +46,6 @@ const userApiControler ={
                 'mail',
                 'telephone',
                 [sequelize.fn('concat',req.headers.host , '/img/users/', sequelize.col('avatar')), "URL"],
-                'admin',
                 'casa',
                 'departamento',
                 'hotel',

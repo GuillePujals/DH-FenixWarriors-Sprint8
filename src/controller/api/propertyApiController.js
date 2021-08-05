@@ -8,7 +8,7 @@ const propertyApiControler ={
 
         //Traigo la info de la base de datos
         try{ let properties = await Property.findAll(
-                {include:['category', 'user', 'destination', 'image']}
+                {include:['category', 'destination', 'image']}
                 )
             let categories = await Category.findAll({
                     attributes: {
@@ -32,21 +32,21 @@ const propertyApiControler ={
 
             //construyo el objeto literal con la url por propiedad
             let propertiesUrl = [];
-            function AgregarUrl (id,user, description, images, category, url) {
+            function AgregarUrl (id, description, images, category, destination, url) {
                 this.id= id,
-                this.user = user,
                 this.description = description,
                 this.images = images,
                 this.category = category,
+                this.destination = destination,
                 this.url = url
             }
             for (let i = 0; i < properties.length; i++) {
                 let propertyUrl = new AgregarUrl(
                     properties[i].id,
-                    properties[i].user,
                     properties[i].description,
                     properties[i].image,
                     properties[i].category.category,
+                    properties[i].destination.destination,
                     "http://" +req.headers.host + "/api/properties/"+ properties[i].id)  
 
                 propertiesUrl.push(propertyUrl);
