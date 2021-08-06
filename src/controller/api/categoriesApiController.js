@@ -4,29 +4,28 @@ const sequelize = db.sequelize;
 
 const categoriesApiController ={
     list: async (req, res) => {
-
+        
         //Traigo la info de la base de datos
-        try {let categories = await Category.findAll(
-            {
-                attributes: ["category", [sequelize.fn('COUNT', sequelize.col('category_id')), 'Count']],
-                include: ['properties']
-            }
-        );
+       Category.findAll({})
+            .then(categories =>{
 
-            //Genero la respuesta
-            let respuesta = {
+                let respuesta = {
                     meta: {
                         status: 200,
-                        count: categories.length,
+                        count: categories.length
                     },
                     categories: categories
                 }
-            
-            res.json(respuesta);
-        } catch(error) {res.json({
-            status: "error 500",
-            message: error});
-        } 
+                res.json(respuesta);
+                })
+            .catch(error => {
+                res.json({
+                    meta:{
+                        status: 500,
+                        message: error
+                    }
+                })
+            });
     },
     count: (req, res) => {
         Category.findAll({

@@ -10,27 +10,35 @@ const propertyApiControler ={
         try{ let properties = await Property.findAll(
                 {include:['category', 'user', 'destination', 'image']}
                 )
-            let categories = await Category.findAll(
-                {include: ['properties']}
-                )
+            let categories = await Category.findAll({
+                    attributes: {
+                        include: [
+                            [
+                                sequelize.literal(`(
+                                    select count(*) 
+                                    from properties as p 
+                                    where p.category_id = category.id
+                                )`), 'cnt'
+                            ]
+                        ],
+                        exclude: [
+                            'createdAt',
+                            'updatedAt',
+                            'id'
+                        ]
+                    }
+                })
 
-            //Cuento las propiedades por cateoría para countByCategory
-            let countByCategory = {
-                estrellas1: categories[0].properties.length,
-                estrellas2: categories[1].properties.length,
-                estrellas3: categories[2].properties.length,
-                estrellas4: categories[3].properties.length,
-                estrellas5: categories[4].properties.length
-            }
 
             //construyo el objeto literal con la url por propiedad
             let propertiesUrl = [];
-            function AgregarUrl (id,user, description, images, category, url) {
+            function AgregarUrl (id, user, description, images, category, destination, url) {
                 this.id= id,
                 this.user = user,
                 this.description = description,
                 this.images = images,
                 this.category = category,
+                this.destination = destination,
                 this.url = url
             }
             for (let i = 0; i < properties.length; i++) {
@@ -40,6 +48,7 @@ const propertyApiControler ={
                     properties[i].description,
                     properties[i].image,
                     properties[i].category.category,
+                    properties[i].destination.destination,
                     "http://" +req.headers.host + "/api/properties/"+ properties[i].id)  
 
                 propertiesUrl.push(propertyUrl);
@@ -50,7 +59,7 @@ const propertyApiControler ={
                     meta: {
                         status: 200,
                         count: properties.length,
-                        countByCategory: countByCategory 
+                        countByCategory: Object.assign({},categories)
                     },
                     properties: propertiesUrl,
                 }
