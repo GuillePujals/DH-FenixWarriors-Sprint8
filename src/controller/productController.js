@@ -115,69 +115,79 @@ let productController = {
         let property = await Property.findByPk(propertyId, {include: ['image', 'destination']});
         let categories = await Category.findAll();
         let destination = await Destination.findAll();
-
+        console.log("foto1:");
+        console.log(property.image[0].image_name);
         if ( property ) {
             res.render('products/editProperty', {property, categories, destination});
         }
 
     },
     update: async (req,res) => {
-        let propertyId = req.params.id;
-        const validations = validationResult(req);
-        console.log('--------------ESTOY ACA--------------------');
-        console.log(validations.errors);
-        if (validations.errors.length > 0) {
-            console.log(validations.errors);
-            let categories = await Category.findAll();
-            let destination = await Destination.findAll();
-            let property = await Property.findByPk(propertyId,  {
-            include: ['image', 'destination', 'category']});
-            return res.render ('products/editProperty',{
-                errors: validations.mapped(),
-                oldData: req.body,
-                property,
-                categories,
-                destination
+        try{
+            let propertyId = req.params.id;
+            const validations = validationResult(req);
+            //console.log('--------------ESTOY ACA--------------------');
+            //console.log(validations.errors);
+            if (validations.errors.length > 0) {
+                console.log(validations.errors);
+                let categories = await Category.findAll();
+                let destination = await Destination.findAll();
+                let property = await Property.findByPk(propertyId,  {
+                include: ['image', 'destination', 'category']});
+                
+                return res.render ('products/editProperty',{
+                    errors: validations.mapped(),
+                    oldData: req.body,
+                    property,
+                    categories,
+                    destination
+                });
+            }
+            
+            //console.log(req.file);
+            //console.log('--------------------------------------------');
+
+            let propertyUpdated = await Property.update({
+                description:req.body.description,
+                destination_id: req.body.destination,
+                category_id: req.body.categ,
+                price: req.body.price,
+                address: req.body.address,
+                n_of_people: req.body.n_people,
+                wifi: req.body.wifi ? req.body.wifi : 0,
+                pool: req.body.pool ? req.body.pool : 0,
+                parking: req.body.parking ? req.body.parking : 0,
+                barbecue: req.body.barbecue ? req.body.barbecue : 0
+            },{
+                where: {id: propertyId}
             });
+
+            //Edición de las imágenes
+            let imagesFiles = [];
+            console.log(req.files);
+            console.log("--------------------Antes de leer files---------------------------")
+            if (req.files.foto1) imagesFiles.push({image_name: req.files.foto1[0].filename, image_num:1})
+            if (req.files.foto2) imagesFiles.push({image_name: req.files.foto2[0].filename, image_num:2})
+            if (req.files.foto3) imagesFiles.push({image_name: req.files.foto3[0].filename, image_num:3})
+            console.log(imagesFiles);
+            console.log("--------------------Voy a bulkEdit--------------------------------")
+            //console.log(await imageController.bulkEdit(propertyId, imagesFiles));
+            let imagesNew = await imageController.bulkEdit(propertyId, imagesFiles);
+            
+            
+            let user = req.session.userLogged;
+            //let casa = propertyUpdated
+            let casa = await Property.findByPk(propertyId, 
+                {include:['image', 'destination', 'category']});
+                //console.log("foto2:");
+            //console.log(casa.image[0].image_name);
+            if (casa) {
+                
+            res.render('products/detalleCrud', {casa, user});  
+            }
+        } catch (e){
+            console.log(e);
         }
-        
-        //console.log(req.file);
-        console.log('--------------------------------------------');
-
-        let propertyUpdated = await Property.update({
-            description:req.body.description,
-            destination_id: req.body.destination,
-            category_id: req.body.categ,
-            price: req.body.price,
-            address: req.body.address,
-            n_of_people: req.body.n_people,
-            wifi: req.body.wifi ? req.body.wifi : 0,
-            pool: req.body.pool ? req.body.pool : 0,
-            parking: req.body.parking ? req.body.parking : 0,
-            barbecue: req.body.barbecue ? req.body.barbecue : 0
-        },{
-            where: {id: propertyId}
-        });
-
-        //Edición de las imágenes
-        let imagesFiles = [];
-        // console.log(req.files);
-        // console.log("--------------------Antes de leer files---------------------------")
-        if (req.files.foto1) imagesFiles.push({image_name: req.files.foto1[0].filename, image_num:1})
-        if (req.files.foto2) imagesFiles.push({image_name: req.files.foto2[0].filename, image_num:2})
-        if (req.files.foto3) imagesFiles.push({image_name: req.files.foto3[0].filename, image_num:3})
-        // console.log(imagesFiles);
-        // console.log("--------------------Voy a bulkEdit--------------------------------")
-        // console.log(await imageController.bulkEdit(propertyId, imagesFiles));
-        let imagesNew = await imageController.bulkEdit(propertyId, imagesFiles);
-
-        let user = req.session.userLogged;
-        let casa = await Property.findByPk(propertyId, 
-            {include:['image', 'destination', 'category']});
-        if (casa) {
-          res.render('products/detalleCrud', {casa, user});  
-        }
-        
         
     }, 
     desactivar: async (req,res) => {
