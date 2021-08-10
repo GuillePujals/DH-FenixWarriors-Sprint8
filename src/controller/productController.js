@@ -115,8 +115,8 @@ let productController = {
         let property = await Property.findByPk(propertyId, {include: ['image', 'destination']});
         let categories = await Category.findAll();
         let destination = await Destination.findAll();
-        console.log("foto1:");
-        console.log(property.image[0].image_name);
+       // console.log("foto1:");
+        //console.log(property.image[0].image_name);
         if ( property ) {
             res.render('products/editProperty', {property, categories, destination});
         }
@@ -175,16 +175,16 @@ let productController = {
             let imagesNew = await imageController.bulkEdit(propertyId, imagesFiles);
             
             
-            let user = req.session.userLogged;
+            /*let user = req.session.userLogged;
             //let casa = propertyUpdated
             let casa = await Property.findByPk(propertyId, 
                 {include:['image', 'destination', 'category']});
                 //console.log("foto2:");
             //console.log(casa.image[0].image_name);
-            if (casa) {
+            if (casa) {*/
                 
-            res.render('products/detalleCrud', {casa, user});  
-            }
+            res.redirect('/products');  
+            //}
         } catch (e){
             console.log(e);
         }

@@ -4,14 +4,14 @@ module.exports =
 {
   "development": {
 
-    "username": process.env.DB_USERNAME,
-    "password": process.env.DB_PASSWORD,
-    "database": process.env.DB_DATABASE,
-    "host": process.env.DB_HOST,
-    "port": process.env.DB_PORT,
-    "dialect": process.env.DB_DIALECT,
+    "username": 'root',
+    "password": '',
+    "database": 'dbvacations',
+    "host": '127.0.0.1',
+    "port": 3306,
+    "dialect": 'mysql',
   },
-  "production": {
+  /*"production": {
 
     "username": process.env.DB_USERNAME,
     "password": process.env.DB_PASSWORD,
@@ -23,7 +23,7 @@ module.exports =
     //"host": "us-cdbr-east-04.cleardb.com",
     "port": process.env.DB_PORT,
     "dialect": process.env.DB_DIALECT,
-  },
+  },*/
 
     seederStorage: "sequelize",
     seederStorageTableName: "seeds",
